@@ -1,0 +1,593 @@
+[
+  {
+    "id": "feed-me-odd",
+    "visible": true,
+    "status": "live",
+    "name": "Feed Me Odd",
+    "hook": {
+      "fr": "Le monde est plus étrange que vous ne le pensez.",
+      "en": "The world is stranger than you think."
+    },
+    "pitch": {
+      "fr": "Des anecdotes vraies, une par écran, deux minutes de lecture. Des milliers de sujets repérés sur Wikipédia, réécrits par l'IA, choisis et relus par un humain.",
+      "en": "True stories, one per screen, two minutes each. Thousands of topics spotted on Wikipedia, rewritten by AI, picked and reviewed by a human."
+    },
+    "problem": {
+      "fr": "Les faits étonnants abondent sur Wikipédia, mais ils sont noyés dans des articles longs et techniques. Les réécrire à la main, un par un, prendrait un temps fou.",
+      "en": "Wikipedia is full of astonishing facts, but they're buried in long, technical articles. Rewriting them by hand, one by one, would take forever."
+    },
+    "idea": {
+      "fr": "Une chaîne éditoriale presque automatique : l'IA repère et rédige, je choisis et je relis. Le lecteur, lui, n'a plus qu'à faire défiler.",
+      "en": "An almost automatic editorial chain: AI spots and writes, I choose and review. Readers just scroll."
+    },
+    "how": {
+      "fr": "Cinq workflows GitHub Actions orchestrent la collecte, l'écriture par LLM, le contrôle et la publication. Le modèle ne travaille qu'à partir de l'article source, et chaque sujet n'est rédigé — donc payé — qu'une seule fois. Site et application statiques, abonnement ou achat à vie.",
+      "en": "Five GitHub Actions workflows orchestrate collection, LLM writing, checks and publishing. The model only works from the source article, and each topic is written — and paid for — only once. Static site and app, with a subscription or lifetime purchase."
+    },
+    "ai": [
+      "Claude",
+      "OpenAI"
+    ],
+    "stack": [
+      "GitHub Actions",
+      {
+        "fr": "Wikipédia & Wikidata",
+        "en": "Wikipedia & Wikidata"
+      },
+      "Netlify",
+      "Polar"
+    ],
+    "images": [
+      {
+        "src": "projects/feed-me-odd-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/feed-me-odd-2.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/feed-me-odd-3.webp",
+        "kind": "mobile"
+      }
+    ],
+    "demo": "https://www.feedmeodd.com",
+    "demoLabel": {
+      "fr": "Lire une anecdote",
+      "en": "Read a story"
+    },
+    "repo": "https://github.com/engoB/curio",
+    "repoPrivate": true,
+    "accent": "#60a5fa"
+  },
+  {
+    "id": "multix-arena",
+    "visible": true,
+    "status": "live",
+    "name": "Multi X Arena",
+    "hook": {
+      "fr": "Et si réviser ses tables devenait un jeu d'arène ?",
+      "en": "What if practising times tables felt like an arena game?"
+    },
+    "pitch": {
+      "fr": "Un jeu pour enfants qui transforme les tables de multiplication en aventure : des héros à pouvoirs, des mondes à conquérir, des duels à deux sur le même écran.",
+      "en": "A kids' game that turns times tables into an adventure: heroes with powers, worlds to conquer, two-player duels on the same screen."
+    },
+    "problem": {
+      "fr": "Réciter ses tables lasse vite. Et beaucoup d'applications éducatives sont remplies de publicités ou demandent de créer un compte.",
+      "en": "Reciting times tables gets boring fast. And many learning apps are full of ads or require an account."
+    },
+    "idea": {
+      "fr": "Emprunter les codes des jeux que les enfants aiment déjà — progression, héros, récompenses — et les mettre au service de la mémorisation.",
+      "en": "Borrow the codes of games kids already love — progression, heroes, rewards — and put them to work for memorisation."
+    },
+    "how": {
+      "fr": "Application web installable qui fonctionne hors ligne, sans compte, sans publicité ni suivi. Un « atelier » séparé permet de changer l'habillage, les sons et les modes de jeu sans toucher au code.",
+      "en": "An installable web app that works offline, with no account, ads or tracking. A separate “workshop” lets me change the look, sounds and game modes without touching the code."
+    },
+    "ai": [],
+    "stack": [
+      "PWA",
+      "TypeScript",
+      {
+        "fr": "Hors ligne",
+        "en": "Offline"
+      }
+    ],
+    "images": [
+      {
+        "src": "projects/multix-arena-1.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/multix-arena-2.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/multix-arena-3.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/multix-arena-4.webp",
+        "kind": "mobile"
+      }
+    ],
+    "demo": "https://engob.github.io/MultixArena/",
+    "demoLabel": {
+      "fr": "Jouer",
+      "en": "Play"
+    },
+    "repo": "https://github.com/engoB/MultixArena",
+    "repoPrivate": false,
+    "accent": "#f59e0b"
+  },
+  {
+    "id": "tbm-tram-radar",
+    "visible": true,
+    "status": "live",
+    "name": "Tram Radar",
+    "hook": {
+      "fr": "« Est-ce que je l'ai ? » La réponse, en temps réel.",
+      "en": "“Will I make it?” Answered in real time."
+    },
+    "pitch": {
+      "fr": "À Bordeaux, l'app vous dit si vous aurez votre tram, selon l'endroit où vous êtes et la vitesse à laquelle vous marchez.",
+      "en": "In Bordeaux, the app tells you whether you'll catch your tram, based on where you are and how fast you walk."
+    },
+    "problem": {
+      "fr": "Les applis de transport donnent l'heure de passage, pas la vraie question : ai-je le temps d'y arriver à pied ?",
+      "en": "Transit apps show departure times, not the real question: do I have time to get there on foot?"
+    },
+    "idea": {
+      "fr": "Un seul écran, une seule réponse : croiser le temps réel officiel du réseau avec un vrai itinéraire piéton et votre allure.",
+      "en": "One screen, one answer: combine the network's official real-time data with an actual walking route and your pace."
+    },
+    "how": {
+      "fr": "Application web installable, sans framework. Données ouvertes du réseau TBM (temps réel, horaires, tracés) et itinéraires piétons OpenStreetMap ; les lignes sont régénérées chaque nuit par GitHub Actions.",
+      "en": "An installable web app with no framework. Open data from the TBM network (real time, timetables, routes) and OpenStreetMap walking directions; lines are rebuilt every night by GitHub Actions."
+    },
+    "ai": [],
+    "stack": [
+      "PWA",
+      {
+        "fr": "Open data TBM",
+        "en": "TBM open data"
+      },
+      "OpenStreetMap",
+      "GitHub Actions"
+    ],
+    "images": [
+      {
+        "src": "projects/tbm-tram-radar-1.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/tbm-tram-radar-2.webp",
+        "kind": "mobile"
+      }
+    ],
+    "demo": "https://engob.github.io/TBMTramRadar/",
+    "demoLabel": {
+      "fr": "Ouvrir l'app",
+      "en": "Open the app"
+    },
+    "repo": "https://github.com/engoB/TBMTramRadar",
+    "repoPrivate": false,
+    "accent": "#a855f7"
+  },
+  {
+    "id": "teletravail",
+    "visible": true,
+    "status": "live",
+    "name": "Télétravail en français",
+    "hook": {
+      "fr": "Toutes les offres en télétravail pour francophones, au même endroit.",
+      "en": "Every remote job for French speakers, in one place."
+    },
+    "pitch": {
+      "fr": "Un tableau de bord qui rassemble, trie et suit les offres en télétravail ouvertes aux francophones. Mis à jour tout seul, toutes les six heures.",
+      "en": "A dashboard that gathers, sorts and tracks remote jobs open to French speakers. It updates itself every six hours."
+    },
+    "problem": {
+      "fr": "Les offres en télétravail sont éparpillées entre sites d'emploi, pages carrières et plateformes étrangères — et beaucoup ne disent même pas si le français est un atout.",
+      "en": "Remote jobs are scattered across job boards, career pages and foreign platforms — and many don't even say whether French is a plus."
+    },
+    "idea": {
+      "fr": "Un robot qui fait la tournée à ma place : il collecte, dédoublonne, repère la langue et classe les offres. Il ne reste qu'à filtrer.",
+      "en": "A bot that does the rounds for me: it collects, deduplicates, detects the language and ranks the offers. All that's left is filtering."
+    },
+    "how": {
+      "fr": "Un script Python lancé par GitHub Actions interroge des sources publiques et les pages carrières de centaines d'entreprises, puis publie une page statique avec filtres et graphiques.",
+      "en": "A Python script run by GitHub Actions queries public sources and the career pages of hundreds of companies, then publishes a static page with filters and charts."
+    },
+    "ai": [],
+    "stack": [
+      "Python",
+      "GitHub Actions",
+      {
+        "fr": "API France Travail",
+        "en": "France Travail API"
+      },
+      "Remotive"
+    ],
+    "images": [
+      {
+        "src": "projects/teletravail-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/teletravail-2.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/Remote/",
+    "demoLabel": {
+      "fr": "Voir les offres",
+      "en": "Browse jobs"
+    },
+    "repo": "https://github.com/engoB/Remote",
+    "repoPrivate": false,
+    "accent": "#22c55e"
+  },
+  {
+    "id": "proofshot",
+    "visible": true,
+    "status": "live",
+    "name": "ProofShot",
+    "hook": {
+      "fr": "Capturer, annoter, partager — en 30 secondes.",
+      "en": "Capture, annotate, share — in 30 seconds."
+    },
+    "pitch": {
+      "fr": "Une extension Chrome pour documenter un bug ou fabriquer un tutoriel sans quitter son navigateur. Et sans que vos captures ne quittent votre ordinateur.",
+      "en": "A Chrome extension to document a bug or build a tutorial without leaving your browser — and without your screenshots ever leaving your computer."
+    },
+    "problem": {
+      "fr": "Documenter un bug ou rédiger un tuto oblige à jongler entre capture, retouche et mise en page, souvent avec des outils qui envoient tout dans le cloud.",
+      "en": "Documenting a bug or writing a tutorial means juggling capture, editing and layout tools, often ones that upload everything to the cloud."
+    },
+    "idea": {
+      "fr": "Tout au même endroit : capturer, annoter (flèches, flou, numéros), assembler des pas-à-pas ou des avant/après, exporter.",
+      "en": "Everything in one place: capture, annotate (arrows, blur, numbers), assemble step-by-steps or before/afters, export."
+    },
+    "how": {
+      "fr": "Extension 100 % locale, sans compte ni pistage, publiée sur le Chrome Web Store. Modèle freemium avec licence à vie : la seule connexion sortante vérifie la clé.",
+      "en": "A fully local extension, no account or tracking, published on the Chrome Web Store. Freemium with a lifetime licence: the only outgoing call checks the key."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "Extension Chrome",
+        "en": "Chrome extension"
+      },
+      "Chrome Web Store",
+      "Freemium"
+    ],
+    "images": [
+      {
+        "src": "projects/proofshot-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/proofshot-2.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/proofshot/",
+    "demoLabel": {
+      "fr": "Découvrir l'extension",
+      "en": "See the extension"
+    },
+    "repo": "https://github.com/engoB/proofshot",
+    "repoPrivate": false,
+    "accent": "#6366f1"
+  },
+  {
+    "id": "auraplan",
+    "visible": true,
+    "status": "wip",
+    "name": "AuraPlan Studio",
+    "hook": {
+      "fr": "Roadmap, kanban, planning et notes. Une seule page.",
+      "en": "Roadmap, kanban, planning and notes. One single page."
+    },
+    "pitch": {
+      "fr": "Un studio de planification léger pour piloter des projets en solo ou en équipe, sans abonnement et sans confier ses données à un tiers.",
+      "en": "A lightweight planning studio to run projects solo or as a team, with no subscription and no handing your data to a third party."
+    },
+    "problem": {
+      "fr": "Les outils type Jira sont puissants mais lourds pour de petits projets, et hébergent vos données chez eux.",
+      "en": "Jira-style tools are powerful but heavy for small projects, and they host your data."
+    },
+    "idea": {
+      "fr": "Les vues essentielles d'un outil de gestion de projet, dans une seule page qui se synchronise avec un dépôt GitHub personnel.",
+      "en": "The essential views of a project management tool, in a single page that syncs with a personal GitHub repository."
+    },
+    "how": {
+      "fr": "Application en un seul fichier. Chaque sauvegarde devient un commit ; les données sont compressées et chiffrées directement dans le navigateur.",
+      "en": "A single-file app. Each save becomes a commit; data is compressed and encrypted right in the browser."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "API GitHub",
+        "en": "GitHub API"
+      },
+      {
+        "fr": "Chiffrement",
+        "en": "Encryption"
+      },
+      "Local-first"
+    ],
+    "images": [
+      {
+        "src": "projects/auraplan-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/auraplan-2.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/auraplan-3.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/EngoJira/",
+    "demoLabel": {
+      "fr": "Essayer",
+      "en": "Try it"
+    },
+    "repo": "https://github.com/engoB/EngoJira",
+    "repoPrivate": false,
+    "accent": "#8b5cf6"
+  },
+  {
+    "id": "pokevault",
+    "visible": true,
+    "status": "live",
+    "name": "PokéVault",
+    "hook": {
+      "fr": "Sa collection de cartes Pokémon, toujours dans la poche.",
+      "en": "Your Pokémon card collection, always in your pocket."
+    },
+    "pitch": {
+      "fr": "Un classeur numérique rapide pour suivre sa collection, retrouver les visuels officiels et connaître la cote de chaque carte, même hors connexion.",
+      "en": "A fast digital binder to track your collection, find official artwork and see each card's value, even offline."
+    },
+    "problem": {
+      "fr": "Suivre des milliers de cartes, avec les bons visuels et des prix fiables, sans compte, sans abonnement et même sans réseau.",
+      "en": "Tracking thousands of cards with the right artwork and reliable prices — no account, no subscription, even without a connection."
+    },
+    "idea": {
+      "fr": "Une app « local d'abord » : tout reste sur l'appareil, et plusieurs catalogues se relaient pour ne jamais afficher une mauvaise carte.",
+      "en": "A local-first app: everything stays on the device, and several catalogues back each other up so the wrong card is never shown."
+    },
+    "how": {
+      "fr": "Application web installable en JavaScript natif, cache local et mode hors ligne, cotes Cardmarket, tests automatisés.",
+      "en": "An installable web app in plain JavaScript, local cache and offline mode, Cardmarket prices, automated tests."
+    },
+    "ai": [],
+    "stack": [
+      "PWA",
+      {
+        "fr": "Hors ligne",
+        "en": "Offline"
+      },
+      "TCGdex",
+      "Cardmarket"
+    ],
+    "images": [
+      {
+        "src": "projects/pokevault-1.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/pokevault-2.webp",
+        "kind": "mobile"
+      }
+    ],
+    "demo": "https://engob.github.io/PokeTest/",
+    "demoLabel": {
+      "fr": "Ouvrir le classeur",
+      "en": "Open the binder"
+    },
+    "repo": "https://github.com/engoB/PokeTest",
+    "repoPrivate": false,
+    "accent": "#14b8a6"
+  },
+  {
+    "id": "oasis",
+    "visible": true,
+    "status": "prototype",
+    "name": "OASIS — The Hunt",
+    "hook": {
+      "fr": "Chaque jour une énigme. Chaque bonne réponse ouvre la suivante.",
+      "en": "A riddle a day. Every right answer unlocks the next."
+    },
+    "pitch": {
+      "fr": "Un catalogue de films et séries façon plateforme de streaming, doublé d'une chasse au trésor quotidienne inspirée de Ready Player One.",
+      "en": "A streaming-style film and TV catalogue, paired with a daily treasure hunt inspired by Ready Player One."
+    },
+    "problem": {
+      "fr": "Rendre la découverte de films et séries ludique, avec des énigmes impossibles à tricher en lisant le code de la page.",
+      "en": "Make discovering films and shows playful, with riddles you can't cheat by reading the page's code."
+    },
+    "idea": {
+      "fr": "Une énigme par jour ; la bonne réponse sert de clé pour déverrouiller l'étape suivante.",
+      "en": "One riddle a day; the right answer is the key that unlocks the next step."
+    },
+    "how": {
+      "fr": "Énigmes générées par script à partir de listes thématiques, chaque étape chiffrée avec une clé dérivée de la réponse. Catalogue alimenté par l'API TMDB.",
+      "en": "Riddles generated by script from themed lists, each step encrypted with a key derived from the answer. Catalogue powered by the TMDB API."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "API TMDB",
+        "en": "TMDB API"
+      },
+      {
+        "fr": "Chiffrement",
+        "en": "Encryption"
+      },
+      {
+        "fr": "Jeu",
+        "en": "Game"
+      }
+    ],
+    "images": [
+      {
+        "src": "projects/oasis-1.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/oasis-2.webp",
+        "kind": "mobile"
+      }
+    ],
+    "demo": "https://engob.github.io/chasse-oasis/",
+    "demoLabel": {
+      "fr": "Entrer dans l'OASIS",
+      "en": "Enter the OASIS"
+    },
+    "repo": "https://github.com/engoB/chasse-oasis",
+    "repoPrivate": false,
+    "accent": "#f43f5e"
+  },
+  {
+    "id": "diamond-foil",
+    "visible": true,
+    "status": "prototype",
+    "name": "Diamond Foil",
+    "hook": {
+      "fr": "Ouvrir des boosters de baseball, avec les vraies stats de la MLB.",
+      "en": "Open baseball booster packs, with real MLB stats."
+    },
+    "pitch": {
+      "fr": "Un prototype de jeu de cartes à collectionner : boosters, classeur, créateur de cartes et scores en direct, alimenté par les données officielles de la MLB.",
+      "en": "A trading card game prototype: boosters, binder, card creator and live scores, powered by official MLB data."
+    },
+    "problem": {
+      "fr": "Tester vite un concept de jeu de cartes crédible, sans inventer de données ni monter de serveur.",
+      "en": "Quickly test a credible card game concept without making up data or setting up a server."
+    },
+    "idea": {
+      "fr": "Tout vient de l'API publique de la MLB : effectifs, statistiques, légendes et scores du jour. Rien n'est écrit en dur.",
+      "en": "Everything comes from the public MLB API: rosters, stats, legends and today's scores. Nothing is hard-coded."
+    },
+    "how": {
+      "fr": "Page statique sans dépendance ni compilation, requêtes espacées pour ménager l'API, cache de six heures, collection enregistrée localement.",
+      "en": "A static page with no dependencies or build step, spaced-out requests to be gentle with the API, a six-hour cache, collection stored locally."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "API MLB",
+        "en": "MLB API"
+      },
+      "JavaScript",
+      "Local-first"
+    ],
+    "images": [
+      {
+        "src": "projects/diamond-foil-1.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/DiamondLB/",
+    "demoLabel": {
+      "fr": "Ouvrir un booster",
+      "en": "Open a pack"
+    },
+    "repo": "https://github.com/engoB/DiamondLB",
+    "repoPrivate": false,
+    "accent": "#ef4444"
+  },
+  {
+    "id": "week-flow",
+    "visible": false,
+    "status": "wip",
+    "name": "Planner Week Flow",
+    "hook": {
+      "fr": "Planifier sa semaine en sprints, directement dans Chrome.",
+      "en": "Plan your week in sprints, right inside Chrome."
+    },
+    "pitch": {
+      "fr": "Une extension de planification hebdomadaire : tâches, catégories, priorités et historique des sprints, entièrement en local.",
+      "en": "A weekly planning extension: tasks, categories, priorities and sprint history, fully local."
+    },
+    "problem": {
+      "fr": "Les gestionnaires de tâches sont souvent trop lourds pour simplement organiser sa semaine.",
+      "en": "Task managers are often too heavy just to organise your week."
+    },
+    "idea": {
+      "fr": "Appliquer la logique des sprints à sa semaine : capacité quotidienne, priorités, bilan.",
+      "en": "Apply sprint logic to your week: daily capacity, priorities, review."
+    },
+    "how": {
+      "fr": "Extension Chrome sans serveur : données stockées dans le navigateur, rappel optionnel, création de tâche par clic droit.",
+      "en": "A serverless Chrome extension: data stored in the browser, optional reminder, create a task with a right-click."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "Extension Chrome",
+        "en": "Chrome extension"
+      },
+      "Local-first"
+    ],
+    "images": [],
+    "demo": null,
+    "demoLabel": {
+      "fr": "",
+      "en": ""
+    },
+    "repo": "https://github.com/engoB/weekflowengo",
+    "repoPrivate": false,
+    "accent": "#0ea5e9"
+  },
+  {
+    "id": "emplois-du-temps",
+    "visible": false,
+    "status": "live",
+    "name": "Emplois du temps",
+    "hook": {
+      "fr": "Le planning de la semaine, avec le temps restant avant la sonnerie.",
+      "en": "The week's schedule, with the time left before the bell."
+    },
+    "pitch": {
+      "fr": "Une page d'emploi du temps familiale qui suit le vrai calendrier, affiche le cours en cours et se synchronise d'elle-même entre les appareils.",
+      "en": "A family timetable page that follows the real calendar, shows the current class and syncs itself across devices."
+    },
+    "problem": {
+      "fr": "Semaines A/B, groupes, changements ponctuels : les emplois du temps papier ne suivent pas.",
+      "en": "Week A/B, groups, one-off changes: paper timetables can't keep up."
+    },
+    "idea": {
+      "fr": "Une seule page qui sait quel jour on est, ce qui se passe maintenant et ce qui vient ensuite.",
+      "en": "A single page that knows what day it is, what's happening now and what's next."
+    },
+    "how": {
+      "fr": "Page statique qui surveille son propre dépôt GitHub : une modification faite sur un appareil apparaît sur les autres en moins d'une minute.",
+      "en": "A static page that watches its own GitHub repository: a change made on one device shows up on the others in under a minute."
+    },
+    "ai": [],
+    "stack": [
+      "JavaScript",
+      {
+        "fr": "API GitHub",
+        "en": "GitHub API"
+      }
+    ],
+    "images": [],
+    "demo": null,
+    "demoLabel": {
+      "fr": "",
+      "en": ""
+    },
+    "repo": "https://github.com/engoB/EDTST2SNO",
+    "repoPrivate": false,
+    "accent": "#f97316"
+  }
+]

@@ -1,0 +1,469 @@
+{
+  "repo": {
+    "owner": "engoB",
+    "name": "portofolio",
+    "branch": "main"
+  },
+  "identity": {
+    "name": "Sébastien Khai",
+    "initials": "SK",
+    "role": {
+      "fr": "Product Builder",
+      "en": "Product Builder"
+    },
+    "photo": "img/sebastien-khai.webp",
+    "showPhoto": true,
+    "location": {
+      "fr": "Bordeaux, France",
+      "en": "Bordeaux, France"
+    },
+    "status": {
+      "fr": "En pleine expérimentation",
+      "en": "Currently experimenting"
+    },
+    "showStatus": true
+  },
+  "links": {
+    "email": "sebastienkhai@gmail.com",
+    "linkedin": "",
+    "github": "https://github.com/engoB",
+    "artstation": "https://engobaocodai.artstation.com",
+    "showArtstation": true,
+    "artstationLabel": {
+      "fr": "Côté image : mon portfolio ArtStation",
+      "en": "The visual side: my ArtStation portfolio"
+    }
+  },
+  "sections": {
+    "manifesto": true,
+    "projects": true,
+    "method": true,
+    "why": true,
+    "skills": true,
+    "contact": true
+  },
+  "hero": {
+    "kicker": {
+      "fr": "Carnet de bord",
+      "en": "Logbook"
+    },
+    "title": {
+      "fr": "J'expérimente une nouvelle façon de",
+      "en": "I'm exploring a new way to"
+    },
+    "accent": {
+      "fr": "construire des produits.",
+      "en": "build products."
+    },
+    "intro": {
+      "fr": "Avec l'IA comme équipe, je mène une idée jusqu'au produit en ligne : cadrée, conçue, codée, publiée. Ce site est mon carnet de bord — ce que je construis, et la façon dont je le fais.",
+      "en": "With AI as my team, I take an idea all the way to a live product: framed, designed, coded, shipped. This site is my logbook — what I build, and how I build it."
+    },
+    "ctaPrimary": {
+      "fr": "Voir ce que je construis",
+      "en": "See what I'm building"
+    },
+    "ctaSecondary": {
+      "fr": "Échanger",
+      "en": "Get in touch"
+    }
+  },
+  "manifesto": {
+    "eyebrow": {
+      "fr": "L'expérimentation",
+      "en": "The experiment"
+    },
+    "title": {
+      "fr": "Une question de départ :",
+      "en": "One starting question:"
+    },
+    "accent": {
+      "fr": "jusqu'où peut-on aller seul, avec l'IA ?",
+      "en": "how far can one person go with AI?"
+    },
+    "body": {
+      "fr": "Depuis plusieurs mois, je teste une hypothèse simple : quelqu'un qui sait quoi construire, pour qui, et quelle expérience offrir, peut aujourd'hui mener un produit de bout en bout. Pas une maquette : un vrai produit, en ligne, utilisé.",
+      "en": "For several months I've been testing a simple hypothesis: someone who knows what to build, for whom, and what experience to deliver can now carry a product end to end. Not a mockup — a real product, live, in use."
+    },
+    "principles": [
+      {
+        "icon": "target",
+        "title": {
+          "fr": "Partir d'un vrai irritant",
+          "en": "Start from a real pain point"
+        },
+        "text": {
+          "fr": "Chaque projet naît d'un problème vécu, le mien ou celui de mes proches. Jamais d'une solution qui cherche son problème.",
+          "en": "Every project starts from a problem I or people close to me actually have. Never from a solution looking for a problem."
+        }
+      },
+      {
+        "icon": "users",
+        "title": {
+          "fr": "L'IA comme équipe",
+          "en": "AI as a team"
+        },
+        "text": {
+          "fr": "Des modèles pour explorer, rédiger, coder et relire. Mon rôle : décider, arbitrer, valider — comme un responsable produit avec son équipe.",
+          "en": "Models to explore, write, code and review. My role: decide, arbitrate, validate — like a product lead with a team."
+        }
+      },
+      {
+        "icon": "rocket",
+        "title": {
+          "fr": "Livrer, puis itérer",
+          "en": "Ship, then iterate"
+        },
+        "text": {
+          "fr": "Mettre en ligne tôt, observer, corriger. Chaque version apprend de la précédente.",
+          "en": "Go live early, observe, fix. Each version learns from the previous one."
+        }
+      }
+    ]
+  },
+  "projectsSection": {
+    "eyebrow": {
+      "fr": "Ce que je construis",
+      "en": "What I build"
+    },
+    "title": {
+      "fr": "Des produits nés",
+      "en": "Products born"
+    },
+    "accent": {
+      "fr": "de vrais besoins.",
+      "en": "from real needs."
+    },
+    "intro": {
+      "fr": "Faites défiler, ouvrez ceux qui vous intriguent. Chaque fiche raconte le problème, l'idée et la façon dont c'est construit.",
+      "en": "Scroll through and open the ones that intrigue you. Each one tells the problem, the idea and how it's built."
+    }
+  },
+  "method": {
+    "eyebrow": {
+      "fr": "Ma façon de faire",
+      "en": "How I work"
+    },
+    "title": {
+      "fr": "De l'idée au produit,",
+      "en": "From idea to product,"
+    },
+    "accent": {
+      "fr": "l'IA à chaque étape.",
+      "en": "AI at every step."
+    },
+    "intro": {
+      "fr": "Pas un seul outil magique : ChatGPT, Claude ou Gemini selon la tâche, des agents de code, des pipelines automatisés. Et une méthode de travail qui vient tout droit des équipes produit.",
+      "en": "No single magic tool: ChatGPT, Claude or Gemini depending on the task, coding agents, automated pipelines. And a way of working that comes straight from product teams."
+    },
+    "steps": [
+      {
+        "icon": "compass",
+        "title": {
+          "fr": "Cadrer",
+          "en": "Frame"
+        },
+        "text": {
+          "fr": "Comprendre le besoin, formuler le problème, prioriser. Je confronte mes idées à plusieurs modèles avant d'écrire la moindre ligne.",
+          "en": "Understand the need, state the problem, prioritise. I challenge my ideas against several models before writing a single line."
+        },
+        "tools": [
+          "ChatGPT",
+          "Claude",
+          "Gemini"
+        ]
+      },
+      {
+        "icon": "palette",
+        "title": {
+          "fr": "Concevoir",
+          "en": "Design"
+        },
+        "text": {
+          "fr": "Parcours, interface, ton, direction visuelle. L'expérience compte autant que la fonction.",
+          "en": "User flows, interface, tone, visual direction. The experience matters as much as the feature."
+        },
+        "tools": [
+          "UX",
+          "UI",
+          "Photoshop"
+        ]
+      },
+      {
+        "icon": "code",
+        "title": {
+          "fr": "Construire",
+          "en": "Build"
+        },
+        "text": {
+          "fr": "Je code avec des agents IA, en gardant la main sur l'architecture, la qualité et les choix techniques.",
+          "en": "I code with AI agents while keeping control of architecture, quality and technical choices."
+        },
+        "tools": [
+          "Claude Code",
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "icon": "workflow",
+        "title": {
+          "fr": "Automatiser",
+          "en": "Automate"
+        },
+        "text": {
+          "fr": "Ce qui se répète devient un pipeline : collecte, traitement par LLM, contrôle, publication — avec des garde-fous sur la fiabilité et les coûts.",
+          "en": "Whatever repeats becomes a pipeline: collection, LLM processing, checks, publishing — with guardrails on reliability and cost."
+        },
+        "tools": [
+          "GitHub Actions",
+          {
+            "fr": "API LLM",
+            "en": "LLM APIs"
+          }
+        ]
+      },
+      {
+        "icon": "rocket",
+        "title": {
+          "fr": "Livrer & itérer",
+          "en": "Ship & iterate"
+        },
+        "text": {
+          "fr": "En ligne sur le web, en application installable ou sur le Chrome Web Store, puis améliorée par petites versions, sprint après sprint.",
+          "en": "Live on the web, as an installable app or on the Chrome Web Store, then improved in small releases, sprint after sprint."
+        },
+        "tools": [
+          "Web",
+          "PWA",
+          "Chrome Web Store"
+        ]
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": {
+      "fr": "Pourquoi ce profil",
+      "en": "Why this profile"
+    },
+    "title": {
+      "fr": "Quand coder devient accessible,",
+      "en": "When code becomes accessible,"
+    },
+    "accent": {
+      "fr": "savoir quoi construire fait la différence.",
+      "en": "knowing what to build is what matters."
+    },
+    "body": {
+      "fr": "L'IA réduit la distance entre une idée et un produit. Ce qui prend de la valeur, c'est ce qu'elle ne fait pas seule : choisir le bon problème, imaginer l'expérience, arbitrer, et tenir la qualité jusqu'à la mise en ligne. C'est précisément là que mon parcours prend tout son sens.",
+      "en": "AI shrinks the distance between an idea and a product. What gains value is what it can't do alone: picking the right problem, imagining the experience, making trade-offs, and holding quality all the way to launch. That's exactly where my background makes sense."
+    },
+    "originTitle": {
+      "fr": "D'où je viens",
+      "en": "Where I come from"
+    },
+    "origin": {
+      "fr": "J'ai passé une quinzaine d'années à fabriquer des images — en 3D temps réel, en réalité virtuelle, en vidéo — le plus souvent au sein d'équipes produit, au contact direct des clients. J'y ai appris à écouter un besoin, à estimer, à livrer à temps. Aujourd'hui, je mets tout cela au service de produits entiers.",
+      "en": "I spent some fifteen years making images — real-time 3D, virtual reality, video — mostly inside product teams, working directly with clients. That's where I learned to listen to a need, estimate, and deliver on time. Today I put all of that to work on whole products."
+    },
+    "strengths": [
+      {
+        "title": {
+          "fr": "Un œil",
+          "en": "An eye"
+        },
+        "text": {
+          "fr": "Une exigence visuelle et d'expérience : ce qui est clair et beau se comprend, s'utilise et donne confiance.",
+          "en": "High standards for visuals and experience: what is clear and beautiful gets understood, used and trusted."
+        }
+      },
+      {
+        "title": {
+          "fr": "Un sens du récit",
+          "en": "A sense of story"
+        },
+        "text": {
+          "fr": "Raconter, rythmer, captiver — aussi utile pour un onboarding que pour présenter une idée.",
+          "en": "Telling, pacing, engaging — as useful for onboarding as for pitching an idea."
+        }
+      },
+      {
+        "title": {
+          "fr": "Une culture de production",
+          "en": "A production culture"
+        },
+        "text": {
+          "fr": "Estimer, planifier, prioriser, livrer. Des années de sprints, de dailys et de rétros en équipe.",
+          "en": "Estimating, planning, prioritising, shipping. Years of sprints, dailies and retros in a team."
+        }
+      },
+      {
+        "title": {
+          "fr": "Une pratique réelle de l'IA",
+          "en": "Hands-on AI practice"
+        },
+        "text": {
+          "fr": "Au quotidien, sur de vrais produits, avec leurs vraies contraintes de coût, de fiabilité et de maintenance.",
+          "en": "Every day, on real products, with their real constraints of cost, reliability and maintenance."
+        }
+      }
+    ]
+  },
+  "skills": {
+    "eyebrow": {
+      "fr": "Boîte à outils",
+      "en": "Toolbox"
+    },
+    "title": {
+      "fr": "Ce que j'utilise",
+      "en": "What I use"
+    },
+    "accent": {
+      "fr": "au quotidien.",
+      "en": "every day."
+    },
+    "groups": [
+      {
+        "title": {
+          "fr": "Produit & méthode",
+          "en": "Product & method"
+        },
+        "items": [
+          "Discovery",
+          {
+            "fr": "Cadrage du besoin",
+            "en": "Needs framing"
+          },
+          "Roadmap",
+          "User stories",
+          {
+            "fr": "Priorisation",
+            "en": "Prioritisation"
+          },
+          "Agile / Scrum",
+          "Sprints",
+          "Daily meetings",
+          {
+            "fr": "Rétrospectives",
+            "en": "Retrospectives"
+          },
+          "Jira",
+          "Trello",
+          "Slack"
+        ]
+      },
+      {
+        "title": {
+          "fr": "IA générative",
+          "en": "Generative AI"
+        },
+        "items": [
+          "ChatGPT",
+          "Claude",
+          "Gemini",
+          "Claude Code",
+          "Prompt engineering",
+          {
+            "fr": "Pipelines LLM",
+            "en": "LLM pipelines"
+          },
+          {
+            "fr": "API OpenAI",
+            "en": "OpenAI API"
+          },
+          {
+            "fr": "API Anthropic",
+            "en": "Anthropic API"
+          }
+        ]
+      },
+      {
+        "title": {
+          "fr": "Construire & publier",
+          "en": "Build & ship"
+        },
+        "items": [
+          "HTML / CSS / JavaScript",
+          "React",
+          "Tailwind CSS",
+          "Node.js",
+          "Python",
+          "PWA",
+          {
+            "fr": "Extensions Chrome",
+            "en": "Chrome extensions"
+          },
+          "GitHub Actions",
+          "GitHub Pages",
+          "Netlify"
+        ]
+      },
+      {
+        "title": {
+          "fr": "Design & expérience",
+          "en": "Design & experience"
+        },
+        "items": [
+          {
+            "fr": "UX / parcours",
+            "en": "UX / user flows"
+          },
+          "UI",
+          {
+            "fr": "Direction visuelle",
+            "en": "Visual direction"
+          },
+          "Motion",
+          "Photoshop",
+          "Procreate"
+        ]
+      }
+    ],
+    "heritage": {
+      "show": true,
+      "title": {
+        "fr": "Héritage image",
+        "en": "Visual heritage"
+      },
+      "note": {
+        "fr": "D'où vient mon œil — pas ce que je propose aujourd'hui.",
+        "en": "Where my eye comes from — not what I offer today."
+      },
+      "items": [
+        {
+          "fr": "3D temps réel",
+          "en": "Real-time 3D"
+        },
+        {
+          "fr": "Réalité virtuelle",
+          "en": "Virtual reality"
+        },
+        "Unity",
+        "Maya",
+        "Substance Painter",
+        "Nuke",
+        "After Effects",
+        "DaVinci Resolve",
+        "Motion design"
+      ]
+    }
+  },
+  "contact": {
+    "eyebrow": {
+      "fr": "Et maintenant ?",
+      "en": "What's next?"
+    },
+    "title": {
+      "fr": "La suite s'écrit",
+      "en": "The next chapter is"
+    },
+    "accent": {
+      "fr": "en ce moment.",
+      "en": "being written now."
+    },
+    "text": {
+      "fr": "Ce site évolue au fil de mes expériences. Si ce que vous voyez vous parle — pour échanger, suivre la suite ou imaginer quelque chose ensemble — écrivez-moi.",
+      "en": "This site evolves as my experiments do. If what you see speaks to you — to talk, follow along or imagine something together — drop me a line."
+    }
+  }
+}

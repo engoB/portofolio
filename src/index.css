@@ -1,51 +1,96 @@
 @import "tailwindcss";
 
+/* Thème sombre piloté par la classe .dark sur <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 
-  --color-ink: #07070a;
-
-  --animate-marquee: marquee 60s linear infinite;
   --animate-float: float 7s ease-in-out infinite;
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-10px) rotate(var(--r, 0deg)); }
   }
+}
+
+/* Jetons de couleur : une seule classe (bg-bg, text-fg…) qui suit le thème */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-bg2: var(--c-bg2);
+  --color-fg: var(--c-fg);
+  --color-fg2: var(--c-fg2);
+  --color-muted: var(--c-muted);
+  --color-subtle: var(--c-subtle);
+  --color-line: var(--c-line);
+  --color-card: var(--c-card);
+}
+
+:root {
+  --c-bg: #f6f5f1;
+  --c-bg2: #ffffff;
+  --c-fg: #0b0b0f;
+  --c-fg2: #34343b;
+  --c-muted: #62626b;
+  --c-subtle: #8e8e96;
+  --c-line: rgb(12 12 20 / 0.1);
+  --c-card: rgb(255 255 255 / 0.72);
+  --grad: linear-gradient(100deg, #4f46e5 0%, #0284c7 50%, #059669 100%);
+  --glow-a: rgb(99 102 241 / 0.14);
+  --glow-b: rgb(14 165 233 / 0.1);
+  --grid: rgb(12 12 20 / 0.05);
+  --grain: 0.05;
+}
+.dark {
+  --c-bg: #07070a;
+  --c-bg2: #0e0e13;
+  --c-fg: #fafafa;
+  --c-fg2: #d4d4d8;
+  --c-muted: #a1a1aa;
+  --c-subtle: #71717a;
+  --c-line: rgb(255 255 255 / 0.09);
+  --c-card: rgb(255 255 255 / 0.025);
+  --grad: linear-gradient(100deg, #c7d2fe 0%, #7dd3fc 45%, #a7f3d0 100%);
+  --glow-a: rgb(99 102 241 / 0.2);
+  --glow-b: rgb(56 189 248 / 0.12);
+  --grid: rgb(255 255 255 / 0.04);
+  --grain: 0.035;
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
   }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
-    @apply bg-ink font-sans text-zinc-300 antialiased;
+    @apply bg-bg font-sans text-fg2 antialiased;
     font-feature-settings: "ss01", "cv11";
+    transition: background-color 0.3s;
   }
   ::selection {
-    @apply bg-sky-300/30 text-white;
+    @apply bg-sky-300/40;
   }
   :focus-visible {
-    @apply rounded-sm outline-2 outline-offset-2 outline-sky-300;
+    @apply rounded-sm outline-2 outline-offset-2 outline-sky-500;
   }
 }
 
-/* Dégradé signature, utilisé avec parcimonie */
-@utility text-aurora {
-  background-image: linear-gradient(100deg, #c7d2fe 0%, #7dd3fc 45%, #a7f3d0 100%);
+@utility text-grad {
+  background-image: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Grain photographique très léger sur toute la page */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
 @utility grain {
   &::after {
     content: "";
@@ -53,7 +98,7 @@
     inset: 0;
     z-index: 100;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: var(--grain);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
@@ -71,11 +116,15 @@
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.4s;
-    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.06), transparent 45%);
+    background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 50%), var(--glow-a), transparent 45%);
   }
   &:hover::before {
     opacity: 1;
   }
+}
+
+.bg-gridlines {
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
 }
 
 /* Apparition au défilement */
@@ -90,8 +139,13 @@
   transform: none;
 }
 
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.55);
+  backdrop-filter: blur(6px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .animate-marquee, .animate-float { animation: none; }
+  .animate-float { animation: none; }
 }

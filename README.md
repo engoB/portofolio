@@ -1,77 +1,84 @@
-# Sébastien Khai — Product Builder
+# Sébastien Khai — carnet de bord
 
-Portfolio augmenté one-page (React + Tailwind CSS + Lucide React) déployé sur GitHub Pages : https://engob.github.io/portofolio/
-Toutes les données sont dans `src/data/` : **aucune information de projet n'est écrite dans les composants.**
+Site vitrine one-page, bilingue (FR / EN), thème clair et sombre, déployé sur GitHub Pages :
+https://engob.github.io/portofolio/
+
+Stack : React + Tailwind CSS + Lucide React, construit avec Vite.
+
+## Modifier le site : l'espace perso
+
+**https://engob.github.io/portofolio/#/admin** (à garder en favori, aucun lien public n'y mène)
+
+Depuis le navigateur, sans toucher au code, vous pouvez :
+
+- **Projets** : afficher ou masquer un projet (icône œil), changer son badge de statut (En ligne, Bêta, En cours, Prototype, Archivé, ou aucun), l'ordre du carrousel, les textes FR/EN, les images, les liens. Vous pouvez aussi en créer un nouveau.
+- **Textes** : toutes les sections de la page, en FR et en EN.
+- **Profil & affichage** : nom, photo, intitulé, pastille de statut, liens (email, LinkedIn, GitHub, ArtStation), sections affichées.
+- **Aperçu** : voir le résultat avant de publier.
+- **Publier** : un seul commit sur `main`. Le site est à jour environ une minute après.
+
+### Le jeton d'accès (une seule fois)
+
+1. GitHub → Settings → Developer settings → **Fine-grained tokens** → *Generate new token*
+   (lien direct : https://github.com/settings/personal-access-tokens/new).
+2. *Repository access* : **Only select repositories** → `engoB/portofolio`.
+3. *Permissions* : **Contents → Read and write**. Rien d'autre.
+4. Collez le jeton dans l'espace perso. Il reste dans votre navigateur et n'est envoyé qu'à GitHub.
+
+Le jeton expire : il suffit d'en recréer un. Si vous pensez qu'il a fuité, révoquez-le sur la même page GitHub.
+
+## Où vit le contenu
 
 | Fichier | Contenu |
 |---|---|
-| `src/data/projects.json` | Les dépôts affichés dans le Hub Outils (une entrée = une carte) |
-| `src/data/projects.schema.json` | Le schéma : autocomplétion et validation dans VS Code |
-| `src/data/profile.json` | Identité, accroche, liens, proposition de valeur, CV, méthode IA |
-| `src/components/` | Sections de la page (Hero, Produits, Parcours…) — aucune donnée en dur |
-| `public/projects/` | Captures d'écran des produits (WebP, ~1600 px de large en desktop, 640 px en mobile) |
-| `public/img/` | Portrait |
-| `public/cv-sebastien-khai.pdf` | CV téléchargeable |
+| `src/content/site.json` | Tous les textes (FR/EN), identité, liens, sections affichées |
+| `src/content/projects.json` | Les projets, dans l'ordre du carrousel |
+| `public/projects/` | Captures d'écran des projets (WebP) |
+| `public/img/` | Photo |
 | `public/og.jpg` | Image d'aperçu pour LinkedIn / réseaux (1200 × 630) |
 
-## Démarrer
+Aucun texte de contenu n'est écrit dans les composants (`src/components/`). Un champ texte vaut soit une chaîne,
+soit `{ "fr": "…", "en": "…" }`.
 
-```bash
-npm install          # installer les dépendances
-npm run dev          # serveur local → http://localhost:5173/portofolio/
-npm run build        # build de production dans dist/
-npm run preview      # tester le build → http://localhost:4173/portofolio/
-```
+### Ajouter un projet à la main (sans l'espace perso)
 
-## Ajouter un projet (30 secondes)
-
-Copier ce bloc à la fin du tableau de `src/data/projects.json` (penser à la virgule après l'entrée précédente) :
+Ajouter un bloc dans `src/content/projects.json` :
 
 ```json
 {
   "id": "mon-outil",
-  "name": "Mon Outil",
-  "tagline": "Une phrase qui dit ce que ça fait.",
+  "visible": true,
   "status": "beta",
-  "category": "Productivité",
-  "tags": ["PWA", "Automatisation"],
-  "featured": false,
-  "problem": "Le problème métier concret résolu.",
-  "solution": "L'idée directrice de la solution.",
-  "architecture": ["Choix d'architecture 1", "Choix d'architecture 2"],
-  "ai": ["Claude Sonnet 5"],
-  "apis": ["Anthropic API", "FastAPI"],
-  "builtWith": ["Claude Code"],
-  "highlights": ["Un chiffre marquant"],
-  "repo": "https://github.com/engoB/mon-outil",
+  "name": "Mon Outil",
+  "hook": { "fr": "L'accroche en une phrase.", "en": "The one-line hook." },
+  "pitch": { "fr": "Deux phrases simples.", "en": "Two simple sentences." },
+  "problem": { "fr": "Le problème.", "en": "The problem." },
+  "idea": { "fr": "L'idée.", "en": "The idea." },
+  "how": { "fr": "Comment c'est construit.", "en": "How it's built." },
+  "ai": ["Claude"],
+  "stack": ["PWA", "GitHub Actions"],
+  "images": [{ "src": "projects/mon-outil-1.webp", "kind": "mobile" }],
   "demo": "https://engob.github.io/mon-outil/",
-  "image": "projects/mon-outil.webp",
-  "imageKind": "desktop",
+  "demoLabel": { "fr": "Essayer", "en": "Try it" },
+  "repo": "https://github.com/engoB/mon-outil",
+  "repoPrivate": false,
   "accent": "#60a5fa"
 }
 ```
 
-- `status` : `production` · `beta` · `en-cours` · `prototype` · `archive`
-- `featured: true` affiche le produit en grand format « étude de cas » ; sinon il rejoint la grille « Et aussi ».
-- `image` : capture déposée dans `public/projects/` ; `imageKind` : `desktop` (cadre navigateur) ou `mobile` (cadre téléphone) ; `accent` : couleur du halo.
-- `category` crée automatiquement un nouveau filtre ; les `tags` sont cliquables.
-- `ai` = modèles utilisés **par le produit** (chips violettes, filtre « IA intégrée ») ; `apis` = services externes ; `builtWith` = outils d'IA utilisés **pour le construire**.
-- Optionnels : `version`, `year`, `highlights`, `demoLabel` (« Jouer », « Site »…), `repoPrivate: true` (affiche « Code privé » au lieu du lien), `demo: null`.
-- Les chiffres clés du hero (nombre d'outils, en production, API) se recalculent seuls.
+`status` : `live`, `beta`, `wip`, `prototype`, `archived` ou `""` (pas de badge).
+`kind` : `mobile` (cadre téléphone) ou `desktop` (cadre navigateur).
 
-## CV téléchargeable et liens
+## Développement
 
-Le CV est `public/cv-sebastien-khai.pdf` (référencé par `links.cv` dans `profile.json`). Pour le remplacer, déposer un nouveau PDF au même nom.
-Dans `links`, un lien vide masque le bouton correspondant (ex. `"linkedin": ""`).
+```bash
+npm install
+npm run dev       # http://localhost:5173/portofolio/
+npm run build     # build de production dans dist/
+npm run preview   # tester le build
+```
 
-## Déploiement GitHub Pages
+## Déploiement
 
-1. **Settings → Pages → Build and deployment → Source : GitHub Actions**.
-2. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` construit et publie le site.
-3. Adresse : `https://engob.github.io/portofolio/`.
-
-> Le dépôt est privé : GitHub Pages sur un dépôt privé nécessite un compte GitHub Pro.
-> Sinon, passer le dépôt en public (Settings → General → Danger Zone → Change visibility).
-
-Le chemin de base (`/portofolio/`) est fixé dans `vite.config.js` et suit automatiquement le nom du dépôt en CI.
-Pour un domaine personnalisé ou un dépôt `engob.github.io`, construire avec `BASE_PATH=/`.
+`.github/workflows/deploy.yml` construit et publie le site à chaque push sur `main`
+(Settings → Pages → Source : **GitHub Actions**). Le chemin de base suit le nom du dépôt.

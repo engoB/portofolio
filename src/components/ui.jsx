@@ -1,30 +1,61 @@
 import { useEffect, useRef } from 'react'
-import { Bot, CodeXml, Gauge, Palette, ShieldCheck, Sparkles, Target, Telescope, Workflow, Zap } from 'lucide-react'
+import {
+  Bot,
+  CodeXml,
+  Compass,
+  Eye,
+  Gauge,
+  Lightbulb,
+  Palette,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Telescope,
+  Users,
+  Workflow,
+  Zap,
+} from 'lucide-react'
+import { usePrefs } from '../lib/prefs.jsx'
 
-/* Icônes référencées par clé depuis profile.json */
+/* Icônes référencées par clé dans le contenu (liste proposée dans l'espace perso) */
 export const ICONS = {
   target: Target,
+  users: Users,
+  rocket: Rocket,
+  compass: Compass,
   palette: Palette,
   code: CodeXml,
-  gauge: Gauge,
   workflow: Workflow,
   bot: Bot,
   shield: ShieldCheck,
   telescope: Telescope,
+  gauge: Gauge,
   zap: Zap,
+  eye: Eye,
+  lightbulb: Lightbulb,
   sparkles: Sparkles,
 }
 
-export const STATUS = {
-  production: { label: 'En production', dot: 'bg-emerald-400', cls: 'text-emerald-300 bg-emerald-400/10 ring-emerald-400/25' },
-  beta: { label: 'Bêta', dot: 'bg-sky-400', cls: 'text-sky-300 bg-sky-400/10 ring-sky-400/25' },
-  'en-cours': { label: 'En cours', dot: 'bg-amber-400', cls: 'text-amber-300 bg-amber-400/10 ring-amber-400/25' },
-  prototype: { label: 'Prototype', dot: 'bg-violet-400', cls: 'text-violet-300 bg-violet-400/10 ring-violet-400/25' },
-  archive: { label: 'Archivé', dot: 'bg-zinc-500', cls: 'text-zinc-400 bg-zinc-800 ring-zinc-700' },
+export const STATUS_STYLE = {
+  live: { dot: 'bg-emerald-500', cls: 'text-emerald-700 bg-emerald-500/10 ring-emerald-600/20 dark:text-emerald-300 dark:ring-emerald-400/25' },
+  beta: { dot: 'bg-sky-500', cls: 'text-sky-700 bg-sky-500/10 ring-sky-600/20 dark:text-sky-300 dark:ring-sky-400/25' },
+  wip: { dot: 'bg-amber-500', cls: 'text-amber-700 bg-amber-500/10 ring-amber-600/20 dark:text-amber-300 dark:ring-amber-400/25' },
+  prototype: { dot: 'bg-violet-500', cls: 'text-violet-700 bg-violet-500/10 ring-violet-600/20 dark:text-violet-300 dark:ring-violet-400/25' },
+  archived: { dot: 'bg-zinc-400', cls: 'text-muted bg-zinc-500/10 ring-line' },
 }
 
-/* Chemin d'un fichier de public/, compatible avec le base path GitHub Pages */
-export const asset = (path) => (!path || /^https?:\/\//.test(path) ? path : `${import.meta.env.BASE_URL}${path}`)
+export function StatusBadge({ status }) {
+  const { ui } = usePrefs()
+  const s = STATUS_STYLE[status]
+  if (!s) return null
+  return (
+    <span className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium ring-1 ring-inset ${s.cls}`}>
+      <span className={`size-1.5 rounded-full ${s.dot}`} />
+      {ui.status[status]}
+    </span>
+  )
+}
 
 /* Pose --mx / --my pour l'effet .spotlight */
 export const trackPointer = (e) => {
@@ -33,7 +64,7 @@ export const trackPointer = (e) => {
   e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
 }
 
-export function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+export function Reveal({ as: Tag = 'div', delay = 0, className = '', style, children, ...rest }) {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
@@ -49,89 +80,62 @@ export function Reveal({ as: Tag = 'div', delay = 0, className = '', children, .
           io.disconnect()
         }
       },
-      { rootMargin: '0px 0px -8% 0px' },
+      { rootMargin: '0px 0px -6% 0px' },
     )
     io.observe(el)
     return () => io.disconnect()
   }, [])
   return (
-    <Tag ref={ref} className={`reveal ${className}`} style={{ '--delay': `${delay}ms` }} {...rest}>
+    <Tag ref={ref} className={`reveal ${className}`} style={{ '--delay': `${delay}ms`, ...style }} {...rest}>
       {children}
     </Tag>
   )
 }
 
-export function Eyebrow({ index, children }) {
+export function SectionHeading({ eyebrow, title, accent, children, className = '' }) {
+  const { tr } = usePrefs()
   return (
-    <p className="flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] text-zinc-500 uppercase">
-      {index && <span className="text-zinc-300">{index}</span>}
-      <span className="h-px w-8 bg-zinc-700" />
-      {children}
-    </p>
-  )
-}
-
-export function SectionHeading({ index, eyebrow, title, accent, children, className = '' }) {
-  return (
-    <Reveal className={`mb-14 max-w-3xl ${className}`}>
-      <Eyebrow index={index}>{eyebrow}</Eyebrow>
-      <h2 className="mt-6 text-4xl font-medium tracking-[-0.03em] text-white sm:text-5xl">
-        {title} {accent && <span className="font-serif font-normal italic tracking-normal text-aurora">{accent}</span>}
+    <Reveal className={`mb-12 max-w-3xl sm:mb-14 ${className}`}>
+      <p className="flex items-center gap-3 font-mono text-[11px] tracking-[0.22em] text-subtle uppercase">
+        <span className="h-px w-8 bg-current opacity-50" />
+        {tr(eyebrow)}
+      </p>
+      <h2 className="mt-5 text-4xl font-medium tracking-[-0.035em] text-balance text-fg sm:text-5xl">
+        {tr(title)} {accent && <span className="font-serif font-normal tracking-normal text-grad italic">{tr(accent)}</span>}
       </h2>
-      {children && <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">{children}</p>}
+      {children && <p className="mt-5 max-w-2xl text-base leading-relaxed text-pretty text-muted sm:text-lg">{children}</p>}
     </Reveal>
   )
 }
 
-export function StatusBadge({ status }) {
-  const s = STATUS[status] ?? STATUS.prototype
-  return (
-    <span className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium ring-1 ring-inset ${s.cls}`}>
-      <span className={`size-1.5 rounded-full ${s.dot}`} />
-      {s.label}
-    </span>
-  )
-}
-
-export function Chip({ children, tone = 'neutral', icon: Icon }) {
+export function Chip({ children, tone = 'neutral' }) {
   const tones = {
-    neutral: 'bg-white/[0.04] text-zinc-300 ring-white/10',
-    ai: 'bg-violet-400/10 text-violet-200 ring-violet-300/25',
-    built: 'bg-emerald-400/[0.07] text-emerald-200 ring-emerald-300/20',
+    neutral: 'bg-card text-fg2 ring-line',
+    ai: 'bg-violet-500/10 text-violet-700 ring-violet-500/25 dark:text-violet-200',
   }
-  return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs ring-1 ring-inset ${tones[tone]}`}>
-      {Icon && <Icon className="size-3" aria-hidden="true" />}
-      {children}
-    </span>
-  )
+  return <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs ring-1 ring-inset ${tones[tone]}`}>{children}</span>
 }
 
 /* Cadres de présentation des captures */
-export function BrowserFrame({ src, alt, url }) {
+export function BrowserFrame({ src, alt, className = '' }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-zinc-900 shadow-2xl ring-1 shadow-black/60 ring-white/10">
-      <div className="flex items-center gap-2 border-b border-white/5 bg-zinc-900/90 px-3 py-2">
-        <span className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-zinc-700" />
-          <span className="size-2.5 rounded-full bg-zinc-700" />
-          <span className="size-2.5 rounded-full bg-zinc-700" />
-        </span>
-        {url && (
-          <span className="mx-auto max-w-[70%] truncate rounded-md bg-white/5 px-3 py-0.5 font-mono text-[10px] text-zinc-500">{url}</span>
-        )}
+    <div className={`overflow-hidden rounded-xl bg-zinc-900 shadow-2xl ring-1 shadow-black/30 ring-black/10 dark:shadow-black/60 dark:ring-white/10 ${className}`}>
+      <div className="flex items-center gap-1.5 bg-zinc-800 px-3 py-2">
+        <span className="size-2 rounded-full bg-zinc-600" />
+        <span className="size-2 rounded-full bg-zinc-600" />
+        <span className="size-2 rounded-full bg-zinc-600" />
       </div>
-      <img src={src} alt={alt} loading="lazy" decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
+      <img src={src} alt={alt} loading="lazy" decoding="async" draggable="false" className="block aspect-[16/10] w-full object-cover object-top" />
     </div>
   )
 }
 
-export function PhoneFrame({ src, alt, className = '' }) {
+export function PhoneFrame({ src, alt, className = '', style }) {
   return (
-    <div className={`rounded-[2.4rem] bg-zinc-900 p-2 shadow-2xl ring-1 shadow-black/60 ring-white/15 ${className}`}>
-      <div className="relative overflow-hidden rounded-[1.9rem] bg-black">
-        <span className="absolute top-2 left-1/2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-black" />
-        <img src={src} alt={alt} loading="lazy" decoding="async" className="block aspect-[390/844] w-full object-cover object-top" />
+    <div className={`rounded-[2.1rem] bg-zinc-900 p-[7px] shadow-2xl ring-1 shadow-black/30 ring-black/10 dark:shadow-black/60 dark:ring-white/15 ${className}`} style={style}>
+      <div className="relative overflow-hidden rounded-[1.7rem] bg-black">
+        <span className="absolute top-1.5 left-1/2 z-10 h-4 w-16 -translate-x-1/2 rounded-full bg-black" />
+        <img src={src} alt={alt} loading="lazy" decoding="async" draggable="false" className="block aspect-[390/844] w-full object-cover object-top" />
       </div>
     </div>
   )

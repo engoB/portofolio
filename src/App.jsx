@@ -1,41 +1,40 @@
-import projects from './data/projects.json'
-import profile from './data/profile.json'
-import { Hero, Nav, Toolbelt } from './components/Hero.jsx'
-import Projects from './components/Projects.jsx'
-import { Contact, Footer, Journey, Method, ProfileSection } from './components/Sections.jsx'
+import { Suspense, lazy, useEffect, useState } from 'react'
+import site from './content/site.json'
+import projects from './content/projects.json'
+import { PrefsProvider } from './lib/prefs.jsx'
+import Site from './components/Site.jsx'
 
 /*
- * Page unique. Aucune donnée n'est écrite ici :
- *  - src/data/projects.json → produits (Hub)
- *  - src/data/profile.json  → identité, CV, méthode IA
- * Les chiffres « produits » se recalculent à chaque ajout dans projects.json.
+ * Tout le contenu vient de src/content/ (site.json + projects.json).
+ * On le modifie depuis l'espace perso : https://engob.github.io/portofolio/#/admin
+ * L'espace perso est chargé à la demande : le site public ne l'embarque pas.
  */
-const stats = [
-  ...(profile.stats ?? []),
-  { value: String(projects.length), label: 'produits conçus et mis en ligne' },
-  { value: String(projects.filter((p) => p.status === 'production').length), label: 'en production aujourd’hui' },
-]
+const Admin = lazy(() => import('./admin/Admin.jsx'))
+
+const isAdminRoute = () => window.location.hash.startsWith('#/admin')
 
 export default function App() {
+  const [admin, setAdmin] = useState(isAdminRoute)
+
+  useEffect(() => {
+    const onHash = () => setAdmin(isAdminRoute())
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  useEffect(() => {
+    document.title = admin ? `Espace perso — ${site.identity.name}` : `${site.identity.name} — ${site.identity.role.fr}`
+  }, [admin])
+
   return (
-    <div className="grain min-h-screen overflow-x-clip">
-      <a
-        href="#projets"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-zinc-950"
-      >
-        Aller aux produits
-      </a>
-      <Nav />
-      <main>
-        <Hero stats={stats} />
-        <Toolbelt />
-        <ProfileSection />
-        <Projects />
-        <Journey />
-        <Method />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <PrefsProvider>
+      {admin ? (
+        <Suspense fallback={<div className="grid min-h-screen place-items-center text-sm text-muted">…</div>}>
+          <Admin initialSite={site} initialProjects={projects} />
+        </Suspense>
+      ) : (
+        <Site site={site} projects={projects} />
+      )}
+    </PrefsProvider>
   )
 }

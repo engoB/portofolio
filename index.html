@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07070a" />
-    <meta name="description" content="Sébastien Khai — Product Builder. Ancien Lead Artist 3D / VR, je conçois, code et mets en ligne des produits avec l'IA." />
+    <meta name="description" content="Sébastien Khai — Product Builder. Le carnet de bord d'une expérimentation : construire des produits de bout en bout avec l'IA." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Sébastien Khai — Product Builder" />
-    <meta property="og:description" content="De l'idée au produit livré : design, 3D, code et IA. Sept produits conçus et mis en ligne." />
+    <meta property="og:description" content="J'expérimente une nouvelle façon de construire des produits, avec l'IA comme équipe." />
     <meta property="og:image" content="https://engob.github.io/portofolio/og.jpg" />
     <meta property="og:url" content="https://engob.github.io/portofolio/" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -16,6 +16,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
     <title>Sébastien Khai — Product Builder</title>
+    <script>
+      // Thème et langue appliqués avant le premier rendu (pas de flash)
+      try {
+        var t = localStorage.getItem('theme')
+        var dark = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.classList.toggle('dark', dark)
+        var l = localStorage.getItem('lang') || ((navigator.language || 'fr').slice(0, 2) === 'fr' ? 'fr' : 'en')
+        document.documentElement.lang = l
+      } catch (e) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
