@@ -1,0 +1,126 @@
+{
+  "name": "Prénom Nom",
+  "role": "Votre métier",
+  "headline": "Expertise métier, démultipliée par l'IA.",
+  "pitch": "Je combine [X ans] d'expérience en [votre domaine] avec une pratique avancée de l'IA générative : je conçois, code et mets en production mes propres outils pour automatiser ce qui prend du temps et fiabiliser ce qui compte.",
+  "location": "Bordeaux, France",
+  "availability": "Ouvert aux opportunités",
+  "links": {
+    "github": "https://github.com/engoB",
+    "linkedin": "",
+    "email": "",
+    "cv": ""
+  },
+  "skills": [
+    {
+      "group": "Métier",
+      "items": [
+        "Compétence métier 1",
+        "Compétence métier 2",
+        "Compétence métier 3"
+      ]
+    },
+    {
+      "group": "IA générative",
+      "items": [
+        "Prompt engineering",
+        "Claude / Claude Code",
+        "Pipelines LLM",
+        "Évaluation & garde-fous"
+      ]
+    },
+    {
+      "group": "Développement",
+      "items": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Python",
+        "PWA"
+      ]
+    },
+    {
+      "group": "Automatisation",
+      "items": [
+        "GitHub Actions",
+        "API REST",
+        "Open Data",
+        "Cloudflare Workers"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Intitulé du poste",
+      "org": "Entreprise",
+      "period": "2022 — aujourd'hui",
+      "location": "Ville",
+      "points": [
+        "Réalisation clé chiffrée (ex. −30 % de temps de traitement).",
+        "Projet ou responsabilité marquante.",
+        "Usage concret de l'IA dans ce poste."
+      ]
+    },
+    {
+      "title": "Intitulé du poste précédent",
+      "org": "Entreprise",
+      "period": "2018 — 2022",
+      "location": "Ville",
+      "points": [
+        "Réalisation clé.",
+        "Périmètre ou équipe."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Diplôme principal",
+      "org": "École / Université",
+      "period": "2018"
+    },
+    {
+      "title": "Certification (ex. IA, data, gestion de projet)",
+      "org": "Organisme",
+      "period": "2025"
+    }
+  ],
+  "aiMethod": {
+    "intro": "L'IA n'est pas un gadget dans ma pratique : c'est un levier de production. Voici comment je l'utilise au quotidien, avec des garde-fous.",
+    "pillars": [
+      {
+        "icon": "workflow",
+        "title": "Automatiser la chaîne complète",
+        "text": "Je transforme les tâches répétitives en pipelines : collecte, traitement par LLM, contrôle, publication — orchestrés par GitHub Actions, sans serveur à maintenir."
+      },
+      {
+        "icon": "code",
+        "title": "Coder avec un agent",
+        "text": "Claude Code me sert de binôme de développement : cadrage, implémentation, tests et relecture. Je garde la main sur l'architecture et la validation."
+      },
+      {
+        "icon": "shield",
+        "title": "Fiabiliser et maîtriser les coûts",
+        "text": "Sources imposées au modèle, scores de confiance, reprise sans double facturation, estimation du coût avant chaque lot : l'IA reste auditable."
+      },
+      {
+        "icon": "telescope",
+        "title": "Veille et montée en compétence",
+        "text": "Je teste les nouveaux modèles dès leur sortie et je capitalise dans des consignes et des prompts réutilisables, versionnés avec le code."
+      }
+    ],
+    "gains": [
+      {
+        "value": "×5",
+        "label": "vitesse de prototypage"
+      },
+      {
+        "value": "0 €",
+        "label": "d'hébergement serveur"
+      },
+      {
+        "value": "24/7",
+        "label": "pipelines automatisés"
+      }
+    ]
+  }
+}
