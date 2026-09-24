@@ -1,21 +1,97 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-ink: #07070a;
+
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 }
 
 @layer base {
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
   body {
-    @apply bg-zinc-950 text-zinc-300 antialiased;
+    @apply bg-ink font-sans text-zinc-300 antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
   ::selection {
-    @apply bg-emerald-400/30 text-white;
+    @apply bg-sky-300/30 text-white;
   }
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-emerald-400;
+    @apply rounded-sm outline-2 outline-offset-2 outline-sky-300;
   }
+}
+
+/* Dégradé signature, utilisé avec parcimonie */
+@utility text-aurora {
+  background-image: linear-gradient(100deg, #c7d2fe 0%, #7dd3fc 45%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Grain photographique très léger sur toute la page */
+@utility grain {
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Halo qui suit le pointeur (variables --mx / --my posées en JS) */
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.06), transparent 45%);
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Apparition au défilement */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-marquee, .animate-float { animation: none; }
 }

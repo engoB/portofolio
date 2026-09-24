@@ -1,29 +1,97 @@
 [
   {
-    "id": "curio",
-    "name": "Curio · Feed Me Odd",
-    "tagline": "Une anecdote vraie par écran, tirée de Wikipédia et réécrite par IA.",
-    "status": "beta",
+    "id": "feed-me-odd",
+    "name": "Feed Me Odd",
+    "tagline": "Des anecdotes vraies, écrites pour être lues : deux minutes par récit, une par écran.",
+    "status": "production",
     "category": "IA générative",
-    "tags": ["Pipeline IA", "GitHub Actions", "Contenu", "Monétisation"],
+    "tags": [
+      "Pipeline IA",
+      "GitHub Actions",
+      "Contenu",
+      "Monétisation"
+    ],
     "featured": true,
     "year": 2026,
     "version": "8.27.0",
     "problem": "Produire en continu des contenus éditoriaux fiables et agréables à lire coûte cher en temps de recherche et de rédaction, et le risque d'erreur factuelle est élevé.",
-    "solution": "Une chaîne éditoriale automatisée : moisson de sujets insolites sur Wikipédia/Wikidata, sélection humaine, rédaction par LLM contrainte au seul texte source, relecture, puis publication programmée sur un site et une PWA avec abonnement.",
+    "solution": "Une chaîne éditoriale automatisée : moisson de sujets insolites sur Wikipédia et Wikidata, sélection humaine, rédaction par LLM contrainte au seul texte source, relecture, puis publication programmée sur un site et une PWA avec abonnement ou achat à vie.",
     "architecture": [
       "Pipeline en 5 workflows GitHub Actions : moissonner → écrire → contrôler → publier, plus un entretien",
       "Console d'administration statique qui pilote les workflows via un jeton GitHub à portée fine",
       "Garde-fous LLM : reprise sans repayer, estimation du coût avant exécution, score d'« insolite » pour écarter les sujets faibles",
-      "Dédoublonnage par identifiant Wikidata, site 100 % statique sans serveur"
+      "Site et PWA statiques déployés sur Netlify, dédoublonnage par identifiant Wikidata"
     ],
-    "ai": ["Claude Sonnet 5", "Claude Opus 5", "OpenAI (fournisseur de repli)"],
-    "apis": ["Anthropic API", "OpenAI API", "API MediaWiki", "Wikidata", "Polar (paiement)"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["Catalogue de plusieurs milliers de sujets", "Coût maîtrisé : une fiche n'est jamais payée deux fois"],
+    "ai": [
+      "Claude Sonnet 5",
+      "Claude Opus 5",
+      "OpenAI (fournisseur de repli)"
+    ],
+    "apis": [
+      "Anthropic API",
+      "OpenAI API",
+      "API MediaWiki",
+      "Wikidata",
+      "Polar (paiement)",
+      "Netlify"
+    ],
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "Catalogue de plusieurs milliers de sujets",
+      "Une fiche n'est jamais payée deux fois",
+      "Abonnement et achat à vie"
+    ],
     "repo": "https://github.com/engoB/curio",
     "repoPrivate": true,
-    "demo": null
+    "demo": "https://www.feedmeodd.com",
+    "demoLabel": "Visiter",
+    "image": "projects/feedmeodd.webp",
+    "imageKind": "desktop",
+    "accent": "#60a5fa"
+  },
+  {
+    "id": "multix-arena",
+    "name": "Multi X Arena",
+    "tagline": "Les tables de multiplication deviennent un jeu d'arène.",
+    "status": "production",
+    "category": "Éducation",
+    "tags": [
+      "PWA",
+      "Jeu",
+      "Gamification",
+      "TypeScript"
+    ],
+    "featured": true,
+    "year": 2026,
+    "version": "4.6.13",
+    "problem": "Réviser les tables par récitation lasse vite les enfants ; les applis existantes sont souvent pleines de publicités ou exigent un compte.",
+    "solution": "Un jeu éducatif qui transforme la mémorisation en aventure : 24 niveaux, héros à pouvoirs, progression mémorielle et duels locaux sur le même écran.",
+    "architecture": [
+      "PWA installable, 100 % hors ligne, sans compte, sans pub ni suivi",
+      "Progression locale exportable, mises à jour qui n'interrompent pas une partie",
+      "« Atelier » séparé pour personnaliser habillage, sons et modes via un pack.json",
+      "Script de vérification de livraison (version, bundle, service worker, assets)"
+    ],
+    "ai": [],
+    "apis": [
+      "Service Worker",
+      "Web App Manifest"
+    ],
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "24 niveaux · 6 mondes · 10 héros",
+      "Modes solo et duel local"
+    ],
+    "repo": "https://github.com/engoB/MultixArena",
+    "demo": "https://engob.github.io/MultixArena/",
+    "demoLabel": "Jouer",
+    "image": "projects/multix.webp",
+    "imageKind": "mobile",
+    "accent": "#f59e0b"
   },
   {
     "id": "tbm-tram-radar",
@@ -31,7 +99,12 @@
     "tagline": "« Est-ce que je l'ai ? » — le tram de Bordeaux en temps réel, selon votre allure.",
     "status": "production",
     "category": "Mobilité",
-    "tags": ["PWA", "Open Data", "Temps réel", "iOS"],
+    "tags": [
+      "PWA",
+      "Open Data",
+      "Temps réel",
+      "iOS"
+    ],
     "featured": true,
     "year": 2026,
     "version": "5.9.1",
@@ -44,11 +117,63 @@
       "Empaquetage iOS natif avec Capacitor (géolocalisation, notifications, haptique)"
     ],
     "ai": [],
-    "apis": ["SIRI Lite TBM (temps réel)", "GTFS TBM", "OSRM (itinéraires piétons)", "OpenStreetMap / CARTO", "Cloudflare Workers"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["Données ouvertes Bordeaux Métropole", "Version web + app iOS"],
+    "apis": [
+      "SIRI Lite TBM (temps réel)",
+      "GTFS TBM",
+      "OSRM (itinéraires piétons)",
+      "OpenStreetMap / CARTO",
+      "Cloudflare Workers"
+    ],
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "Données ouvertes Bordeaux Métropole",
+      "Version web + app iOS"
+    ],
     "repo": "https://github.com/engoB/TBMTramRadar",
-    "demo": "https://engob.github.io/TBMTramRadar/"
+    "demo": "https://engob.github.io/TBMTramRadar/",
+    "image": "projects/tbm.webp",
+    "imageKind": "mobile",
+    "accent": "#3b82f6"
+  },
+  {
+    "id": "proofshot",
+    "name": "ProofShot",
+    "tagline": "Capturer, annoter, partager — en 30 secondes. Extension Chrome.",
+    "status": "production",
+    "category": "Productivité",
+    "tags": [
+      "Extension Chrome",
+      "Local-first",
+      "SaaS"
+    ],
+    "featured": false,
+    "year": 2026,
+    "problem": "Documenter un bug ou rédiger un tutoriel demande de jongler entre capture, éditeur d'image et mise en page, souvent avec des outils qui envoient les images dans le cloud.",
+    "solution": "Une extension qui capture, annote (flèches, flou, numéros) et assemble des tutoriels ou comparatifs avant/après, sans que rien ne quitte l'appareil.",
+    "architecture": [
+      "Stockage 100 % local dans le navigateur, aucun compte ni pistage",
+      "Modèle freemium : licence Pro à vie, seule connexion sortante = validation de clé",
+      "Exports PNG, JPG, WebP, PDF et GIF animé"
+    ],
+    "ai": [],
+    "apis": [
+      "Chrome Extensions API",
+      "Chrome Web Store"
+    ],
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "Publiée sur le Chrome Web Store"
+    ],
+    "repo": "https://github.com/engoB/proofshot",
+    "demo": "https://engob.github.io/proofshot/",
+    "demoLabel": "Site",
+    "image": "projects/proofshot.webp",
+    "imageKind": "desktop",
+    "accent": "#6366f1"
   },
   {
     "id": "pokevault",
@@ -56,7 +181,12 @@
     "tagline": "Classeur de cartes Pokémon rapide, hors ligne, avec cotes Cardmarket.",
     "status": "production",
     "category": "Collection",
-    "tags": ["PWA", "Hors ligne", "Data", "Tests"],
+    "tags": [
+      "PWA",
+      "Hors ligne",
+      "Data",
+      "Tests"
+    ],
     "featured": false,
     "year": 2026,
     "version": "4.6.0",
@@ -69,37 +199,23 @@
       "Scripts Node de moisson et d'assemblage de packs d'images, tests node --test en CI"
     ],
     "ai": [],
-    "apis": ["TCGdex (FR/EN)", "Pokémon TCG API", "Cotes Cardmarket"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["Recherche sur six catalogues", "Import/export JSON par fusion, sans double comptage"],
-    "repo": "https://github.com/engoB/PokeTest",
-    "demo": "https://engob.github.io/PokeTest/"
-  },
-  {
-    "id": "multix-arena",
-    "name": "Multi X Arena",
-    "tagline": "Les tables de multiplication deviennent un jeu d'arène.",
-    "status": "production",
-    "category": "Éducation",
-    "tags": ["PWA", "Jeu", "Gamification", "TypeScript"],
-    "featured": false,
-    "year": 2026,
-    "version": "4.6.13",
-    "problem": "Réviser les tables par récitation lasse vite les enfants ; les applis existantes sont souvent pleines de publicités ou exigent un compte.",
-    "solution": "Un jeu éducatif qui transforme la mémorisation en aventure : 24 niveaux, héros à pouvoirs, progression mémorielle et duels locaux sur le même écran.",
-    "architecture": [
-      "PWA installable, 100 % hors ligne, sans compte, sans pub ni suivi",
-      "Progression locale exportable, mises à jour qui n'interrompent pas une partie",
-      "« Atelier » séparé pour personnaliser habillage, sons et modes via un pack.json",
-      "Script de vérification de livraison (version, bundle, service worker, assets)"
+    "apis": [
+      "TCGdex (FR/EN)",
+      "Pokémon TCG API",
+      "Cotes Cardmarket"
     ],
-    "ai": [],
-    "apis": ["Service Worker", "Web App Manifest"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["24 niveaux · 6 mondes · 10 héros", "Modes solo et duel local"],
-    "repo": "https://github.com/engoB/MultixArena",
-    "demo": "https://engob.github.io/MultixArena/",
-    "demoLabel": "Jouer"
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "Recherche sur six catalogues",
+      "Import/export JSON par fusion, sans double comptage"
+    ],
+    "repo": "https://github.com/engoB/PokeTest",
+    "demo": "https://engob.github.io/PokeTest/",
+    "image": "projects/pokevault.webp",
+    "imageKind": "mobile",
+    "accent": "#2dd4bf"
   },
   {
     "id": "auraplan",
@@ -107,7 +223,11 @@
     "tagline": "Roadmap, Kanban, planning et notes dans un seul fichier.",
     "status": "en-cours",
     "category": "Productivité",
-    "tags": ["Gestion de projet", "Chiffrement", "Local-first"],
+    "tags": [
+      "Gestion de projet",
+      "Chiffrement",
+      "Local-first"
+    ],
     "featured": false,
     "year": 2026,
     "problem": "Les outils de gestion de projet type Jira sont lourds pour un usage personnel et hébergent les données chez un tiers.",
@@ -118,11 +238,22 @@
       "Chiffrement AES-GCM avec clé dérivée PBKDF2 du mot de passe, compression native du navigateur"
     ],
     "ai": [],
-    "apis": ["GitHub REST API", "Web Crypto API", "Compression Streams API"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["Vues Roadmap, Kanban, Timeline, Notes"],
+    "apis": [
+      "GitHub REST API",
+      "Web Crypto API",
+      "Compression Streams API"
+    ],
+    "builtWith": [
+      "Claude Code"
+    ],
+    "highlights": [
+      "Vues Roadmap, Kanban, Timeline, Notes"
+    ],
     "repo": "https://github.com/engoB/EngoJira",
-    "demo": "https://engob.github.io/EngoJira/"
+    "demo": "https://engob.github.io/EngoJira/",
+    "image": "projects/auraplan.webp",
+    "imageKind": "desktop",
+    "accent": "#a78bfa"
   },
   {
     "id": "oasis-the-hunt",
@@ -130,7 +261,11 @@
     "tagline": "Catalogue films & séries doublé d'une chasse au trésor quotidienne.",
     "status": "prototype",
     "category": "Divertissement",
-    "tags": ["Jeu", "Chiffrement", "Génération procédurale"],
+    "tags": [
+      "Jeu",
+      "Chiffrement",
+      "Génération procédurale"
+    ],
     "featured": false,
     "year": 2026,
     "problem": "Rendre la découverte d'un catalogue de films et séries ludique, avec une énigme par jour impossible à tricher en lisant le code source.",
@@ -141,33 +276,17 @@
       "Catalogue alimenté par l'API TMDB, progression et classement en local"
     ],
     "ai": [],
-    "apis": ["TMDB API", "Web Crypto API"],
-    "builtWith": ["Claude Code"],
-    "repo": "https://github.com/engoB/chasse-oasis",
-    "demo": "https://engob.github.io/chasse-oasis/"
-  },
-  {
-    "id": "proofshot",
-    "name": "ProofShot",
-    "tagline": "Capturer, annoter, partager — en 30 secondes. Extension Chrome.",
-    "status": "production",
-    "category": "Productivité",
-    "tags": ["Extension Chrome", "Local-first", "SaaS"],
-    "featured": false,
-    "year": 2026,
-    "problem": "Documenter un bug ou rédiger un tutoriel demande de jongler entre capture, éditeur d'image et mise en page, souvent avec des outils qui envoient les images dans le cloud.",
-    "solution": "Une extension qui capture, annote (flèches, flou, numéros) et assemble des tutoriels ou comparatifs avant/après, sans que rien ne quitte l'appareil.",
-    "architecture": [
-      "Stockage 100 % local dans le navigateur, aucun compte ni pistage",
-      "Modèle freemium : licence Pro à vie, seule connexion sortante = validation de clé",
-      "Exports PNG, JPG, WebP, PDF et GIF animé"
+    "apis": [
+      "TMDB API",
+      "Web Crypto API"
     ],
-    "ai": [],
-    "apis": ["Chrome Extensions API", "Chrome Web Store"],
-    "builtWith": ["Claude Code"],
-    "highlights": ["Publiée sur le Chrome Web Store"],
-    "repo": "https://github.com/engoB/proofshot",
-    "demo": "https://engob.github.io/proofshot/",
-    "demoLabel": "Site"
+    "builtWith": [
+      "Claude Code"
+    ],
+    "repo": "https://github.com/engoB/chasse-oasis",
+    "demo": "https://engob.github.io/chasse-oasis/",
+    "image": "projects/oasis.webp",
+    "imageKind": "mobile",
+    "accent": "#f43f5e"
   }
 ]
