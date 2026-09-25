@@ -38,6 +38,13 @@ export function createClient({ token, owner, name, branch }) {
       return repo
     },
 
+    /* Dépôts publics du compte, du plus récent au plus ancien (pour l'import) */
+    async listRepos() {
+      const res = await fetch(`${API}/users/${owner}/repos?per_page=100&sort=pushed`, { headers: token ? headers : { Accept: headers.Accept } })
+      if (!res.ok) throw new Error(`GitHub ${res.status}`)
+      return res.json()
+    },
+
     async readJson(path) {
       const file = await req(`/contents/${path}?ref=${encodeURIComponent(branch)}`)
       return JSON.parse(decodeBase64Utf8(file.content))

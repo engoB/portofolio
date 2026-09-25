@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Eye, EyeOff, ImagePlus, Loader2, Monitor, Plus, Smartphone, Trash2 } from 'lucide-react'
 import { useAsset } from '../lib/prefs.jsx'
+import { GithubIcon } from '../components/ui.jsx'
 import { toWebp } from './github.js'
 import { BiField, Group, IconBtn, IconSelect, Label, ListEditor, Select, TagInput, TextField, Toggle } from './fields.jsx'
+import { RepoImporter, ShareCardButton, SocialsEditor } from './editors2.jsx'
 
 export const STATUS_OPTIONS = [
   { value: '', label: '— Pas de badge —' },
@@ -128,9 +130,10 @@ function ImageManager({ project, onChange, addUpload }) {
 /* Projets                                                            */
 /* ------------------------------------------------------------------ */
 
-export function ProjectsEditor({ projects, onChange, addUpload }) {
+export function ProjectsEditor({ projects, onChange, addUpload, listRepos, site }) {
   const asset = useAsset()
   const [selectedId, setSelectedId] = useState(projects[0]?.id)
+  const [importing, setImporting] = useState(false)
   const index = projects.findIndex((p) => p.id === selectedId)
   const p = projects[index]
 
@@ -189,13 +192,31 @@ export function ProjectsEditor({ projects, onChange, addUpload }) {
             </li>
           ))}
         </ul>
-        <button type="button" onClick={add} className="mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-2xl px-3 py-2.5 text-sm text-fg2 ring-1 ring-line ring-inset hover:text-fg">
-          <Plus className="size-4" /> Nouveau projet
-        </button>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <button type="button" onClick={add} className="inline-flex items-center justify-center gap-1.5 rounded-2xl px-3 py-2.5 text-sm text-fg2 ring-1 ring-line ring-inset hover:text-fg">
+            <Plus className="size-4" /> Nouveau
+          </button>
+          <button type="button" onClick={() => setImporting(true)} className="inline-flex items-center justify-center gap-1.5 rounded-2xl px-3 py-2.5 text-sm text-fg2 ring-1 ring-line ring-inset hover:text-fg">
+            <GithubIcon className="size-4" /> Depuis GitHub
+          </button>
+        </div>
       </div>
 
       {/* Fiche */}
-      {p ? (
+      {importing ? (
+        <RepoImporter
+          listRepos={listRepos}
+          projects={projects}
+          owner={site.repo.owner}
+          onClose={() => setImporting(false)}
+          onImport={(np) => {
+            const id = projects.some((x) => x.id === np.id) ? `${np.id}-${Date.now().toString(36).slice(-3)}` : np.id
+            onChange([...projects, { ...np, id }])
+            setSelectedId(id)
+            setImporting(false)
+          }}
+        />
+      ) : p ? (
         <div className="space-y-4">
           <Group title="L'essentiel">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -241,6 +262,20 @@ export function ProjectsEditor({ projects, onChange, addUpload }) {
             </div>
             <BiField label="Texte du bouton de démo" hint="ex. « Jouer », « Essayer »" value={p.demoLabel} onChange={(v) => update(index, { demoLabel: v })} />
             <Toggle label="Code privé" hint="Remplace le lien du dépôt par « Code privé »" checked={p.repoPrivate} onChange={(v) => update(index, { repoPrivate: v })} />
+          </Group>
+
+          <Group title="Partage" hint="Image affichée quand on partage la page du projet" defaultOpen={false}>
+            <ShareCardButton
+              id={p.id}
+              kicker="Projet"
+              title={p.name}
+              subtitle={p.hook?.fr}
+              image={p.images?.[0]?.src}
+              kind={p.images?.[0]?.kind}
+              accent={p.accent}
+              site={site}
+              addUpload={addUpload}
+            />
           </Group>
 
           <div className="flex justify-end">
@@ -395,6 +430,7 @@ export function TextsEditor({ site, update }) {
 const SECTION_LABELS = {
   manifesto: "L'expérimentation",
   projects: 'Projets',
+  journal: 'Journal',
   method: 'Méthode',
   why: 'Pourquoi ce profil',
   skills: 'Boîte à outils',
@@ -442,10 +478,11 @@ export function ProfileEditor({ site, update, addUpload }) {
       <Group title="Liens">
         <div className="grid gap-4 sm:grid-cols-2">
           <TextField label="Email" type="email" value={links.email} onChange={(v) => update(['links', 'email'], v)} />
-          <TextField label="LinkedIn" placeholder="https://www.linkedin.com/in/…" value={links.linkedin} onChange={(v) => update(['links', 'linkedin'], v)} />
           <TextField label="GitHub" value={links.github} onChange={(v) => update(['links', 'github'], v)} />
           <TextField label="ArtStation" value={links.artstation} onChange={(v) => update(['links', 'artstation'], v)} />
         </div>
+        <Label>Réseaux sociaux</Label>
+        <SocialsEditor socials={links.socials} onChange={(v) => update(['links', 'socials'], v)} />
         <Toggle label="Afficher le lien ArtStation (discret, en pied de page)" checked={links.showArtstation} onChange={(v) => update(['links', 'showArtstation'], v)} />
         <BiField label="Texte du lien ArtStation" value={links.artstationLabel} onChange={(v) => update(['links', 'artstationLabel'], v)} />
         <p className="text-xs text-subtle">Un lien vide n'est pas affiché.</p>

@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ArrowUpRight, Check, Download, Eye, KeyRound, Loader2, LogOut, Moon, PenLine, Sun, TriangleAlert, UploadCloud, X } from 'lucide-react'
+import { ArrowUpRight, BarChart3, Check, Download, Eye, KeyRound, Loader2, LogOut, Moon, PenLine, Sun, TriangleAlert, UploadCloud, X } from 'lucide-react'
 import { AssetContext, usePrefs } from '../lib/prefs.jsx'
 import Site from '../components/Site.jsx'
 import { createClient } from './github.js'
 import { inputCls, setIn } from './fields.jsx'
 import { ProfileEditor, ProjectsEditor, TextsEditor } from './editors.jsx'
+import { JournalEditor, SettingsEditor } from './editors2.jsx'
 
 const SITE_PATH = 'src/content/site.json'
 const PROJECTS_PATH = 'src/content/projects.json'
+const POSTS_PATH = 'src/content/posts.json'
 const TOKEN_KEY = 'pf_admin_token'
 
 const readToken = () => {
@@ -43,8 +45,14 @@ const download = (name, text) => {
   setTimeout(() => URL.revokeObjectURL(a.href), 1000)
 }
 
-/* Chemins d'images réellement utilisés par le contenu (pour ne publier que ceux-là) */
-const usedPaths = (site, projects) => new Set([site.identity.photo, ...projects.flatMap((p) => (p.images ?? []).map((i) => i.src))])
+/* Chemins d'images réellement utilisés par le contenu (pour ne publier que ceux-là).
+   Les cartes de partage (og/…) sont toujours publiées. */
+const usedPaths = (site, projects, posts) =>
+  new Set([
+    site.identity.photo,
+    ...projects.flatMap((p) => (p.images ?? []).map((i) => i.src)),
+    ...posts.flatMap((p) => [p.cover, ...[...JSON.stringify(p.body ?? '').matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m) => m[1])]),
+  ])
 
 /* ------------------------------------------------------------------ */
 /* Connexion                                                          */
@@ -124,17 +132,19 @@ function Login({ repo, onToken, onLocal, error, busy }) {
 
 const TABS = [
   { id: 'projects', label: 'Projets' },
+  { id: 'journal', label: 'Journal' },
   { id: 'texts', label: 'Textes' },
-  { id: 'profile', label: 'Profil & affichage' },
+  { id: 'profile', label: 'Profil' },
+  { id: 'settings', label: 'Réglages' },
 ]
 
-export default function Admin({ initialSite, initialProjects }) {
+export default function Admin({ initialSite, initialProjects, initialPosts = [] }) {
   const { dark, toggleTheme } = usePrefs()
   const repo = initialSite.repo
   const [token, setToken] = useState(readToken)
   const [mode, setMode] = useState(token ? 'connecting' : 'login') // login | connecting | ready | local
   const [error, setError] = useState('')
-  const [base, setBase] = useState({ site: initialSite, projects: initialProjects })
+  const [base, setBase] = useState({ site: initialSite, projects: initialProjects, posts: initialPosts })
   const [draft, setDraft] = useState(base)
   const [uploads, setUploads] = useState({}) // chemin (dans public/) → data URL
   const [published, setPublished] = useState(() => new Set())
@@ -152,9 +162,13 @@ export default function Admin({ initialSite, initialProjects }) {
       setError('')
       try {
         await c.check()
-        const [site, projects] = await Promise.all([c.readJson(SITE_PATH), c.readJson(PROJECTS_PATH)])
-        setBase({ site, projects })
-        setDraft({ site, projects })
+        const [site, projects, posts] = await Promise.all([
+          c.readJson(SITE_PATH),
+          c.readJson(PROJECTS_PATH),
+          c.readJson(POSTS_PATH).catch((e) => (e.status === 404 ? [] : Promise.reject(e))),
+        ])
+        setBase({ site, projects, posts })
+        setDraft({ site, projects, posts })
         setMode('ready')
       } catch (e) {
         setError(e.status === 401 ? 'Jeton refusé par GitHub (expiré ou mal copié).' : e.message)
@@ -182,12 +196,15 @@ export default function Admin({ initialSite, initialProjects }) {
   const addUpload = useCallback((path, dataUrl) => setUploads((u) => ({ ...u, [path]: dataUrl })), [])
   const updateSite = useCallback((path, value) => setDraft((d) => ({ ...d, site: setIn(d.site, path, value) })), [])
   const setProjects = useCallback((projects) => setDraft((d) => ({ ...d, projects })), [])
+  const setPosts = useCallback((posts) => setDraft((d) => ({ ...d, posts })), [])
+  const listRepos = useCallback(() => (client ? client.listRepos() : createClient({ token: '', ...repo }).listRepos()), [client, repo])
 
   const siteChanged = json(draft.site) !== json(base.site)
   const projectsChanged = json(draft.projects) !== json(base.projects)
-  const used = usedPaths(draft.site, draft.projects)
-  const newImages = Object.keys(uploads).filter((p) => used.has(p) && !published.has(p))
-  const changes = Number(siteChanged) + Number(projectsChanged) + newImages.length
+  const postsChanged = json(draft.posts) !== json(base.posts)
+  const used = usedPaths(draft.site, draft.projects, draft.posts)
+  const newImages = Object.keys(uploads).filter((p) => (used.has(p) || p.startsWith('og/')) && !published.has(p))
+  const changes = Number(siteChanged) + Number(projectsChanged) + Number(postsChanged) + newImages.length
 
   /* Prévenir avant de quitter avec des modifications non publiées */
   useEffect(() => {
@@ -206,14 +223,19 @@ export default function Admin({ initialSite, initialProjects }) {
     setNotice(null)
     try {
       // Si le contenu a été modifié ailleurs entre-temps, on demande confirmation
-      const [rSite, rProjects] = await Promise.all([client.readJson(SITE_PATH), client.readJson(PROJECTS_PATH)])
-      if ((json(rSite) !== json(base.site) || json(rProjects) !== json(base.projects)) && !confirm('Le contenu a été modifié ailleurs depuis votre connexion. Publier quand même et remplacer ces changements ?')) {
+      const [rSite, rProjects, rPosts] = await Promise.all([
+        client.readJson(SITE_PATH),
+        client.readJson(PROJECTS_PATH),
+        client.readJson(POSTS_PATH).catch(() => base.posts),
+      ])
+      if ((json(rSite) !== json(base.site) || json(rProjects) !== json(base.projects) || json(rPosts) !== json(base.posts)) && !confirm('Le contenu a été modifié ailleurs depuis votre connexion. Publier quand même et remplacer ces changements ?')) {
         setPublishing(false)
         return
       }
       const files = []
       if (siteChanged) files.push({ path: SITE_PATH, text: json(draft.site) })
       if (projectsChanged) files.push({ path: PROJECTS_PATH, text: json(draft.projects) })
+      if (postsChanged) files.push({ path: POSTS_PATH, text: json(draft.posts) })
       for (const p of newImages) files.push({ path: `public/${p}`, base64: uploads[p].split(',')[1] })
       await client.commit(files, `Espace perso : mise à jour du contenu (${files.length} fichier${files.length > 1 ? 's' : ''})`)
       setBase(draft)
@@ -237,7 +259,7 @@ export default function Admin({ initialSite, initialProjects }) {
     <AssetContext.Provider value={uploads}>
       {preview ? (
         <>
-          <Site site={draft.site} projects={draft.projects} />
+          <Site site={draft.site} projects={draft.projects} posts={draft.posts} />
           <div className="fixed bottom-5 left-1/2 z-[120] flex -translate-x-1/2 items-center gap-2 rounded-full bg-fg p-1.5 pl-4 text-sm text-bg shadow-2xl">
             Aperçu {changes ? '(non publié)' : ''}
             <button type="button" onClick={() => setPreview(false)} className="inline-flex items-center gap-1.5 rounded-full bg-bg px-4 py-2 font-medium text-fg">
@@ -266,6 +288,17 @@ export default function Admin({ initialSite, initialProjects }) {
                 <button type="button" onClick={toggleTheme} className="grid size-9 place-items-center rounded-full text-muted hover:bg-fg/5 hover:text-fg" aria-label="Thème">
                   {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
                 </button>
+                {draft.site.analytics?.goatcounter && (
+                  <a
+                    href={`https://${draft.site.analytics.goatcounter}.goatcounter.com`}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Statistiques de visite"
+                    className="grid size-9 place-items-center rounded-full text-muted hover:bg-fg/5 hover:text-fg"
+                  >
+                    <BarChart3 className="size-4" />
+                  </a>
+                )}
                 <button type="button" onClick={() => setPreview(true)} className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-fg2 ring-1 ring-line ring-inset hover:text-fg">
                   <Eye className="size-4" /> Aperçu
                 </button>
@@ -290,6 +323,7 @@ export default function Admin({ initialSite, initialProjects }) {
                     onClick={() => {
                       download('site.json', json(draft.site))
                       download('projects.json', json(draft.projects))
+                      download('posts.json', json(draft.posts))
                     }}
                     className="inline-flex items-center gap-1.5 rounded-full bg-fg px-4 py-2 text-sm font-medium text-bg"
                   >
@@ -333,7 +367,9 @@ export default function Admin({ initialSite, initialProjects }) {
           )}
 
           <main className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
-            {tab === 'projects' && <ProjectsEditor projects={draft.projects} onChange={setProjects} addUpload={addUpload} />}
+            {tab === 'projects' && <ProjectsEditor projects={draft.projects} onChange={setProjects} addUpload={addUpload} listRepos={listRepos} site={draft.site} />}
+            {tab === 'journal' && <JournalEditor posts={draft.posts} onChange={setPosts} projects={draft.projects} site={draft.site} addUpload={addUpload} />}
+            {tab === 'settings' && <SettingsEditor site={draft.site} update={updateSite} />}
             {tab === 'texts' && <TextsEditor site={draft.site} update={updateSite} />}
             {tab === 'profile' && <ProfileEditor site={draft.site} update={updateSite} addUpload={addUpload} />}
           </main>

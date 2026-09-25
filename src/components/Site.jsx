@@ -2,13 +2,16 @@ import { useState } from 'react'
 import { ArrowDown, ArrowUpRight, Check, Copy, Mail, MapPin, Menu, Moon, Sparkles, Sun, X } from 'lucide-react'
 import { useAsset, usePrefs } from '../lib/prefs.jsx'
 import Projects from './Projects.jsx'
+import { JournalPage, JournalSection, LegalPage, NotFound, PostPage, publishedPosts } from './Journal.jsx'
+import { SOCIAL_ICONS, useAnalytics } from './Social.jsx'
+import { href } from '../lib/route.js'
+import { paths } from '../lib/site-url.js'
 import {
   ArtstationIcon,
   BrowserFrame,
   Chip,
   GithubIcon,
   ICONS,
-  LinkedinIcon,
   PhoneFrame,
   Reveal,
   SectionHeading,
@@ -45,21 +48,24 @@ function PrefToggles() {
   )
 }
 
-function Nav({ site }) {
+function Nav({ site, hasJournal }) {
   const { ui } = usePrefs()
   const [open, setOpen] = useState(false)
   const s = site.sections
+  // Liens absolus vers l'accueil : ils fonctionnent aussi depuis le journal
+  const home = href()
   const links = [
-    s.manifesto && { href: '#experimentation', label: ui.nav.manifesto },
-    s.projects && { href: '#projets', label: ui.nav.projects },
-    s.method && { href: '#methode', label: ui.nav.method },
-    s.why && { href: '#profil', label: ui.nav.why },
+    s.manifesto && { href: `${home}#experimentation`, label: ui.nav.manifesto },
+    s.projects && { href: `${home}#projets`, label: ui.nav.projects },
+    hasJournal && { href: href(paths.journal), label: ui.nav.journal },
+    s.method && { href: `${home}#methode`, label: ui.nav.method },
+    s.why && { href: `${home}#profil`, label: ui.nav.why },
   ].filter(Boolean)
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="mx-auto flex max-w-3xl items-center justify-between gap-3 rounded-full bg-bg2/75 p-1.5 shadow-xl ring-1 shadow-black/5 ring-line backdrop-blur-xl dark:shadow-black/40">
-        <a href="#top" className="flex items-center gap-2.5 pr-2" aria-label={site.identity.name}>
+        <a href={`${home}#top`} className="flex items-center gap-2.5 pr-2" aria-label={site.identity.name}>
           <span className="grid size-9 place-items-center rounded-full bg-fg/[0.06] font-serif text-lg text-grad italic ring-1 ring-line">
             {site.identity.initials}
           </span>
@@ -77,7 +83,7 @@ function Nav({ site }) {
         <div className="flex items-center gap-0.5">
           <PrefToggles />
           {s.contact && (
-            <a href="#contact" className="ml-1 hidden rounded-full bg-fg px-4 py-2 text-sm font-medium text-bg transition hover:opacity-85 sm:block">
+            <a href={`${home}#contact`} className="ml-1 hidden rounded-full bg-fg px-4 py-2 text-sm font-medium text-bg transition hover:opacity-85 sm:block">
               {ui.nav.contact}
             </a>
           )}
@@ -94,7 +100,7 @@ function Nav({ site }) {
       </nav>
       {open && (
         <ul className="mx-auto mt-2 max-w-3xl space-y-1 rounded-3xl bg-bg2/95 p-2 ring-1 ring-line backdrop-blur-xl md:hidden">
-          {[...links, s.contact && { href: '#contact', label: ui.nav.contact }].filter(Boolean).map((l) => (
+          {[...links, s.contact && { href: `${home}#contact`, label: ui.nav.contact }].filter(Boolean).map((l) => (
             <li key={l.href}>
               <a href={l.href} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-fg2 hover:bg-fg/5">
                 {l.label}
@@ -373,8 +379,11 @@ function Contact({ data, links }) {
       window.location.href = `mailto:${links.email}`
     }
   }
+  const NAMES = { linkedin: 'LinkedIn', x: 'X', bluesky: 'Bluesky' }
   const socials = [
-    links.linkedin && { href: links.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
+    ...(links.socials ?? [])
+      .filter((x) => x.url)
+      .map((x) => ({ href: x.url, label: x.label || NAMES[x.network] || x.network, Icon: SOCIAL_ICONS[x.network] ?? ArrowUpRight })),
     links.github && { href: links.github, label: 'GitHub', Icon: GithubIcon },
   ].filter(Boolean)
 
@@ -418,15 +427,28 @@ function Contact({ data, links }) {
   )
 }
 
-function Footer({ site }) {
+function Footer({ site, hasJournal }) {
   const { tr, ui } = usePrefs()
   const { links, identity } = site
   return (
     <footer className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-10 text-sm text-subtle sm:flex-row sm:items-center sm:justify-between sm:px-8">
       <p>
-        © {new Date().getFullYear()} {identity.name} — {ui.footer}
+        © {new Date().getFullYear()} {identity.name} · {ui.rights} — {ui.footer}
       </p>
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        {hasJournal && (
+          <a href={href(paths.journal)} className="transition hover:text-fg">
+            {ui.nav.journal}
+          </a>
+        )}
+        {hasJournal && (
+          <a href={href('feed.xml')} className="transition hover:text-fg">
+            RSS
+          </a>
+        )}
+        <a href={href(paths.legal)} className="transition hover:text-fg">
+          {ui.legal}
+        </a>
         {links.showArtstation && links.artstation && (
           <a href={links.artstation} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 transition hover:text-fg">
             <ArtstationIcon className="size-3.5" /> {tr(links.artstationLabel) || 'ArtStation'}
@@ -442,25 +464,39 @@ function Footer({ site }) {
 /* Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function Site({ site, projects }) {
+export default function Site({ site, projects, posts = [], route = { page: 'home' } }) {
   const { ui } = usePrefs()
   const s = site.sections
+  const hasJournal = s.journal !== false && publishedPosts(posts).length > 0
+  useAnalytics(site.analytics?.goatcounter)
+
+  let page
+  if (route.page === 'journal') page = <JournalPage data={site.journal} posts={posts} />
+  else if (route.page === 'post') page = <PostPage id={route.id} site={site} posts={posts} projects={projects} />
+  else if (route.page === 'legal') page = <LegalPage site={site} />
+  else if (route.page === 'home')
+    page = (
+      <>
+        <Hero site={site} projects={projects} />
+        {s.manifesto && <Manifesto data={site.manifesto} />}
+        {s.projects && <Projects section={site.projectsSection} projects={projects} site={site} initialOpenId={route.project} />}
+        {hasJournal && <JournalSection data={site.journal} posts={posts} />}
+        {s.method && <Method data={site.method} />}
+        {s.why && <Why data={site.why} />}
+        {s.skills && <Skills data={site.skills} />}
+        {s.contact && <Contact data={site.contact} links={site.links} />}
+      </>
+    )
+  else page = <NotFound />
+
   return (
     <div className="grain min-h-screen overflow-x-clip">
       <a href="#projets" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:rounded-full focus:bg-fg focus:px-4 focus:py-2 focus:text-bg">
         {ui.skip}
       </a>
-      <Nav site={site} />
-      <main>
-        <Hero site={site} projects={projects} />
-        {s.manifesto && <Manifesto data={site.manifesto} />}
-        {s.projects && <Projects section={site.projectsSection} projects={projects} />}
-        {s.method && <Method data={site.method} />}
-        {s.why && <Why data={site.why} />}
-        {s.skills && <Skills data={site.skills} />}
-        {s.contact && <Contact data={site.contact} links={site.links} />}
-      </main>
-      <Footer site={site} />
+      <Nav site={site} hasJournal={hasJournal} />
+      <main>{page}</main>
+      <Footer site={site} hasJournal={hasJournal} />
     </div>
   )
 }

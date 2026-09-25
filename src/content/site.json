@@ -4,6 +4,7 @@
     "name": "portofolio",
     "branch": "main"
   },
+  "domain": "",
   "identity": {
     "name": "Sébastien Khai",
     "initials": "SK",
@@ -25,22 +26,44 @@
   },
   "links": {
     "email": "sebastienkhai@gmail.com",
-    "linkedin": "",
     "github": "https://github.com/engoB",
     "artstation": "https://engobaocodai.artstation.com",
     "showArtstation": true,
     "artstationLabel": {
       "fr": "Côté image : mon portfolio ArtStation",
       "en": "The visual side: my ArtStation portfolio"
-    }
+    },
+    "socials": [
+      {
+        "network": "linkedin",
+        "url": ""
+      }
+    ]
   },
   "sections": {
     "manifesto": true,
     "projects": true,
+    "journal": true,
     "method": true,
     "why": true,
     "skills": true,
     "contact": true
+  },
+  "seo": {
+    "description": {
+      "fr": "Sébastien Khai, Product Builder : le carnet de bord d'une expérimentation — concevoir, coder et mettre en ligne des produits avec l'IA.",
+      "en": "Sébastien Khai, Product Builder: the logbook of an experiment — designing, coding and shipping products with AI."
+    }
+  },
+  "analytics": {
+    "goatcounter": ""
+  },
+  "feedback": {
+    "enabled": false,
+    "repo": "engoB/portofolio",
+    "repoId": "R_kgDOUp6ugw",
+    "category": "Retours",
+    "categoryId": ""
   },
   "hero": {
     "kicker": {
@@ -137,6 +160,24 @@
     "intro": {
       "fr": "Faites défiler, ouvrez ceux qui vous intriguent. Chaque fiche raconte le problème, l'idée et la façon dont c'est construit.",
       "en": "Scroll through and open the ones that intrigue you. Each one tells the problem, the idea and how it's built."
+    }
+  },
+  "journal": {
+    "eyebrow": {
+      "fr": "Journal",
+      "en": "Journal"
+    },
+    "title": {
+      "fr": "Les avancées,",
+      "en": "Progress,"
+    },
+    "accent": {
+      "fr": "au fil de l'eau.",
+      "en": "as it happens."
+    },
+    "intro": {
+      "fr": "Ce que je construis, ce que j'apprends, ce qui coince. Vos retours sont les bienvenus sous chaque billet.",
+      "en": "What I'm building, what I'm learning, what's not working yet. Your feedback is welcome under every post."
     }
   },
   "method": {
@@ -464,6 +505,16 @@
     "text": {
       "fr": "Ce site évolue au fil de mes expériences. Si ce que vous voyez vous parle — pour échanger, suivre la suite ou imaginer quelque chose ensemble — écrivez-moi.",
       "en": "This site evolves as my experiments do. If what you see speaks to you — to talk, follow along or imagine something together — drop me a line."
+    }
+  },
+  "legal": {
+    "title": {
+      "fr": "Mentions légales & confidentialité",
+      "en": "Legal notice & privacy"
+    },
+    "body": {
+      "fr": "## Éditeur\n\nSite personnel édité par **Sébastien Khai**. Contact : [sebastienkhai@gmail.com](mailto:sebastienkhai@gmail.com).\n\n## Hébergement\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.\n\n## Propriété intellectuelle\n\nL'ensemble des textes, visuels, captures et du code de ce site est protégé. Toute reproduction ou réutilisation sans autorisation écrite est interdite. Les marques et contenus de tiers cités restent la propriété de leurs titulaires respectifs.\n\n## Données personnelles\n\nCe site ne dépose aucun cookie publicitaire et ne revend aucune donnée.\n\n- **Mesure d'audience** : si elle est activée, elle utilise GoatCounter, sans cookie et sans suivi individuel.\n- **Commentaires** : ils passent par Giscus et un compte GitHub ; ils sont soumis à la [politique de confidentialité de GitHub](https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement).\n- **Préférences** : la langue et le thème choisis sont mémorisés dans votre navigateur uniquement.\n\nPour toute question ou demande de suppression, écrivez à l'adresse ci-dessus.",
+      "en": "## Publisher\n\nPersonal website published by **Sébastien Khai**. Contact: [sebastienkhai@gmail.com](mailto:sebastienkhai@gmail.com).\n\n## Hosting\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.\n\n## Intellectual property\n\nAll texts, visuals, screenshots and code on this site are protected. Any reproduction or reuse without written permission is prohibited. Third-party trademarks and content mentioned remain the property of their respective owners.\n\n## Personal data\n\nThis site sets no advertising cookies and sells no data.\n\n- **Audience measurement**: when enabled, it uses GoatCounter, with no cookies and no individual tracking.\n- **Comments**: they go through Giscus and a GitHub account, and are subject to [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).\n- **Preferences**: your chosen language and theme are stored in your browser only.\n\nFor any question or deletion request, write to the address above."
     }
   }
 }

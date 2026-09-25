@@ -2,6 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Lock, Plus, X } from 'lucide-react'
 import { useAsset, usePrefs } from '../lib/prefs.jsx'
 import { BrowserFrame, Chip, GithubIcon, PhoneFrame, Reveal, SectionHeading, StatusBadge } from './ui.jsx'
+import { Comments, ShareBar, trackView } from './Social.jsx'
+import { href } from '../lib/route.js'
+import { paths, publicUrl } from '../lib/site-url.js'
 
 /* Visuel de carte : deux téléphones, ou une fenêtre de navigateur, sur un halo coloré */
 function CardVisual({ p }) {
@@ -88,7 +91,7 @@ function Fold({ title, children, defaultOpen }) {
   )
 }
 
-function ProjectDialog({ project: p, onClose, onPrev, onNext }) {
+function ProjectDialog({ project: p, site, onClose, onPrev, onNext }) {
   const ref = useRef(null)
   const { tr, ui } = usePrefs()
   const asset = useAsset()
@@ -211,6 +214,12 @@ function ProjectDialog({ project: p, onClose, onPrev, onNext }) {
               </div>
             </aside>
           </div>
+          {site && (
+            <div className="space-y-8 border-t border-line px-5 py-10 sm:px-8">
+              <ShareBar url={publicUrl(site) + paths.project(p.id)} title={`${p.name} — ${tr(p.hook)}`} />
+              <Comments term={`projets/${p.id}`} feedback={site.feedback} email={site.links?.email} />
+            </div>
+          )}
         </div>
       </div>
     </dialog>
@@ -221,10 +230,21 @@ function ProjectDialog({ project: p, onClose, onPrev, onNext }) {
 /* Section : carrousel horizontal                                      */
 /* ------------------------------------------------------------------ */
 
-export default function Projects({ section, projects }) {
+export default function Projects({ section, projects, site, initialOpenId }) {
   const { tr, ui } = usePrefs()
   const list = useMemo(() => projects.filter((p) => p.visible !== false), [projects])
-  const [openId, setOpenId] = useState(null)
+  const [openId, setOpenId] = useState(() => (list.some((p) => p.id === initialOpenId) ? initialOpenId : null))
+
+  /* L'adresse suit la fiche ouverte : /projets/<id>/ se partage tel quel */
+  const inAdmin = window.location.hash.startsWith('#/admin')
+  useEffect(() => {
+    if (inAdmin) return
+    const target = openId ? href(paths.project(openId)) : href()
+    if (window.location.pathname !== target) window.history.replaceState(null, '', target + (openId ? '' : window.location.hash))
+    const opened = list.find((p) => p.id === openId)
+    if (site) document.title = opened ? `${opened.name} — ${tr(opened.hook)}` : `${site.identity.name} — ${tr(site.identity.role)}`
+    if (opened) trackView(`/${paths.project(opened.id)}`, opened.name)
+  }, [openId]) // eslint-disable-line react-hooks/exhaustive-deps
   const track = useRef(null)
   const drag = useRef(null)
   const [edges, setEdges] = useState({ start: true, end: false })
@@ -325,7 +345,7 @@ export default function Projects({ section, projects }) {
         </div>
       </Reveal>
 
-      {open && <ProjectDialog key="dialog" project={open} onClose={() => setOpenId(null)} onPrev={() => step(-1)} onNext={() => step(1)} />}
+      {open && <ProjectDialog key="dialog" project={open} site={site} onClose={() => setOpenId(null)} onPrev={() => step(-1)} onNext={() => step(1)} />}
     </section>
   )
 }

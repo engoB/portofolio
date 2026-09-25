@@ -6,7 +6,10 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 
 export const UI = {
   fr: {
-    nav: { manifesto: 'Expérimentation', projects: 'Projets', method: 'Méthode', why: 'Profil', contact: 'Contact' },
+    nav: { manifesto: 'Expérimentation', projects: 'Projets', journal: 'Journal', method: 'Méthode', why: 'Profil', contact: 'Contact' },
+    legal: 'Mentions légales',
+    rights: 'Tous droits réservés',
+    share: 'Partager',
     menu: 'Menu',
     theme: { toLight: 'Passer en thème clair', toDark: 'Passer en thème sombre' },
     lang: { switch: 'Switch to English', short: 'EN' },
@@ -33,7 +36,10 @@ export const UI = {
     madeWith: 'Conçu et codé avec l’IA, React et Tailwind CSS.',
   },
   en: {
-    nav: { manifesto: 'Experiment', projects: 'Projects', method: 'Method', why: 'Profile', contact: 'Contact' },
+    nav: { manifesto: 'Experiment', projects: 'Projects', journal: 'Journal', method: 'Method', why: 'Profile', contact: 'Contact' },
+    legal: 'Legal notice',
+    rights: 'All rights reserved',
+    share: 'Share',
     menu: 'Menu',
     theme: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
     lang: { switch: 'Passer en français', short: 'FR' },

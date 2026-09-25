@@ -1,0 +1,48 @@
+[
+  {
+    "id": "pourquoi-ce-carnet",
+    "visible": true,
+    "date": "2026-09-25",
+    "cover": "og.jpg",
+    "project": "",
+    "tags": [
+      "Expérimentation",
+      "IA"
+    ],
+    "title": {
+      "fr": "Pourquoi ce carnet de bord",
+      "en": "Why this logbook"
+    },
+    "summary": {
+      "fr": "Une hypothèse, des produits en ligne, et l'envie de construire en public. Voici ce que vous trouverez ici.",
+      "en": "One hypothesis, live products, and a wish to build in public. Here's what you'll find here."
+    },
+    "body": {
+      "fr": "Depuis plusieurs mois, je teste une idée simple : avec l'IA comme équipe, **une seule personne peut mener un produit de bout en bout** — du problème de départ jusqu'à la mise en ligne.\n\n## Ce que vous trouverez ici\n\n- **Les produits** que j'ai construits, avec pour chacun le problème, l'idée et la façon dont c'est fait.\n- **Ce journal**, où je partage les avancées, les choix, les ratés aussi.\n- **Ma méthode** : comment j'utilise ChatGPT, Claude, Gemini et des agents de code, et comment je garde la main sur la qualité.\n\n## Pourquoi en public\n\nParce qu'un produit s'améliore quand on le montre. Chaque billet est ouvert aux retours : critiques, idées, encouragements. Tout est bon à prendre.\n\n> Si un projet vous parle, ou si vous avez un problème qui mériterait son outil, écrivez-moi.",
+      "en": "For several months I've been testing a simple idea: with AI as a team, **one person can carry a product end to end** — from the initial problem all the way to launch.\n\n## What you'll find here\n\n- **The products** I've built, each with its problem, idea and how it's made.\n- **This journal**, where I share progress, choices, and failures too.\n- **My method**: how I use ChatGPT, Claude, Gemini and coding agents, and how I keep control of quality.\n\n## Why in public\n\nBecause a product gets better when you show it. Every post is open to feedback: criticism, ideas, encouragement. It all helps.\n\n> If a project speaks to you, or if you have a problem that deserves its own tool, drop me a line."
+    }
+  },
+  {
+    "id": "feed-me-odd-sous-le-capot",
+    "visible": false,
+    "date": "2026-09-25",
+    "cover": "projects/feed-me-odd-1.webp",
+    "project": "feed-me-odd",
+    "tags": [
+      "Feed Me Odd",
+      "Pipeline IA"
+    ],
+    "title": {
+      "fr": "Feed Me Odd sous le capot : une rédaction en cinq workflows",
+      "en": "Feed Me Odd under the hood: an editorial team in five workflows"
+    },
+    "summary": {
+      "fr": "Comment une chaîne de GitHub Actions et un LLM bien cadré transforment des articles Wikipédia en anecdotes lisibles, sans jamais payer deux fois.",
+      "en": "How a chain of GitHub Actions and a well-framed LLM turns Wikipedia articles into readable stories, without ever paying twice."
+    },
+    "body": {
+      "fr": "Feed Me Odd publie une anecdote vraie par écran. Derrière, pas de rédaction : une chaîne automatisée, et moi pour choisir et relire.\n\n## Les cinq étapes\n\n1. **Moissonner** : repérer des sujets insolites sur Wikipédia et Wikidata.\n2. **Sélectionner** : c'est moi qui décide ce qui part en écriture.\n3. **Écrire** : un LLM rédige à partir du seul article source.\n4. **Contrôler** : vérifier la santé du catalogue et écarter les textes faibles.\n5. **Publier** : sortir les fiches au rythme choisi.\n\n## Les garde-fous\n\n- Le modèle ne travaille **que** sur le texte fourni ; s'il ne peut rien affirmer, le sujet est écarté.\n- Chaque sujet n'est **rédigé qu'une fois** : une reprise ne repaye jamais.\n- Le **coût est estimé** avant chaque lot.\n\n*Billet en brouillon — à compléter avant publication.*",
+      "en": "Feed Me Odd publishes one true story per screen. Behind it there's no newsroom: an automated chain, and me to choose and review.\n\n## The five steps\n\n1. **Harvest**: spot unusual topics on Wikipedia and Wikidata.\n2. **Select**: I decide what goes to writing.\n3. **Write**: an LLM writes from the source article only.\n4. **Check**: keep the catalogue healthy and drop weak texts.\n5. **Publish**: release stories at the chosen pace.\n\n## The guardrails\n\n- The model works **only** from the text it's given; if it can't assert anything, the topic is dropped.\n- Each topic is **written once**: a rerun never pays twice.\n- The **cost is estimated** before each batch.\n\n*Draft post — to be completed before publishing.*"
+    }
+  }
+]
