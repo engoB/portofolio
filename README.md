@@ -1,9 +1,9 @@
-<p align="center"><a href="https://engob.github.io/portofolio/"><img src=".github/readme/banner.jpg" alt="Senshi Kabai — Product Builder" width="100%"></a></p>
+<p align="center"><a href="https://www.senshicore.com/"><img src=".github/readme/banner.jpg" alt="Senshi Kabai — Product Builder" width="100%"></a></p>
 
 <p align="center">
-  <a href="https://engob.github.io/portofolio/"><img alt="Visiter" src="https://img.shields.io/badge/Visiter-le_site-0b0b0f?style=for-the-badge&labelColor=0b0b0f"></a>
+  <a href="https://www.senshicore.com/"><img alt="Visiter" src="https://img.shields.io/badge/Visiter-le_site-0b0b0f?style=for-the-badge&labelColor=0b0b0f"></a>
   <img alt="Statut" src="https://img.shields.io/badge/Statut-En_ligne-059669?style=for-the-badge&labelColor=0b0b0f">
-  <a href="https://engob.github.io/portofolio/journal/"><img alt="Journal" src="https://img.shields.io/badge/Carnet_de_bord-lire-4f46e5?style=for-the-badge&labelColor=0b0b0f"></a>
+  <a href="https://www.senshicore.com/journal/"><img alt="Journal" src="https://img.shields.io/badge/Carnet_de_bord-lire-4f46e5?style=for-the-badge&labelColor=0b0b0f"></a>
 </p>
 
 <h1 align="center">Senshi Kabai — Product Builder</h1>
@@ -31,7 +31,7 @@ Application React construite avec Vite, puis **prérendue** : chaque projet et c
 
 ---
 
-<p align="center"><sub>Conçu, développé et mis en ligne par <b>Senshi Kabai</b> · <a href="https://engob.github.io/portofolio/">engob.github.io/portofolio</a><br>© 2026 Senshi Kabai — tous droits réservés (voir <a href="LICENSE">LICENSE</a>).</sub></p>
+<p align="center"><sub>Conçu, développé et mis en ligne par <b>Senshi Kabai</b> · <a href="https://www.senshicore.com/">www.senshicore.com</a><br>© 2026 Senshi Kabai — tous droits réservés (voir <a href="LICENSE">LICENSE</a>).</sub></p>
 
 <details>
 <summary><b>Documentation technique</b> · modifier le site, publier, configurer</summary>
@@ -39,13 +39,13 @@ Application React construite avec Vite, puis **prérendue** : chaque projet et c
 ## Senshi Kabai — carnet de bord
 
 Site vitrine one-page, bilingue (FR / EN), thème clair et sombre, déployé sur GitHub Pages :
-https://engob.github.io/portofolio/
+https://www.senshicore.com/
 
 Stack : React + Tailwind CSS + Lucide React, construit avec Vite.
 
 ### Modifier le site : l'espace perso
 
-**https://engob.github.io/portofolio/#/admin** (à garder en favori, aucun lien public n'y mène)
+**https://www.senshicore.com/#/admin** (à garder en favori, aucun lien public n'y mène)
 
 Depuis le navigateur, sans toucher au code, vous pouvez :
 
