@@ -505,6 +505,131 @@
     "accent": "#ef4444"
   },
   {
+    "id": "site-evenement",
+    "visible": false,
+    "status": "beta",
+    "name": "Site d'événement",
+    "hook": {
+      "fr": "Votre site de mariage en dix minutes, sans abonnement.",
+      "en": "Your wedding website in ten minutes, no subscription."
+    },
+    "pitch": {
+      "fr": "Un site d'événement élégant et complet : programme, lieux, RSVP, séjour, galerie, écran d'accès pour les invités. Tout se modifie directement dans la page.",
+      "en": "An elegant, complete event website: schedule, venues, RSVP, stay, gallery, a guest access screen. Everything is edited right on the page."
+    },
+    "problem": {
+      "fr": "Les sites de mariage clés en main sont chers, pleins de publicité ou tous identiques. Et les réponses des invités finissent éparpillées entre SMS, emails et appels.",
+      "en": "Off-the-shelf wedding sites are expensive, full of ads or all look alike. And guests' replies end up scattered across texts, emails and calls."
+    },
+    "idea": {
+      "fr": "Une seule page, belle sur mobile, que les organisateurs personnalisent eux-mêmes sans code, avec un vrai suivi des réponses.",
+      "en": "A single page, beautiful on mobile, that hosts customise themselves without code, with proper tracking of replies."
+    },
+    "how": {
+      "fr": "Page statique avec mode édition intégré : textes, photos, thème et sections se modifient sur place, puis se publient sur GitHub Pages. Les RSVP partent dans un Google Sheet via un petit script, avec un tableau de bord des réponses et un export CSV. Né d'un projet personnel, rendu générique.",
+      "en": "A static page with a built-in edit mode: texts, photos, theme and sections are edited in place, then published to GitHub Pages. RSVPs go to a Google Sheet through a small script, with a replies dashboard and CSV export. Born from a personal project, made generic."
+    },
+    "ai": [],
+    "stack": [
+      {
+        "fr": "Page statique",
+        "en": "Static page"
+      },
+      {
+        "fr": "Mode édition",
+        "en": "Edit mode"
+      },
+      "Google Sheets",
+      "GitHub Pages"
+    ],
+    "images": [
+      {
+        "src": "projects/site-evenement-1.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/site-evenement-2.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/site-evenement-3.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/site-evenement-4.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/site-evenement/",
+    "demoLabel": {
+      "fr": "Voir la démo (mot de passe : demo)",
+      "en": "See the demo (password: demo)"
+    },
+    "repo": "https://github.com/engoB/site-evenement",
+    "repoPrivate": false,
+    "accent": "#c39a55"
+  },
+  {
+    "id": "planning-classe",
+    "visible": false,
+    "status": "live",
+    "name": "Planning de classe",
+    "hook": {
+      "fr": "L'emploi du temps qui sait combien de temps il reste avant la sonnerie.",
+      "en": "The timetable that knows how long until the bell."
+    },
+    "pitch": {
+      "fr": "Un emploi du temps vivant pour élèves, parents et enseignants : le cours en cours, le suivant, le temps restant, les semaines A/B et les changements du jour.",
+      "en": "A living timetable for students, parents and teachers: the current class, the next one, time left, A/B weeks and today's changes."
+    },
+    "problem": {
+      "fr": "Semaines A/B, groupes, salles qui changent, cours annulés : l'emploi du temps papier ne suit pas, et on ne sait jamais « on a quoi, là, et jusqu'à quand ? ».",
+      "en": "A/B weeks, groups, changing rooms, cancelled classes: paper timetables can't keep up, and you never know “what do we have now, and until when?”."
+    },
+    "idea": {
+      "fr": "Une page qui suit le vrai calendrier et répond d'un coup d'œil, avec un compte à rebours mis à jour chaque seconde.",
+      "en": "A page that follows the real calendar and answers at a glance, with a countdown updated every second."
+    },
+    "how": {
+      "fr": "Page statique sans dépendance. Deux types de plannings (créneaux fixes ou blocs horaires), vacances de la zone, changements ponctuels, affaires à préparer. Un mode modification publie sur GitHub : les autres appareils se mettent à jour d'eux-mêmes. Né d'un besoin familial, rendu générique.",
+      "en": "A dependency-free static page. Two kinds of timetables (fixed slots or time blocks), school holidays, one-off changes, things to bring. An edit mode publishes to GitHub: other devices update themselves. Born from a family need, made generic."
+    },
+    "ai": [],
+    "stack": [
+      "JavaScript",
+      {
+        "fr": "API GitHub",
+        "en": "GitHub API"
+      },
+      {
+        "fr": "Hors ligne",
+        "en": "Offline"
+      }
+    ],
+    "images": [
+      {
+        "src": "projects/planning-classe-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/planning-classe-2.webp",
+        "kind": "mobile"
+      },
+      {
+        "src": "projects/planning-classe-3.webp",
+        "kind": "desktop"
+      }
+    ],
+    "demo": "https://engob.github.io/planning-classe/",
+    "demoLabel": {
+      "fr": "Voir la démo",
+      "en": "See the demo"
+    },
+    "repo": "https://github.com/engoB/planning-classe",
+    "repoPrivate": false,
+    "accent": "#0e7490"
+  },
+  {
     "id": "week-flow",
     "visible": false,
     "status": "wip",
@@ -546,48 +671,5 @@
     "repo": "https://github.com/engoB/weekflowengo",
     "repoPrivate": false,
     "accent": "#0ea5e9"
-  },
-  {
-    "id": "emplois-du-temps",
-    "visible": false,
-    "status": "live",
-    "name": "Emplois du temps",
-    "hook": {
-      "fr": "Le planning de la semaine, avec le temps restant avant la sonnerie.",
-      "en": "The week's schedule, with the time left before the bell."
-    },
-    "pitch": {
-      "fr": "Une page d'emploi du temps familiale qui suit le vrai calendrier, affiche le cours en cours et se synchronise d'elle-même entre les appareils.",
-      "en": "A family timetable page that follows the real calendar, shows the current class and syncs itself across devices."
-    },
-    "problem": {
-      "fr": "Semaines A/B, groupes, changements ponctuels : les emplois du temps papier ne suivent pas.",
-      "en": "Week A/B, groups, one-off changes: paper timetables can't keep up."
-    },
-    "idea": {
-      "fr": "Une seule page qui sait quel jour on est, ce qui se passe maintenant et ce qui vient ensuite.",
-      "en": "A single page that knows what day it is, what's happening now and what's next."
-    },
-    "how": {
-      "fr": "Page statique qui surveille son propre dépôt GitHub : une modification faite sur un appareil apparaît sur les autres en moins d'une minute.",
-      "en": "A static page that watches its own GitHub repository: a change made on one device shows up on the others in under a minute."
-    },
-    "ai": [],
-    "stack": [
-      "JavaScript",
-      {
-        "fr": "API GitHub",
-        "en": "GitHub API"
-      }
-    ],
-    "images": [],
-    "demo": null,
-    "demoLabel": {
-      "fr": "",
-      "en": ""
-    },
-    "repo": "https://github.com/engoB/EDTST2SNO",
-    "repoPrivate": false,
-    "accent": "#f97316"
   }
 ]
