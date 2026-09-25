@@ -506,7 +506,7 @@
   },
   {
     "id": "site-evenement",
-    "visible": false,
+    "visible": true,
     "status": "beta",
     "name": "Site d'événement",
     "hook": {
@@ -571,7 +571,7 @@
   },
   {
     "id": "planning-classe",
-    "visible": false,
+    "visible": true,
     "status": "live",
     "name": "Planning de classe",
     "hook": {
