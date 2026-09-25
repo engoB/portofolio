@@ -4,7 +4,8 @@ import { useAsset } from '../lib/prefs.jsx'
 import { GithubIcon } from '../components/ui.jsx'
 import { toWebp } from './github.js'
 import { BiField, Group, IconBtn, IconSelect, Label, ListEditor, Select, TagInput, TextField, Toggle } from './fields.jsx'
-import { RepoImporter, ShareCardButton, SocialsEditor } from './editors2.jsx'
+import { publicUrl } from '../lib/site-url.js'
+import { RepoImporter, ShareCardButton, SocialKit, SocialsEditor } from './editors2.jsx'
 
 export const STATUS_OPTIONS = [
   { value: '', label: '— Pas de badge —' },
@@ -275,6 +276,18 @@ export function ProjectsEditor({ projects, onChange, addUpload, listRepos, site 
               accent={p.accent}
               site={site}
               addUpload={addUpload}
+            />
+            <SocialKit
+              id={p.id}
+              kicker="Projet"
+              title={p.name}
+              subtitle={p.hook?.fr}
+              image={p.images?.[0]?.src}
+              kind={p.images?.[0]?.kind}
+              accent={p.accent}
+              site={site}
+              url={`${publicUrl(site)}projets/${p.id}/`}
+              tags={p.stack?.slice(0, 3)}
             />
           </Group>
 

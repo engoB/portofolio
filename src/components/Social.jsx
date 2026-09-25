@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, Link2, Mail, MessageCircle, Share2 } from 'lucide-react'
+import { AtSign, Check, Link2, Mail, MessageCircle, Share2 } from 'lucide-react'
 import { usePrefs } from '../lib/prefs.jsx'
 import { LinkedinIcon } from './ui.jsx'
 
@@ -23,16 +23,88 @@ function BlueskyIcon({ className = 'size-4' }) {
   )
 }
 
-export const SOCIAL_ICONS = { linkedin: LinkedinIcon, x: XIcon, bluesky: BlueskyIcon }
+export function InstagramIcon({ className = 'size-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className={className}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+function FacebookIcon({ className = 'size-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M13.5 22v-8.2h2.8l.4-3.3h-3.2V8.4c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.3h2.8V22h3.4Z" />
+    </svg>
+  )
+}
+
+function WhatsappIcon({ className = 'size-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <path d="M3.5 20.5 4.8 16A8.5 8.5 0 1 1 8 19.3l-4.5 1.2Z" />
+      <path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4.5 4.5 0 0 1-2.3-2.3l.8-1-1-2L9 8.5Z" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+function ThreadsIcon({ className = 'size-4' }) {
+  return <AtSign className={className} aria-hidden="true" />
+}
+
+function TiktokIcon({ className = 'size-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M16.2 2.5c.3 2.4 1.8 4 4.3 4.2v3.4c-1.6 0-3-.5-4.2-1.3v6.4a5.8 5.8 0 1 1-5.8-5.8h.4v3.5h-.4a2.3 2.3 0 1 0 2.3 2.3V2.5h3.4Z" />
+    </svg>
+  )
+}
+
+function YoutubeIcon({ className = 'size-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path fillRule="evenodd" d="M6 4.5h12a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-7a4 4 0 0 1 4-4Zm4 4.5v6l5.2-3L10 9Z" />
+    </svg>
+  )
+}
+
+export const SOCIAL_ICONS = {
+  linkedin: LinkedinIcon,
+  instagram: InstagramIcon,
+  threads: ThreadsIcon,
+  facebook: FacebookIcon,
+  tiktok: TiktokIcon,
+  youtube: YoutubeIcon,
+  x: XIcon,
+  bluesky: BlueskyIcon,
+}
+export const SOCIAL_NAMES = {
+  linkedin: 'LinkedIn',
+  instagram: 'Instagram',
+  threads: 'Threads',
+  facebook: 'Facebook',
+  tiktok: 'TikTok',
+  youtube: 'YouTube',
+  x: 'X',
+  bluesky: 'Bluesky',
+}
 
 export function ShareBar({ url, title }) {
   const { lang } = usePrefs()
   const [copied, setCopied] = useState(false)
-  const t = lang === 'fr' ? { share: 'Partager', copy: 'Copier le lien', copied: 'Lien copié' } : { share: 'Share', copy: 'Copy link', copied: 'Link copied' }
+  const t =
+    lang === 'fr'
+      ? { share: 'Partager', copy: 'Copier le lien', copied: 'Lien copié', native: 'Partager… (Instagram, messages…)' }
+      : { share: 'Share', copy: 'Copy link', copied: 'Link copied', native: 'Share… (Instagram, messages…)' }
   const u = encodeURIComponent(url)
   const txt = encodeURIComponent(title)
   const targets = [
     { label: 'LinkedIn', Icon: LinkedinIcon, href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+    { label: 'Facebook', Icon: FacebookIcon, href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+    { label: 'Threads', Icon: ThreadsIcon, href: `https://www.threads.net/intent/post?text=${txt}%20${u}` },
+    { label: 'WhatsApp', Icon: WhatsappIcon, href: `https://wa.me/?text=${txt}%20${u}` },
     { label: 'X', Icon: XIcon, href: `https://twitter.com/intent/tweet?url=${u}&text=${txt}` },
     { label: 'Bluesky', Icon: BlueskyIcon, href: `https://bsky.app/intent/compose?text=${txt}%20${u}` },
   ]
@@ -59,8 +131,13 @@ export function ShareBar({ url, title }) {
         {copied ? <Check className="size-3.5 text-emerald-500" /> : <Link2 className="size-3.5" />}
       </button>
       {native && (
-        <button type="button" onClick={() => navigator.share({ title, url }).catch(() => {})} aria-label={t.share} className={btn}>
-          <Share2 className="size-3.5" />
+        <button
+          type="button"
+          onClick={() => navigator.share({ title, url }).catch(() => {})}
+          title={t.native}
+          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-fg px-3.5 text-sm font-medium text-bg transition hover:opacity-85"
+        >
+          <Share2 className="size-3.5" aria-hidden="true" /> {t.share}…
         </button>
       )}
     </div>

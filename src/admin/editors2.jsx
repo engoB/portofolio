@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { Eye, ImagePlus, Loader2, Plus, Sparkles, Trash2 } from 'lucide-react'
+import { Check, Copy, Download, Eye, ImagePlus, Loader2, Plus, Share2, Sparkles, Trash2 } from 'lucide-react'
+import { InstagramIcon } from '../components/Social.jsx'
 import { useAsset } from '../lib/prefs.jsx'
 import { Markdown } from '../lib/markdown.jsx'
 import { publicUrl } from '../lib/site-url.js'
 import { toWebp } from './github.js'
-import { makeShareCard } from './sharecard.js'
+import { makeShareCard, makeSocialCard } from './sharecard.js'
 import { BiField, Group, Label, ListEditor, Select, TagInput, TextField, Toggle, inputCls } from './fields.jsx'
 
 const slugify = (s) =>
@@ -17,6 +18,99 @@ const slugify = (s) =>
     .slice(0, 60)
 
 const today = () => new Date().toISOString().slice(0, 10)
+
+/* ------------------------------------------------------------------ */
+/* Kit réseaux sociaux : visuels Instagram (post + story) et légende    */
+/* ------------------------------------------------------------------ */
+
+const dataUrlToFile = async (dataUrl, name) => new File([await (await fetch(dataUrl)).blob()], name, { type: 'image/jpeg' })
+
+export function SocialKit({ id, kicker, title, subtitle, image, kind, accent, site, url, tags = [] }) {
+  const asset = useAsset()
+  const [busy, setBusy] = useState(false)
+  const [cards, setCards] = useState(null)
+  const [copied, setCopied] = useState(false)
+  const hashtags = ['productbuilder', 'buildinpublic', ...(tags ?? []).map((x) => (typeof x === 'string' ? x : x?.fr || ''))]
+    .map((x) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]/g, '').toLowerCase())
+    .filter(Boolean)
+  const caption = [title, subtitle, '', `→ ${url}`, '(lien dans la bio)', '', [...new Set(hashtags)].map((x) => `#${x}`).join(' ')]
+    .filter((l, i) => l || i > 1)
+    .join('\n')
+
+  const make = async () => {
+    setBusy(true)
+    try {
+      const common = {
+        kicker,
+        title,
+        subtitle,
+        image: image ? asset(image) : null,
+        kind,
+        accent,
+        footer: publicUrl(site).replace(/^https:\/\//, '').replace(/\/$/, ''),
+      }
+      setCards({ post: await makeSocialCard({ ...common, format: 'post' }), story: await makeSocialCard({ ...common, format: 'story' }) })
+    } finally {
+      setBusy(false)
+    }
+  }
+  const share = async (fmt) => {
+    try {
+      const file = await dataUrlToFile(cards[fmt], `${id}-${fmt}.jpg`)
+      if (navigator.canShare?.({ files: [file] })) await navigator.share({ files: [file], text: caption })
+      else alert('Le partage direct fonctionne depuis un téléphone. Ici, téléchargez l’image puis publiez-la depuis l’application.')
+    } catch {
+      /* partage annulé */
+    }
+  }
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(caption)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch {
+      window.prompt('Légende', caption)
+    }
+  }
+  const btn = 'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-fg2 ring-1 ring-line ring-inset hover:text-fg'
+
+  return (
+    <div className="space-y-3 border-t border-line pt-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="button" onClick={make} disabled={busy} className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-fg2 ring-1 ring-line ring-inset hover:text-fg">
+          {busy ? <Loader2 className="size-4 animate-spin" /> : <InstagramIcon className="size-4" />} Créer les visuels Instagram
+        </button>
+        <span className="text-xs text-subtle">Post 4:5 et story 9:16, avec une légende prête à coller. Rien n'est publié sur le site.</span>
+      </div>
+      {cards && (
+        <div className="grid gap-4 sm:grid-cols-[1fr_0.62fr_1.2fr] sm:items-start">
+          {['post', 'story'].map((fmt) => (
+            <figure key={fmt} className="space-y-2">
+              <img src={cards[fmt]} alt="" className="w-full rounded-xl ring-1 ring-line" />
+              <figcaption className="flex flex-wrap gap-1.5">
+                <a href={cards[fmt]} download={`${id}-${fmt}.jpg`} className={btn}>
+                  <Download className="size-3.5" /> {fmt === 'post' ? 'Post' : 'Story'}
+                </a>
+                <button type="button" onClick={() => share(fmt)} className={btn}>
+                  <Share2 className="size-3.5" /> Partager
+                </button>
+              </figcaption>
+            </figure>
+          ))}
+          <div className="space-y-2">
+            <textarea readOnly value={caption} rows={9} className={`${inputCls} font-mono text-xs`} />
+            <button type="button" onClick={copy} className={btn}>
+              {copied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />} {copied ? 'Légende copiée' : 'Copier la légende'}
+            </button>
+            <p className="text-xs text-subtle">
+              Instagram n'accepte pas de lien cliquable dans une publication : mettez l'adresse du site dans votre bio (ou un sticker lien en story). La légende le rappelle.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 /* ------------------------------------------------------------------ */
 /* Bouton « image de partage » (projets et billets)                    */
@@ -140,7 +234,7 @@ function BodyEditor({ value, onChange, addUpload, postId }) {
   )
 }
 
-export function JournalEditor({ posts, onChange, projects, site, addUpload }) {
+export function JournalEditor({ posts, onChange, projects, site, updateSite, addUpload }) {
   const asset = useAsset()
   const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1))
   const [selectedId, setSelectedId] = useState(sorted[0]?.id)
@@ -175,98 +269,125 @@ export function JournalEditor({ posts, onChange, projects, site, addUpload }) {
   }
   const linked = projects.find((x) => x.id === p?.project)
 
+  const on = site.sections?.journal !== false
+  const j = site.journal ?? {}
+
   return (
-    <div className="grid gap-6 lg:grid-cols-[20rem_1fr]">
-      <div className="space-y-2 lg:sticky lg:top-24 lg:self-start">
-        <button type="button" onClick={add} className="inline-flex w-full items-center justify-center gap-1.5 rounded-2xl bg-fg px-3 py-2.5 text-sm font-medium text-bg">
-          <Plus className="size-4" /> Nouveau billet
-        </button>
-        <p className="px-1 pt-2 text-xs text-subtle">Un billet en brouillon n'apparaît ni sur le site ni dans le flux RSS.</p>
-        <ul className="space-y-1.5">
-          {sorted.map((x) => (
-            <li key={x.id}>
-              <button
-                type="button"
-                onClick={() => setSelectedId(x.id)}
-                className={`w-full rounded-2xl p-3 text-left ring-1 transition ring-inset ${x.id === selectedId ? 'bg-card ring-fg/30' : 'ring-transparent hover:bg-card'}`}
-              >
-                <span className="flex items-center justify-between gap-2 text-[11px] text-subtle">
-                  {x.date}
-                  <span className={x.visible === false ? 'text-amber-600 dark:text-amber-300' : 'text-emerald-600 dark:text-emerald-300'}>{x.visible === false ? 'Brouillon' : 'Publié'}</span>
-                </span>
-                <span className="mt-1 block truncate text-sm font-medium text-fg">{x.title?.fr || 'Sans titre'}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {p ? (
-        <div className="space-y-4">
-          <Group title="Billet">
-            <BiField
-              label="Titre"
-              value={p.title}
-              onChange={(v) => update({ title: v, ...(isNew && v.fr ? { id: slugify(v.fr) || p.id } : {}) })}
-            />
-            <div className="grid gap-4 sm:grid-cols-3">
-              <TextField label="Date" type="date" value={p.date} onChange={(v) => update({ date: v })} />
-              <TextField label="Adresse" hint="après /journal/" value={p.id} onChange={(v) => update({ id: slugify(v) })} />
-              <Toggle label={p.visible === false ? 'Brouillon' : 'Publié'} checked={p.visible !== false} onChange={(v) => update({ visible: v })} />
-            </div>
-            <BiField label="Résumé" hint="1 à 2 phrases, visible dans les listes et les partages" value={p.summary} onChange={(v) => update({ summary: v })} multiline rows={2} />
-            <BodyEditor value={p.body} onChange={(v) => update({ body: v })} addUpload={addUpload} postId={p.id} />
-          </Group>
-
-          <Group title="Illustration, projet lié, tags" defaultOpen={false}>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-              <button type="button" onClick={() => cover.current?.click()} className="relative grid aspect-[16/9] w-full max-w-xs place-items-center overflow-hidden rounded-2xl bg-fg/5 text-sm text-muted ring-1 ring-line">
-                {p.cover ? <img src={asset(p.cover)} alt="" className="absolute inset-0 size-full object-cover" /> : 'Choisir une image de couverture'}
-              </button>
-              <input ref={cover} type="file" accept="image/*" hidden onChange={(e) => e.target.files?.[0] && uploadCover(e.target.files[0])} />
-              <div className="flex-1 space-y-4">
-                <Select
-                  label="Projet lié"
-                  value={p.project}
-                  onChange={(v) => update({ project: v })}
-                  options={[{ value: '', label: '— Aucun —' }, ...projects.map((x) => ({ value: x.id, label: x.name }))]}
-                />
-                {p.cover && (
-                  <button type="button" onClick={() => update({ cover: '' })} className="text-xs text-rose-500">
-                    Retirer la couverture
-                  </button>
-                )}
-              </div>
-            </div>
-            <TagInput label="Tags" value={p.tags ?? []} onChange={(v) => update({ tags: v })} />
-          </Group>
-
-          <Group title="Partage" defaultOpen={false}>
-            <ShareCardButton
-              id={p.id}
-              kicker="Journal"
-              title={p.title?.fr}
-              subtitle={p.summary?.fr}
-              image={linked?.images?.[0]?.src || p.cover}
-              kind={linked?.images?.[0]?.kind || 'desktop'}
-              accent={linked?.accent}
-              site={site}
-              addUpload={addUpload}
-            />
-          </Group>
-
-          <div className="flex justify-between">
-            <a href={`${import.meta.env.BASE_URL}journal/${p.id}/`} target="_blank" rel="noreferrer" className="text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
-              Voir la page en ligne (après publication)
-            </a>
-            <button type="button" onClick={remove} className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-rose-500 ring-1 ring-rose-500/30 ring-inset hover:bg-rose-500/10">
-              <Trash2 className="size-4" /> Supprimer
-            </button>
-          </div>
+    <div className="space-y-6">
+      <Group title="Le carnet" hint={on ? 'Activé' : 'Désactivé : aucune page du journal n’est publiée'} defaultOpen={!on}>
+        <Toggle
+          label={on ? 'Journal activé' : 'Journal désactivé (pages, flux RSS et liens retirés du site)'}
+          checked={on}
+          onChange={(v) => updateSite(['sections', 'journal'], v)}
+        />
+        <Toggle label="Aperçu du dernier billet sur l'accueil du portfolio" checked={j.onHome !== false} onChange={(v) => updateSite(['journal', 'onHome'], v)} />
+        <BiField label="Nom du carnet" hint="titre de l'espace journal, ex. Carnet de bord" value={j.name} onChange={(v) => updateSite(['journal', 'name'], v)} />
+        <BiField label="Présentation" value={j.intro} onChange={(v) => updateSite(['journal', 'intro'], v)} multiline rows={2} />
+      </Group>
+      <div className="grid gap-6 lg:grid-cols-[20rem_1fr]">
+        <div className="space-y-2 lg:sticky lg:top-24 lg:self-start">
+          <button type="button" onClick={add} className="inline-flex w-full items-center justify-center gap-1.5 rounded-2xl bg-fg px-3 py-2.5 text-sm font-medium text-bg">
+            <Plus className="size-4" /> Nouveau billet
+          </button>
+          <p className="px-1 pt-2 text-xs text-subtle">Un billet en brouillon n'apparaît ni sur le site ni dans le flux RSS.</p>
+          <ul className="space-y-1.5">
+            {sorted.map((x) => (
+              <li key={x.id}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(x.id)}
+                  className={`w-full rounded-2xl p-3 text-left ring-1 transition ring-inset ${x.id === selectedId ? 'bg-card ring-fg/30' : 'ring-transparent hover:bg-card'}`}
+                >
+                  <span className="flex items-center justify-between gap-2 text-[11px] text-subtle">
+                    {x.date}
+                    <span className={x.visible === false ? 'text-amber-600 dark:text-amber-300' : 'text-emerald-600 dark:text-emerald-300'}>{x.visible === false ? 'Brouillon' : 'Publié'}</span>
+                  </span>
+                  <span className="mt-1 block truncate text-sm font-medium text-fg">{x.title?.fr || 'Sans titre'}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-      ) : (
-        <p className="text-muted">Aucun billet pour l'instant. Lancez-vous : même trois lignes sur une avancée suffisent.</p>
-      )}
+
+        {p ? (
+          <div className="space-y-4">
+            <Group title="Billet">
+              <BiField
+                label="Titre"
+                value={p.title}
+                onChange={(v) => update({ title: v, ...(isNew && v.fr ? { id: slugify(v.fr) || p.id } : {}) })}
+              />
+              <div className="grid gap-4 sm:grid-cols-3">
+                <TextField label="Date" type="date" value={p.date} onChange={(v) => update({ date: v })} />
+                <TextField label="Adresse" hint="après /journal/" value={p.id} onChange={(v) => update({ id: slugify(v) })} />
+                <Toggle label={p.visible === false ? 'Brouillon' : 'Publié'} checked={p.visible !== false} onChange={(v) => update({ visible: v })} />
+              </div>
+              <BiField label="Résumé" hint="1 à 2 phrases, visible dans les listes et les partages" value={p.summary} onChange={(v) => update({ summary: v })} multiline rows={2} />
+              <BodyEditor value={p.body} onChange={(v) => update({ body: v })} addUpload={addUpload} postId={p.id} />
+            </Group>
+
+            <Group title="Illustration, projet lié, tags" defaultOpen={false}>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                <button type="button" onClick={() => cover.current?.click()} className="relative grid aspect-[16/9] w-full max-w-xs place-items-center overflow-hidden rounded-2xl bg-fg/5 text-sm text-muted ring-1 ring-line">
+                  {p.cover ? <img src={asset(p.cover)} alt="" className="absolute inset-0 size-full object-cover" /> : 'Choisir une image de couverture'}
+                </button>
+                <input ref={cover} type="file" accept="image/*" hidden onChange={(e) => e.target.files?.[0] && uploadCover(e.target.files[0])} />
+                <div className="flex-1 space-y-4">
+                  <Select
+                    label="Projet lié"
+                    value={p.project}
+                    onChange={(v) => update({ project: v })}
+                    options={[{ value: '', label: '— Aucun —' }, ...projects.map((x) => ({ value: x.id, label: x.name }))]}
+                  />
+                  {p.cover && (
+                    <button type="button" onClick={() => update({ cover: '' })} className="text-xs text-rose-500">
+                      Retirer la couverture
+                    </button>
+                  )}
+                </div>
+              </div>
+              <TagInput label="Tags" value={p.tags ?? []} onChange={(v) => update({ tags: v })} />
+            </Group>
+
+            <Group title="Partage" defaultOpen={false}>
+              <ShareCardButton
+                id={p.id}
+                kicker="Journal"
+                title={p.title?.fr}
+                subtitle={p.summary?.fr}
+                image={linked?.images?.[0]?.src || p.cover}
+                kind={linked?.images?.[0]?.kind || 'desktop'}
+                accent={linked?.accent}
+                site={site}
+                addUpload={addUpload}
+              />
+              <SocialKit
+                id={p.id}
+                kicker={site.journal?.name?.fr || 'Journal'}
+                title={p.title?.fr}
+                subtitle={p.summary?.fr}
+                image={linked?.images?.[0]?.src || p.cover}
+                kind={linked?.images?.[0]?.kind || 'desktop'}
+                accent={linked?.accent}
+                site={site}
+                url={`${publicUrl(site)}journal/${p.id}/`}
+                tags={p.tags}
+              />
+            </Group>
+
+            <div className="flex justify-between">
+              <a href={`${import.meta.env.BASE_URL}journal/${p.id}/`} target="_blank" rel="noreferrer" className="text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
+                Voir la page en ligne (après publication)
+              </a>
+              <button type="button" onClick={remove} className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-rose-500 ring-1 ring-rose-500/30 ring-inset hover:bg-rose-500/10">
+                <Trash2 className="size-4" /> Supprimer
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="text-muted">Aucun billet pour l'instant. Lancez-vous : même trois lignes sur une avancée suffisent.</p>
+        )}
+      </div>
     </div>
   )
 }
@@ -362,6 +483,11 @@ export function SocialsEditor({ socials = [], onChange }) {
             onChange={(network) => set({ ...it, network })}
             options={[
               { value: 'linkedin', label: 'LinkedIn' },
+              { value: 'instagram', label: 'Instagram' },
+              { value: 'threads', label: 'Threads' },
+              { value: 'facebook', label: 'Facebook' },
+              { value: 'tiktok', label: 'TikTok' },
+              { value: 'youtube', label: 'YouTube' },
               { value: 'x', label: 'X (Twitter)' },
               { value: 'bluesky', label: 'Bluesky' },
               { value: 'other', label: 'Autre' },

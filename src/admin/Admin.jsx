@@ -368,7 +368,7 @@ export default function Admin({ initialSite, initialProjects, initialPosts = [] 
 
           <main className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
             {tab === 'projects' && <ProjectsEditor projects={draft.projects} onChange={setProjects} addUpload={addUpload} listRepos={listRepos} site={draft.site} />}
-            {tab === 'journal' && <JournalEditor posts={draft.posts} onChange={setPosts} projects={draft.projects} site={draft.site} addUpload={addUpload} />}
+            {tab === 'journal' && <JournalEditor posts={draft.posts} onChange={setPosts} projects={draft.projects} site={draft.site} updateSite={updateSite} addUpload={addUpload} />}
             {tab === 'settings' && <SettingsEditor site={draft.site} update={updateSite} />}
             {tab === 'texts' && <TextsEditor site={draft.site} update={updateSite} />}
             {tab === 'profile' && <ProfileEditor site={draft.site} update={updateSite} addUpload={addUpload} />}

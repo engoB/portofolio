@@ -42,6 +42,20 @@
   --grid: rgb(12 12 20 / 0.05);
   --grain: 0.05;
 }
+.journal-space {
+  /* Le journal : une teinte « papier » qui le distingue du portfolio */
+  --c-bg: #f1ede4;
+  --c-bg2: #fbf9f3;
+  --c-card: rgb(255 253 247 / 0.75);
+  --c-line: rgb(40 30 10 / 0.12);
+}
+.dark .journal-space,
+.dark.journal-space {
+  --c-bg: #0d0c0a;
+  --c-bg2: #16140f;
+  --c-card: rgb(255 250 235 / 0.03);
+  --c-line: rgb(255 245 220 / 0.1);
+}
 .dark {
   --c-bg: #07070a;
   --c-bg2: #0e0e13;

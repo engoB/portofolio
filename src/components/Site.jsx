@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { ArrowDown, ArrowUpRight, Check, Copy, Mail, MapPin, Menu, Moon, Sparkles, Sun, X } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Check, Copy, Mail, MapPin, Menu, Moon, Rss, Sparkles, Sun, X } from 'lucide-react'
 import { useAsset, usePrefs } from '../lib/prefs.jsx'
 import Projects from './Projects.jsx'
 import { JournalPage, JournalSection, LegalPage, NotFound, PostPage, publishedPosts } from './Journal.jsx'
-import { SOCIAL_ICONS, useAnalytics } from './Social.jsx'
+import { SOCIAL_ICONS, SOCIAL_NAMES, useAnalytics } from './Social.jsx'
 import { href } from '../lib/route.js'
 import { paths } from '../lib/site-url.js'
 import {
@@ -109,6 +109,30 @@ function Nav({ site, hasJournal }) {
           ))}
         </ul>
       )}
+    </header>
+  )
+}
+
+/* En-tête du journal : un espace à part, avec un retour vers le portfolio */
+function JournalNav({ site }) {
+  const { tr } = usePrefs()
+  return (
+    <header className="fixed inset-x-0 top-4 z-50 px-4">
+      <nav className="mx-auto flex max-w-3xl items-center justify-between gap-2 rounded-full bg-bg2/80 p-1.5 shadow-xl ring-1 shadow-black/5 ring-line backdrop-blur-xl dark:shadow-black/40">
+        <a href={href(paths.journal)} className="flex min-w-0 items-center gap-2.5 pr-2">
+          <span className="hidden size-9 shrink-0 place-items-center rounded-full bg-fg/[0.06] font-serif text-lg text-grad italic ring-1 ring-line sm:grid">{site.identity.initials}</span>
+          <span className="truncate pl-2 font-serif text-xl text-fg sm:pl-0">{tr(site.journal.name) || 'Journal'}</span>
+        </a>
+        <div className="flex items-center gap-0.5">
+          <a href={href('feed.xml')} aria-label="RSS" title="RSS" className="hidden size-9 place-items-center sm:grid rounded-full text-fg2 transition hover:bg-fg/5 hover:text-fg">
+            <Rss className="size-4" />
+          </a>
+          <PrefToggles />
+          <a href={href()} className="ml-1 inline-flex items-center gap-1 rounded-full bg-fg px-3.5 py-2 text-sm font-medium text-bg transition hover:opacity-85 sm:px-4">
+            Portfolio <ArrowUpRight className="size-3.5" aria-hidden="true" />
+          </a>
+        </div>
+      </nav>
     </header>
   )
 }
@@ -379,11 +403,10 @@ function Contact({ data, links }) {
       window.location.href = `mailto:${links.email}`
     }
   }
-  const NAMES = { linkedin: 'LinkedIn', x: 'X', bluesky: 'Bluesky' }
   const socials = [
     ...(links.socials ?? [])
       .filter((x) => x.url)
-      .map((x) => ({ href: x.url, label: x.label || NAMES[x.network] || x.network, Icon: SOCIAL_ICONS[x.network] ?? ArrowUpRight })),
+      .map((x) => ({ href: x.url, label: x.label || SOCIAL_NAMES[x.network] || x.network, Icon: SOCIAL_ICONS[x.network] ?? ArrowUpRight })),
     links.github && { href: links.github, label: 'GitHub', Icon: GithubIcon },
   ].filter(Boolean)
 
@@ -467,12 +490,14 @@ function Footer({ site, hasJournal }) {
 export default function Site({ site, projects, posts = [], route = { page: 'home' } }) {
   const { ui } = usePrefs()
   const s = site.sections
-  const hasJournal = s.journal !== false && publishedPosts(posts).length > 0
+  const journalOn = s.journal !== false
+  const hasJournal = journalOn && publishedPosts(posts).length > 0
+  const inJournal = journalOn && (route.page === 'journal' || route.page === 'post')
   useAnalytics(site.analytics?.goatcounter)
 
   let page
-  if (route.page === 'journal') page = <JournalPage data={site.journal} posts={posts} />
-  else if (route.page === 'post') page = <PostPage id={route.id} site={site} posts={posts} projects={projects} />
+  if (route.page === 'journal' && journalOn) page = <JournalPage site={site} posts={posts} />
+  else if (route.page === 'post' && journalOn) page = <PostPage id={route.id} site={site} posts={posts} projects={projects} />
   else if (route.page === 'legal') page = <LegalPage site={site} />
   else if (route.page === 'home')
     page = (
@@ -480,7 +505,7 @@ export default function Site({ site, projects, posts = [], route = { page: 'home
         <Hero site={site} projects={projects} />
         {s.manifesto && <Manifesto data={site.manifesto} />}
         {s.projects && <Projects section={site.projectsSection} projects={projects} site={site} initialOpenId={route.project} />}
-        {hasJournal && <JournalSection data={site.journal} posts={posts} />}
+        {hasJournal && site.journal.onHome !== false && <JournalSection site={site} posts={posts} />}
         {s.method && <Method data={site.method} />}
         {s.why && <Why data={site.why} />}
         {s.skills && <Skills data={site.skills} />}
@@ -490,11 +515,11 @@ export default function Site({ site, projects, posts = [], route = { page: 'home
   else page = <NotFound />
 
   return (
-    <div className="grain min-h-screen overflow-x-clip">
+    <div className={`grain min-h-screen overflow-x-clip ${inJournal ? 'journal-space bg-bg' : ''}`}>
       <a href="#projets" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[110] focus:rounded-full focus:bg-fg focus:px-4 focus:py-2 focus:text-bg">
         {ui.skip}
       </a>
-      <Nav site={site} hasJournal={hasJournal} />
+      {inJournal ? <JournalNav site={site} /> : <Nav site={site} hasJournal={hasJournal} />}
       <main>{page}</main>
       <Footer site={site} hasJournal={hasJournal} />
     </div>

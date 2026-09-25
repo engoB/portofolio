@@ -15,7 +15,9 @@ const dist = join(root, 'dist')
 const read = (f) => JSON.parse(readFileSync(join(root, 'src/content', f), 'utf8'))
 const site = read('site.json')
 const projects = read('projects.json').filter((p) => p.visible !== false)
-const allPosts = read('posts.json')
+/* Journal désactivé dans l'espace perso : aucune page, aucun flux, rien dans le sitemap */
+const journalOn = site.sections?.journal !== false
+const allPosts = journalOn ? read('posts.json') : []
 const posts = allPosts.filter((p) => p.visible !== false).sort((a, b) => (a.date < b.date ? 1 : -1))
 
 const url = publicUrl(site)
@@ -124,8 +126,8 @@ for (const p of projects) {
 if (posts.length || allPosts.length) {
   write(
     paths.journal,
-    { title: `Journal — ${name}`, description: fr(site.journal?.intro) || homeDesc },
-    `<h1>Journal</h1>${links(posts.map((p) => [url + paths.post(p.id), fr(p.title)]))}`,
+    { title: `${fr(site.journal?.name) || 'Journal'} — ${name}`, description: fr(site.journal?.intro) || homeDesc },
+    `<h1>${esc(fr(site.journal?.name) || 'Journal')}</h1>${links(posts.map((p) => [url + paths.post(p.id), fr(p.title)]))}`,
   )
 }
 for (const p of allPosts) {
@@ -189,9 +191,7 @@ const rssItems = posts
     </item>`,
   )
   .join('\n')
-writeFileSync(
-  join(dist, 'feed.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>${esc(name)} — Journal</title>
@@ -201,8 +201,8 @@ writeFileSync(
 ${rssItems}
   </channel>
 </rss>
-`,
-)
+`
+if (journalOn) writeFileSync(join(dist, 'feed.xml'), rss)
 
 /* Domaine personnalisé */
 if (site.domain) writeFileSync(join(dist, 'CNAME'), `${site.domain.replace(/^https?:\/\//, '').replace(/\/+$/, '')}\n`)

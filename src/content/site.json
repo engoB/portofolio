@@ -164,6 +164,11 @@
     }
   },
   "journal": {
+    "name": {
+      "fr": "Carnet de bord",
+      "en": "Logbook"
+    },
+    "onHome": true,
     "eyebrow": {
       "fr": "Journal",
       "en": "Journal"

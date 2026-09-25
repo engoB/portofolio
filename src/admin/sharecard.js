@@ -31,6 +31,9 @@ function wrap(ctx, text, maxWidth) {
   return lines
 }
 
+/* Coupe à n lignes, avec des points de suspension si le texte est plus long */
+const clampLines = (lines, n) => (lines.length > n ? [...lines.slice(0, n - 1), `${lines[n - 1].replace(/[\s,;:.]+$/, '')}…`] : lines)
+
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath()
   ctx.moveTo(x + r, y)
@@ -132,4 +135,116 @@ export async function makeShareCard({ kicker, title, subtitle, image, kind = 'de
   ctx.fillText(footer || '', 72, H - 56)
 
   return c.toDataURL('image/jpeg', 0.86)
+}
+
+/*
+ * Visuels verticaux pour Instagram (et Stories, WhatsApp, Facebook…) :
+ * - post  : 1080 × 1350 (format 4:5 du fil)
+ * - story : 1080 × 1920 (9:16, marges hautes et basses laissées libres pour l'interface)
+ * Ces images ne sont pas publiées sur le site : elles se téléchargent ou se partagent depuis le téléphone.
+ */
+export async function makeSocialCard({ format = 'post', kicker, title, subtitle, image, kind = 'desktop', accent = '#7dd3fc', footer }) {
+  await document.fonts?.ready
+  const w = 1080
+  const h = format === 'story' ? 1920 : 1350
+  const top = format === 'story' ? 250 : 110
+  const bottom = format === 'story' ? 300 : 110
+  const x0 = 90
+  const textW = w - x0 * 2
+  const c = document.createElement('canvas')
+  c.width = w
+  c.height = h
+  const ctx = c.getContext('2d')
+
+  ctx.fillStyle = '#07070a'
+  ctx.fillRect(0, 0, w, h)
+  let g = ctx.createRadialGradient(w * 0.75, h * 1.05, 0, w * 0.75, h * 1.05, h * 0.75)
+  g.addColorStop(0, `${accent}88`)
+  g.addColorStop(1, 'transparent')
+  ctx.fillStyle = g
+  ctx.fillRect(0, 0, w, h)
+  g = ctx.createRadialGradient(w * 0.15, -80, 0, w * 0.15, -80, 760)
+  g.addColorStop(0, 'rgba(99,102,241,0.34)')
+  g.addColorStop(1, 'transparent')
+  ctx.fillStyle = g
+  ctx.fillRect(0, 0, w, h)
+
+  ctx.fillStyle = '#a1a1aa'
+  ctx.font = '26px "Geist Mono", monospace'
+  ctx.fillText((kicker || '').toUpperCase().split('').join(String.fromCharCode(8202)), x0, top + 26)
+
+  const story = format === 'story'
+  const ts = story ? 88 : 74
+  ctx.fillStyle = '#ffffff'
+  ctx.font = `500 ${ts}px Geist, system-ui, sans-serif`
+  let y = top + 60 + ts
+  for (const l of clampLines(wrap(ctx, title || '', textW), story ? 4 : 3)) {
+    ctx.fillText(l, x0, y)
+    y += ts + 8
+  }
+  if (subtitle) {
+    const grad = ctx.createLinearGradient(x0, 0, x0 + textW, 0)
+    grad.addColorStop(0, '#c7d2fe')
+    grad.addColorStop(0.5, '#7dd3fc')
+    grad.addColorStop(1, '#a7f3d0')
+    ctx.fillStyle = grad
+    const ss = story ? 54 : 46
+    ctx.font = `italic ${ss}px "Instrument Serif", Georgia, serif`
+    y += 8
+    for (const l of clampLines(wrap(ctx, subtitle, textW), story ? 4 : 2)) {
+      ctx.fillText(l, x0, y)
+      y += ss + 10
+    }
+  }
+
+  /* Capture dans l'espace restant, en cadre navigateur ou téléphone */
+  const img = await loadImage(image)
+  const areaTop = y + 40
+  const areaH = h - bottom - 70 - areaTop
+  if (img && areaH > 200) {
+    ctx.save()
+    if (kind === 'mobile') {
+      const ph = Math.min(areaH, 1000)
+      const pw = ph * (390 / 844)
+      const px = (w - pw) / 2
+      ctx.shadowColor = 'rgba(0,0,0,.6)'
+      ctx.shadowBlur = 80
+      roundRect(ctx, px, areaTop, pw, ph, 56)
+      ctx.fillStyle = '#18181b'
+      ctx.fill()
+      ctx.shadowBlur = 0
+      roundRect(ctx, px + 12, areaTop + 12, pw - 24, ph - 24, 46)
+      ctx.clip()
+      const s = (pw - 24) / img.width
+      ctx.drawImage(img, px + 12, areaTop + 12, pw - 24, img.height * s)
+    } else {
+      const bw = Math.min(textW + 60, (areaH - 36) * 1.6)
+      const bh = Math.min(areaH, bw * (10 / 16) + 36)
+      const bx = (w - bw) / 2
+      ctx.shadowColor = 'rgba(0,0,0,.6)'
+      ctx.shadowBlur = 80
+      roundRect(ctx, bx, areaTop, bw, bh, 20)
+      ctx.fillStyle = '#27272a'
+      ctx.fill()
+      ctx.shadowBlur = 0
+      ctx.fillStyle = '#52525b'
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath()
+        ctx.arc(bx + 26 + i * 22, areaTop + 18, 6, 0, Math.PI * 2)
+        ctx.fill()
+      }
+      roundRect(ctx, bx, areaTop + 36, bw, bh - 36, 0)
+      ctx.clip()
+      const s = bw / img.width
+      ctx.drawImage(img, bx, areaTop + 36, bw, img.height * s)
+    }
+    ctx.restore()
+  }
+
+  ctx.fillStyle = '#a1a1aa'
+  ctx.font = '26px "Geist Mono", monospace'
+  const f = footer || ''
+  ctx.fillText(f, (w - ctx.measureText(f).width) / 2, h - bottom + 10)
+
+  return c.toDataURL('image/jpeg', 0.9)
 }
