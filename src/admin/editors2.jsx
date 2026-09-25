@@ -289,6 +289,13 @@ export function SettingsEditor({ site, update }) {
 
       <Group title="Référencement (SEO)">
         <BiField label="Description du site" hint="≈ 150 caractères, affichée par Google" value={site.seo?.description} onChange={(v) => update(['seo', 'description'], v)} multiline rows={2} />
+        <TextField
+          label="Code de vérification Google Search Console"
+          hint="balise HTML → valeur de content"
+          placeholder="ex. AbCdEf123…"
+          value={site.seo?.googleVerification}
+          onChange={(v) => update(['seo', 'googleVerification'], v.trim().replace(/^.*content="([^"]+)".*$/, '$1'))}
+        />
       </Group>
 
       <Group title="Statistiques de visite" hint="GoatCounter : gratuit, sans cookie, sans bandeau de consentement">

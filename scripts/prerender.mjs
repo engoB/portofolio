@@ -45,6 +45,7 @@ function head({ title, description, path, image, type = 'website', noindex, json
     `<meta name="description" content="${esc(description)}" />`,
     `<link rel="canonical" href="${canonical}" />`,
     noindex ? '<meta name="robots" content="noindex" />' : '',
+    site.seo?.googleVerification ? `<meta name="google-site-verification" content="${esc(site.seo.googleVerification)}" />` : '',
     `<meta property="og:type" content="${type}" />`,
     `<meta property="og:site_name" content="${esc(name)}" />`,
     `<meta property="og:title" content="${esc(title)}" />`,
