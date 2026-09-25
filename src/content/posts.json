@@ -23,26 +23,465 @@
     }
   },
   {
-    "id": "feed-me-odd-sous-le-capot",
-    "visible": false,
-    "date": "2026-09-25",
-    "cover": "projects/feed-me-odd-1.webp",
-    "project": "feed-me-odd",
+    "id": "product-builder-definition",
+    "visible": true,
+    "date": "2026-09-29",
+    "cover": "journal/product-builder-definition.jpg",
+    "project": "",
     "tags": [
-      "Feed Me Odd",
-      "Pipeline IA"
+      "Produit",
+      "Méthode"
     ],
     "title": {
-      "fr": "Feed Me Odd sous le capot : une rédaction en cinq workflows",
-      "en": "Feed Me Odd under the hood: an editorial team in five workflows"
+      "fr": "Product Builder : le métier entre product manager et développeur"
     },
     "summary": {
-      "fr": "Comment une chaîne de GitHub Actions et un LLM bien cadré transforment des articles Wikipédia en anecdotes lisibles, sans jamais payer deux fois.",
-      "en": "How a chain of GitHub Actions and a well-framed LLM turns Wikipedia articles into readable stories, without ever paying twice."
+      "fr": "Qu'est-ce qu'un Product Builder ? Une définition concrète, ce qui le distingue d'un product manager ou d'un développeur, et pourquoi l'IA rend ce rôle possible."
     },
     "body": {
-      "fr": "Feed Me Odd publie une anecdote vraie par écran. Derrière, pas de rédaction : une chaîne automatisée, et moi pour choisir et relire.\n\n## Les cinq étapes\n\n1. **Moissonner** : repérer des sujets insolites sur Wikipédia et Wikidata.\n2. **Sélectionner** : c'est moi qui décide ce qui part en écriture.\n3. **Écrire** : un LLM rédige à partir du seul article source.\n4. **Contrôler** : vérifier la santé du catalogue et écarter les textes faibles.\n5. **Publier** : sortir les fiches au rythme choisi.\n\n## Les garde-fous\n\n- Le modèle ne travaille **que** sur le texte fourni ; s'il ne peut rien affirmer, le sujet est écarté.\n- Chaque sujet n'est **rédigé qu'une fois** : une reprise ne repaye jamais.\n- Le **coût est estimé** avant chaque lot.\n\n*Billet en brouillon — à compléter avant publication.*",
-      "en": "Feed Me Odd publishes one true story per screen. Behind it there's no newsroom: an automated chain, and me to choose and review.\n\n## The five steps\n\n1. **Harvest**: spot unusual topics on Wikipedia and Wikidata.\n2. **Select**: I decide what goes to writing.\n3. **Write**: an LLM writes from the source article only.\n4. **Check**: keep the catalogue healthy and drop weak texts.\n5. **Publish**: release stories at the chosen pace.\n\n## The guardrails\n\n- The model works **only** from the text it's given; if it can't assert anything, the topic is dropped.\n- Each topic is **written once**: a rerun never pays twice.\n- The **cost is estimated** before each batch.\n\n*Draft post — to be completed before publishing.*"
+      "fr": "Le terme circule de plus en plus dans les offres et sur LinkedIn : **Product Builder**. Derrière le mot à la mode, il y a une réalité simple. C'est quelqu'un qui mène un produit **de bout en bout** : il part d'un problème, imagine la réponse, la conçoit, la construit, la met en ligne et regarde si elle sert vraiment.\n\nC'est le titre que j'ai choisi pour ce carnet de bord. Voici ce qu'il recouvre, et ce qu'il ne recouvre pas.\n\n## Une définition en une phrase\n\nUn Product Builder, c'est **un product manager qui livre lui-même**. Il garde les réflexes du métier produit (comprendre le besoin, prioriser, mesurer) et il ajoute la capacité de fabriquer : écrire le code, régler l'hébergement, automatiser ce qui se répète.\n\n## Ce qui le distingue des autres rôles\n\n- **Le product manager** décide quoi construire et pourquoi. Il travaille avec une équipe qui fabrique. Le Product Builder, lui, fabrique aussi.\n- **Le développeur** maîtrise la technique en profondeur. Le Product Builder s'appuie sur la technique, mais son point de départ reste l'usage : qui s'en sert, quand, et pour régler quel problème.\n- **Le designer** façonne l'expérience. Le Product Builder s'en soucie en permanence, parce qu'un produit mal compris n'est pas utilisé.\n\nAucun de ces rôles ne disparaît. Le Product Builder occupe l'espace entre eux, là où un projet naît et où, trop souvent, il meurt faute de quelqu'un pour le porter jusqu'au bout.\n\n## Pourquoi ce rôle devient possible maintenant\n\nIl y a encore peu, mener seul un produit complet demandait des années de formation dans plusieurs métiers. L'IA a changé la donne : elle **réduit la distance entre une idée et un produit qui fonctionne**. Des modèles comme ChatGPT, Claude ou Gemini, et des agents de code, prennent en charge une grande partie de l'exécution.\n\nCe qui prend de la valeur, c'est ce que l'IA ne fait pas seule :\n\n1. **Choisir le bon problème.** Un outil parfait pour un besoin que personne n'a ne sert à rien.\n2. **Imaginer l'expérience.** Ce qui est clair se comprend, s'utilise et donne confiance.\n3. **Arbitrer.** Dire non à dix fonctionnalités pour en réussir une.\n4. **Tenir la qualité** jusqu'à la mise en ligne, et après.\n\n## À quoi ressemble le travail, concrètement\n\nSur mes projets, une même journée peut passer par toutes les étapes : relire les retours sur [Tram Radar](~/projets/tbm-tram-radar/) et noter ce qui coince, cadrer une nouvelle fonctionnalité, la faire coder par un agent, la tester sur téléphone, corriger, puis laisser un workflow automatisé publier la nouvelle version.\n\nLe résultat n'est pas une maquette : ce sont des produits en ligne, utilisés. Vous pouvez tous les essayer depuis [le portfolio](~/#projets).\n\n## Les compétences qui comptent\n\n- **La culture produit** : analyse du besoin, priorisation, feuille de route, mesure d'usage.\n- **Une base technique solide** : savoir lire du code, comprendre une architecture, repérer une mauvaise idée avant qu'elle coûte cher.\n- **Le sens de l'expérience** : parcours, interface, ton.\n- **La maîtrise des outils d'IA** : savoir cadrer une demande, découper un travail, relire ce qui est produit.\n- **L'automatisation** : tout ce qui se répète devient un pipeline.\n\n## En résumé\n\nLe Product Builder n'est pas un développeur qui fait un peu de produit, ni un product manager qui bricole. C'est quelqu'un qui **porte un produit de l'idée à l'usage**, en utilisant l'IA comme une équipe. C'est exactement l'hypothèse que ce carnet de bord met à l'épreuve, billet après billet."
+    }
+  },
+  {
+    "id": "feed-me-odd-sous-le-capot",
+    "visible": true,
+    "date": "2026-10-02",
+    "cover": "journal/feed-me-odd-sous-le-capot.jpg",
+    "project": "feed-me-odd",
+    "tags": [
+      "Études de cas",
+      "IA",
+      "Automatisation"
+    ],
+    "title": {
+      "fr": "Feed Me Odd sous le capot : une rédaction en cinq workflows"
+    },
+    "summary": {
+      "fr": "Comment une chaîne de GitHub Actions et un LLM bien cadré transforment des articles Wikipédia en anecdotes lisibles, sans jamais payer deux fois."
+    },
+    "body": {
+      "fr": "![Feed Me Odd : une anecdote par écran](projects/feed-me-odd-1.webp)\n\n[Feed Me Odd](~/projets/feed-me-odd/) publie **une anecdote vraie par écran**, à lire en deux minutes. Derrière, il n'y a pas de rédaction : une chaîne automatisée, un modèle de langage bien cadré, et moi pour choisir et relire. Voici comment elle fonctionne.\n\n## Le chemin d'une anecdote\n\nChaque sujet suit le même parcours, avec un vocabulaire qui ne varie jamais :\n\n**au catalogue** → **à écrire** → **écrite** → **relue** → **au stock** → **en ligne**.\n\nUne seule sortie est possible : **écarté**, pour un sujet dont on ne voudra jamais.\n\n## Les cinq étapes\n\n1. **Moissonner.** Chaque nuit, un workflow repère des sujets insolites sur Wikipédia et Wikidata : pages d'articles insolites, rubriques « Le saviez-vous ? », et une liste de sujets phares que je tiens moi-même.\n2. **Sélectionner.** C'est moi qui décide ce qui part en écriture, depuis une console dans le navigateur.\n3. **Écrire.** Un modèle de langage rédige l'anecdote **à partir du seul article source**. C'est la seule étape qui coûte de l'argent.\n4. **Contrôler.** La forme de chaque texte est vérifiée automatiquement ; ce qui échoue part en quarantaine. Puis je relis et j'envoie au stock.\n5. **Publier.** Le stock sort au rythme réglé, tous les jours, sans intervention.\n\n## Les garde-fous\n\n- **Pas de source, pas d'affirmation.** Le modèle ne travaille que sur le texte fourni ; s'il ne peut rien affirmer avec certitude, le sujet est écarté.\n- **Jamais payer deux fois.** L'identité d'un sujet est son identifiant Wikidata : un sujet déjà écrit ne sera jamais reproposé, même après une remise à zéro.\n- **Un coût connu à l'avance.** Chaque lot d'écriture se lance avec un budget. Le coût mesuré tourne autour de deux centimes de dollar par anecdote avec le modèle par défaut.\n- **Un humain en bout de chaîne.** Rien ne part en ligne sans relecture.\n\n## Ce que l'automatisation change\n\nRéécrire à la main une anecdote lisible à partir d'un long article encyclopédique prend facilement une demi-heure. La chaîne en produit des centaines pour quelques euros, et me laisse le travail qui compte vraiment : **choisir** ce qui mérite d'être lu et **juger** la qualité.\n\n## Le modèle économique\n\nLa version gratuite propose cinq anecdotes par jour, les mêmes pour tout le monde : elles sont déduites de la date, comme une édition du jour. Les formules payantes ouvrent l'accès illimité, la recherche, la collection et le choix des univers.\n\n## Ce que j'en retiens\n\nUn modèle de langage n'est pas une rédaction. Mais **un modèle cadré, une source unique et une relecture humaine** en forment une très efficace. Le plus difficile n'a pas été de faire écrire l'IA : c'était de décider précisément ce qu'elle n'avait pas le droit de faire.\n\nLes textes dérivés de Wikipédia restent soumis à sa licence (CC BY-SA) : chaque anecdote renvoie à son article source."
+    }
+  },
+  {
+    "id": "jeu-educatif-tables-de-multiplication",
+    "visible": true,
+    "date": "2026-10-06",
+    "cover": "journal/jeu-educatif-tables-de-multiplication.jpg",
+    "project": "multix-arena",
+    "tags": [
+      "Études de cas",
+      "PWA"
+    ],
+    "title": {
+      "fr": "Un jeu éducatif pour apprendre les tables de multiplication : les choix derrière Multi X Arena"
+    },
+    "summary": {
+      "fr": "Héros, mondes, duels à deux : comment rendre la révision des tables de multiplication motivante, sans publicité, sans compte et même hors ligne."
+    },
+    "body": {
+      "fr": "Réciter ses tables de multiplication, tout le monde est passé par là. Et tout le monde se souvient de l'ennui. C'est de ce constat, très concret à la maison, qu'est né [Multi X Arena](~/projets/multix-arena/) : un jeu qui transforme la révision en aventure.\n\n![Multi X Arena : une question de multiplication dans l'arène](projects/multix-arena-1.webp)\n\n## Le problème : la motivation, pas la mémoire\n\nLes enfants savent mémoriser. Ce qui manque, c'est l'envie de recommencer. Et du côté des applications éducatives, beaucoup posent d'autres problèmes : publicités, achats intégrés, comptes à créer, collecte de données.\n\nJ'ai donc fixé trois règles dès le départ :\n\n- **aucune publicité, aucun compte, aucun suivi** ;\n- **fonctionner hors ligne**, dans la voiture comme chez les grands-parents ;\n- **donner envie d'y revenir**, avec les codes des jeux que les enfants aiment déjà.\n\n## Emprunter les codes du jeu vidéo\n\nPlutôt que d'habiller un exercice, j'ai construit un vrai jeu autour :\n\n- **24 niveaux répartis dans six mondes**, avec un gardien à battre à la fin de chacun ;\n- **dix héros**, chacun avec un pouvoir réellement actif en partie ;\n- **quatre rythmes** (Réflexion, Entraînement, Réflexe et un rythme surprise) pour s'adapter à l'âge et à l'humeur ;\n- des **modes à deux joueurs** face à face sur le même écran, parce que défier un frère ou une sœur motive plus que n'importe quelle étoile.\n\nDeux héros secrets demandent plusieurs jours de régularité pour être débloqués. C'est volontaire : la mémorisation se joue sur la répétition espacée, et le jeu la récompense.\n\n![Le choix du héros dans Multi X Arena](projects/multix-arena-2.webp)\n\n## Pourquoi une application web installable (PWA)\n\nMulti X Arena est une **PWA** : une application web que l'on installe sur l'écran d'accueil du téléphone ou de la tablette, sans passer par un magasin d'applications.\n\n- Sur iPhone ou iPad : ouvrir le jeu dans Safari, puis **Partager → Sur l'écran d'accueil**.\n- Sur Android : menu du navigateur, puis **Installer l'application**.\n\nUne fois installé, le jeu fonctionne sans connexion. La progression reste sur l'appareil et peut être exportée depuis les options, pour ne rien perdre.\n\n## Séparer le jeu de son contenu\n\nUn choix technique a beaucoup simplifié la suite : un **atelier** séparé permet de changer l'habillage, les sons et les modes de jeu sans toucher au code. Ajouter un monde ou rééquilibrer une difficulté devient une question de réglages, pas de développement.\n\n## Ce que j'en retiens\n\n- **Tester avec le vrai public.** Les enfants trouvent en cinq minutes ce qu'un adulte ne verra jamais : un bouton trop petit, une consigne ambiguë, un son agaçant.\n- **La difficulté se règle finement.** Trop facile, on s'ennuie ; trop dur, on abandonne. Les quatre rythmes sont nés de ces essais.\n- **La confiance des parents compte autant que le plaisir des enfants.** Pas de publicité, pas de compte : c'est écrit noir sur blanc.\n\nLe jeu se teste de préférence **sur téléphone ou tablette**, là où il a été conçu pour vivre. Depuis un ordinateur, [la fiche du projet](~/projets/multix-arena/) l'ouvre dans un cadre de téléphone."
+    }
+  },
+  {
+    "id": "tram-bordeaux-temps-reel",
+    "visible": true,
+    "date": "2026-10-09",
+    "cover": "journal/tram-bordeaux-temps-reel.jpg",
+    "project": "tbm-tram-radar",
+    "tags": [
+      "Études de cas",
+      "PWA",
+      "Open data"
+    ],
+    "title": {
+      "fr": "Tram à Bordeaux en temps réel : répondre à « est-ce que je l'ai ? »"
+    },
+    "summary": {
+      "fr": "Les applications de transport donnent l'heure de passage. Tram Radar répond à la vraie question : ai-je le temps d'y arriver à pied ? Voici comment."
+    },
+    "body": {
+      "fr": "Vous connaissez la scène : vous sortez de chez vous, le tram passe dans quatre minutes, la station est à quelques centaines de mètres. Faut-il courir ? Les applications de transport vous donnent l'heure de passage. Elles ne répondent pas à la seule question qui compte : **est-ce que je l'ai ?**\n\nC'est tout l'objet de [Tram Radar](~/projets/tbm-tram-radar/), une application indépendante pour les trams de Bordeaux.\n\n![Tram Radar : la réponse en un coup d'œil](projects/tbm-tram-radar-1.webp)\n\n## Un seul écran, une seule réponse\n\nL'interface tient en un écran :\n\n1. la **station la plus proche** de vous ;\n2. le **sens** choisi, indiqué par le terminus ;\n3. la réponse : vous avez le temps, il faut presser le pas, ou c'est pour le suivant.\n\nPour y arriver, l'application croise trois informations : le **temps réel officiel** du réseau, un **vrai itinéraire piéton** (pas une distance à vol d'oiseau) et **votre allure** de marche.\n\n## Les données ouvertes font le gros du travail\n\nTout repose sur l'open data de Bordeaux Métropole, publié sous Licence Ouverte :\n\n- le **temps réel** des passages ;\n- les **horaires théoriques** et les **tracés** des lignes, avec leurs couleurs officielles.\n\nChaque nuit, un workflow automatique régénère le plan du réseau à partir des données officielles. Si rien n'a changé, rien n'est republié. Les itinéraires piétons, eux, s'appuient sur OpenStreetMap.\n\n## Les détails qui font une bonne application de transport\n\n- **Pas de rechargement surprise en pleine marche.** Quand une nouvelle version est disponible, elle s'installe seule au démarrage ou en arrière-plan ; sinon, un bandeau propose la mise à jour.\n- **Des lignes lisibles.** Couleurs et tracés réels, parce qu'on reconnaît sa ligne à sa couleur avant de lire son nom.\n- **Une application installable.** Ajoutée à l'écran d'accueil, elle s'ouvre comme une application classique.\n\n## Ce que j'ai appris\n\nLa valeur n'était pas dans les données : elles existaient déjà. Elle était dans **la question posée**. En partant de l'irritant (courir ou pas ?) plutôt que de la donnée (l'heure de passage), le produit s'est dessiné tout seul.\n\nTram Radar est un projet indépendant, sans lien avec l'exploitant du réseau. Il se teste **sur téléphone**, à Bordeaux de préférence."
+    }
+  },
+  {
+    "id": "travailler-avec-ia-methode",
+    "visible": true,
+    "date": "2026-10-13",
+    "cover": "journal/travailler-avec-ia-methode.jpg",
+    "project": "",
+    "tags": [
+      "IA",
+      "Méthode"
+    ],
+    "title": {
+      "fr": "Travailler avec l'IA sans perdre la main : ma méthode en cinq étapes"
+    },
+    "summary": {
+      "fr": "ChatGPT, Claude, Gemini, agents de code : comment je m'en sers à chaque étape d'un projet, et comment je garde le contrôle sur la qualité."
+    },
+    "body": {
+      "fr": "On présente souvent l'IA comme un outil magique : on tape une demande, un produit sort. La réalité est plus intéressante. Bien utilisée, l'IA ressemble à **une équipe** : rapide, infatigable, parfois trop sûre d'elle. Mon rôle ressemble alors à celui d'un responsable produit : cadrer, décider, vérifier.\n\nVoici la méthode que j'applique sur tous les projets de ce carnet.\n\n## 1. Cadrer\n\nAvant d'écrire une ligne de code, je formule le problème en une phrase : *pour qui, dans quelle situation, pour obtenir quoi*. Puis je confronte cette idée à plusieurs modèles (ChatGPT, Claude, Gemini). Chacun a ses angles morts ; les croiser fait ressortir les objections que je n'avais pas vues.\n\n**Ce que je garde pour moi** : la décision. Les modèles proposent, je tranche.\n\n## 2. Concevoir\n\nParcours, écrans, ton, direction visuelle. L'IA m'aide à explorer des variantes et à rédiger des textes d'interface. Mais l'expérience se juge à l'œil et au doigt : je dessine, je teste sur téléphone, je recommence.\n\n## 3. Construire\n\nJe code avec des **agents IA**, en gardant la main sur trois choses :\n\n- **l'architecture** : où vivent les données, ce qui dépend de quoi ;\n- **les choix techniques** : pas de dépendance inutile, pas de serveur si un fichier statique suffit ;\n- **la relecture** : je lis ce qui est produit, je fais tester, je refuse ce que je ne comprends pas.\n\nUn agent peut écrire mille lignes en une minute. Il peut aussi introduire une erreur subtile en une ligne. La relecture n'est pas optionnelle.\n\n## 4. Automatiser\n\nTout ce qui se répète devient un **pipeline** : collecter des données, les traiter avec un modèle de langage, contrôler le résultat, publier. Sur [Feed Me Odd](~/projets/feed-me-odd/), cinq workflows font le travail d'une petite rédaction. Sur [Télétravail en français](~/projets/teletravail/), un robot fait la tournée des offres toutes les six heures.\n\n## 5. Livrer\n\nMettre en ligne tôt, observer, corriger. Chaque version apprend de la précédente. Un produit en ligne, même imparfait, apprend plus en une semaine qu'une maquette en un mois.\n\n## Les règles qui évitent les mauvaises surprises\n\n- **Un modèle ne travaille que sur une source fournie** quand l'exactitude compte. Pas de source, pas d'affirmation.\n- **Chaque sortie est contrôlée**, par un test automatique ou par une relecture humaine.\n- **Aucun secret dans une conversation** : ni clé d'API, ni mot de passe.\n- **Je garde une trace** des consignes et des versions : elles documentent ma part du travail.\n\n## En résumé\n\nL'IA ne remplace pas le jugement. Elle le rend plus précieux. Plus l'exécution devient rapide, plus il faut savoir **quoi** construire et **pourquoi**. C'est tout le sujet de ce carnet de bord."
+    }
+  },
+  {
+    "id": "capture-ecran-annotee-chrome",
+    "visible": true,
+    "date": "2026-10-16",
+    "cover": "journal/capture-ecran-annotee-chrome.jpg",
+    "project": "proofshot",
+    "tags": [
+      "Guides",
+      "Études de cas"
+    ],
+    "title": {
+      "fr": "Faire une capture d'écran annotée dans Chrome, sans rien envoyer dans le cloud"
+    },
+    "summary": {
+      "fr": "Flèches, flou, numéros, pas-à-pas : comment documenter un bug ou un tutoriel directement dans Chrome, avec des captures qui restent sur votre ordinateur."
+    },
+    "body": {
+      "fr": "Signaler un bug, expliquer une manipulation à un collègue, rédiger un tutoriel : tout commence par une capture d'écran. Et tout se complique juste après. Il faut l'ouvrir dans un autre logiciel, ajouter des flèches, flouter une donnée sensible, assembler plusieurs images… et souvent passer par un service en ligne qui garde une copie de vos captures.\n\nJ'ai construit [ProofShot](~/projets/proofshot/) pour réduire ce parcours à trente secondes, sans quitter le navigateur.\n\n## Ce qu'il faut pour une bonne capture annotée\n\nUne capture utile répond à trois questions : **où** regarder, **quoi** comprendre, **dans quel ordre**. D'où les outils essentiels :\n\n- **la flèche et le cadre** pour pointer l'endroit exact ;\n- **les numéros automatiques** pour indiquer un ordre d'étapes ;\n- **le flou** pour masquer un email, un nom, un montant ;\n- **le texte** pour une consigne courte ;\n- **le recadrage** pour enlever ce qui distrait.\n\n![ProofShot : douze outils pour annoter une capture](projects/proofshot-1.webp)\n\n## Du simple écran au tutoriel pas-à-pas\n\nUne capture seule suffit pour un bug. Pour un tutoriel, il en faut plusieurs, dans le bon ordre, avec une légende chacune. Le **Composer** de ProofShot fonctionne ainsi : on coche ses captures dans l'ordre voulu, l'ordre devient celui des étapes, on légende, on exporte en PNG ou en PDF.\n\n![Le Composer : l'ordre des captures cochées devient l'ordre des étapes](projects/proofshot-2.webp)\n\n## Pourquoi « local » change tout\n\nBeaucoup d'outils de capture envoient vos images sur leurs serveurs. Pour des captures d'écran professionnelles, qui contiennent souvent des données clients ou internes, c'est un vrai risque.\n\nProofShot est une extension **100 % locale** :\n\n- les captures restent dans votre navigateur ;\n- aucun compte, aucun pistage ;\n- la seule connexion sortante sert à vérifier une clé de licence, pour la version Pro.\n\n## Méthode rapide pour un rapport de bug clair\n\n1. Reproduisez le problème et capturez l'écran au moment où il apparaît.\n2. Numérotez les actions qui y mènent (1, 2, 3).\n3. Floutez toute donnée personnelle.\n4. Ajoutez une phrase : ce que vous attendiez, ce qui s'est passé.\n5. Exportez et joignez l'image au ticket.\n\nUn bon rapport de bug fait gagner plus de temps à l'équipe que n'importe quel outil de suivi.\n\nProofShot est disponible sur le Chrome Web Store. Le lien est sur [sa fiche](~/projets/proofshot/)."
+    }
+  },
+  {
+    "id": "offres-emploi-teletravail-github-actions",
+    "visible": true,
+    "date": "2026-10-20",
+    "cover": "journal/offres-emploi-teletravail-github-actions.jpg",
+    "project": "teletravail",
+    "tags": [
+      "Automatisation",
+      "Études de cas"
+    ],
+    "title": {
+      "fr": "Agréger des offres d'emploi en télétravail avec GitHub Actions, sans serveur"
+    },
+    "summary": {
+      "fr": "Un robot qui fait la tournée des sites d'emploi toutes les six heures, dédoublonne, repère le français et publie une page statique. Gratuit et sans serveur."
+    },
+    "body": {
+      "fr": "Chercher un poste en télétravail quand on est francophone, c'est faire la tournée de dix sites chaque matin : plateformes d'emploi, pages carrières des entreprises, sites étrangers. Et beaucoup d'annonces ne disent même pas si le français est un atout.\n\nJ'ai donc confié la tournée à un robot. [Télétravail en français](~/projets/teletravail/) rassemble, trie et suit les offres, et se met à jour tout seul toutes les six heures.\n\n![Le tableau de bord des offres](projects/teletravail-1.webp)\n\n## L'architecture : pas de serveur du tout\n\nLe projet tient en trois morceaux :\n\n1. **Un script Python** qui interroge les sources et écrit des fichiers de données.\n2. **Un workflow GitHub Actions** qui lance ce script toutes les six heures et enregistre les résultats dans le dépôt.\n3. **Une page statique**, hébergée gratuitement sur GitHub Pages, qui lit ces fichiers et affiche offres, filtres et graphiques.\n\nAucun serveur à maintenir, aucune base de données, aucun coût. GitHub fait tourner le robot et héberge la page.\n\n## Les sources\n\n- **France Travail** : les offres françaises qui mentionnent le télétravail, via son API officielle ;\n- **Le Forem** : les offres wallonnes, en open data ;\n- **Jobicy** et **Remotive** : des offres à distance en Europe et dans le monde ;\n- **les pages carrières** de centaines d'entreprises, publiées sur les principaux outils de recrutement.\n\nChaque offre renvoie toujours vers l'annonce d'origine.\n\n## Le vrai travail : trier\n\nCollecter est facile. Trier est le cœur du produit :\n\n- **Dédoublonner** : la même offre apparaît souvent sur plusieurs sites.\n- **Repérer la langue** : une offre est gardée si elle est rédigée en français, si elle exige le français même en anglais (« fluent in French »), ou si le poste est ouvert à un pays francophone, à l'Europe ou au monde entier.\n- **Clôturer proprement** : une offre qui disparaît d'une source complète est clôturée au passage suivant ; pour une recherche partielle, après trois jours sans être revue. Si une source tombe en panne, rien n'est clôturé par erreur.\n\n## Ce que ce projet m'a appris\n\n- **GitHub Actions est un excellent planificateur gratuit** pour des tâches périodiques légères.\n- **La robustesse compte plus que la quantité.** Mieux vaut cinq sources fiables que vingt sources qui cassent.\n- **Un onglet « Sources »** qui montre l'état de chaque collecte évite des heures de débogage.\n\nLe même schéma (script, workflow planifié, page statique) sert à beaucoup d'autres usages : veille, suivi de prix, tableaux de bord. C'est une des briques que je réutilise le plus."
+    }
+  },
+  {
+    "id": "site-mariage-gratuit-sans-abonnement",
+    "visible": true,
+    "date": "2026-10-23",
+    "cover": "journal/site-mariage-gratuit-sans-abonnement.jpg",
+    "project": "site-evenement",
+    "tags": [
+      "Guides",
+      "Études de cas"
+    ],
+    "title": {
+      "fr": "Site de mariage gratuit et sans abonnement : ce qu'il doit vraiment contenir"
+    },
+    "summary": {
+      "fr": "Programme, lieux, RSVP, hébergement, mot de passe invités : la liste de ce qu'un site de mariage doit contenir, et comment en créer un sans abonnement."
+    },
+    "body": {
+      "fr": "Un site de mariage rend deux services : **informer** les invités et **recueillir leurs réponses**. Les plateformes clés en main le font souvent bien, mais elles sont payantes, pleines de publicités, ou toutes identiques. Et les réponses finissent quand même éparpillées entre SMS, emails et appels.\n\nCe billet fait la liste de ce qu'un bon site de mariage doit contenir. Elle vient d'un projet personnel, devenu une version générique : [Site d'événement](~/projets/site-evenement/).\n\n![Site d'événement : l'accueil sur téléphone](projects/site-evenement-1.webp)\n\n## La check-list d'un site de mariage utile\n\n### Avant tout : un accès protégé\n\nUn **mot de passe** à donner aux invités, avec un indice. Vos informations (adresse du lieu, horaires, visages) n'ont pas à être publiques.\n\n### L'essentiel du jour J\n\n- **La date et le compte à rebours**, avec un bouton pour l'ajouter à l'agenda (Google, Outlook, Apple).\n- **Les lieux**, avec un lien d'itinéraire pour chacun : cérémonie, vin d'honneur, soirée.\n- **Le programme heure par heure.** C'est la page la plus consultée le jour même.\n\n### Les réponses (RSVP)\n\n- présence ou absence, nombre d'adultes et d'enfants ;\n- allergies et régimes alimentaires ;\n- une question pour le plaisir, comme la chanson qui fera danser l'invité.\n\nCôté organisateurs, il faut **un tableau des réponses** : qui vient, qui n'a pas répondu, et un export pour le traiteur.\n\n### Le confort des invités\n\n- **Où dormir**, trié par budget ;\n- **que faire dans la région** pour ceux qui viennent de loin ;\n- un **contact** clair pour les questions.\n\n### Pour le souvenir\n\nUne **galerie**, avant et après le mariage.\n\n## Créer le sien sans abonnement\n\nSite d'événement tient en **une seule page**, belle sur téléphone comme sur ordinateur :\n\n1. On ouvre la page en **mode édition** et on modifie textes, photos, couleurs et sections directement dessus, sans code.\n2. On publie sur **GitHub Pages**, un hébergement gratuit.\n3. Les réponses des invités arrivent dans un **Google Sheet** des organisateurs, via un petit script, et par email.\n\nAucun compte pour les invités, aucun traceur. La démo en ligne utilise un couple et des lieux fictifs ; le mot de passe est `demo`.\n\n## Le conseil que je donnerais\n\nEnvoyez le lien **tôt**, avec la date limite de réponse bien visible. Un site consulté trois mois avant fait gagner des dizaines de relances."
+    }
+  },
+  {
+    "id": "emploi-du-temps-semaine-a-semaine-b",
+    "visible": true,
+    "date": "2026-10-27",
+    "cover": "journal/emploi-du-temps-semaine-a-semaine-b.jpg",
+    "project": "planning-classe",
+    "tags": [
+      "Études de cas",
+      "Guides"
+    ],
+    "title": {
+      "fr": "Emploi du temps semaine A / semaine B : le rendre lisible en un coup d'œil"
+    },
+    "summary": {
+      "fr": "Semaines alternées, groupes, salles, cours annulés : pourquoi l'emploi du temps papier ne suffit plus, et à quoi ressemble un emploi du temps vivant."
+    },
+    "body": {
+      "fr": "« On a quoi, là ? Et jusqu'à quand ? » Dans beaucoup de familles, la question revient chaque matin. Entre **semaines A et B**, groupes dédoublés, salles qui changent et cours annulés, l'emploi du temps papier ne suit plus.\n\n[Planning de classe](~/projets/planning-classe/) est né de ce besoin à la maison, puis est devenu une version générique que n'importe quelle famille ou enseignant peut adapter.\n\n![Un emploi du temps qui sait quel jour on est](projects/planning-classe-1.webp)\n\n## Pourquoi l'alternance A / B complique tout\n\nBeaucoup de collèges et de lycées alternent deux semaines types. Il faut alors savoir :\n\n- **quelle semaine on est**, en tenant compte des vacances ;\n- **quel groupe** a cours, quand la classe est dédoublée ;\n- **ce qui change** ponctuellement : un cours annulé, une salle déplacée, un devoir.\n\nLe papier affiche tout en même temps. Résultat : on ne lit plus rien.\n\n## Un emploi du temps qui répond à la question\n\nL'idée est simple : la page connaît la date et l'heure. Elle peut donc afficher **seulement ce qui compte maintenant** :\n\n- le **cours en cours** et le **suivant** ;\n- un **compte à rebours** avant la fin du cours ou la reprise, mis à jour chaque seconde ;\n- la **semaine A ou B** déduite automatiquement du calendrier et des vacances de la zone ;\n- les **affaires à préparer** pour la journée (tenue de sport, calculatrice, blouse).\n\n![La vue du jour sur téléphone](projects/planning-classe-2.webp)\n\n## Deux formats de journée\n\nLe collège fonctionne en créneaux fixes ; l'école primaire, en blocs de durées variables. La page gère **les deux dans le même outil**, avec une bascule mémorisée : pratique quand on a un collégien et un écolier.\n\n## Modifier sans toucher au code\n\nUn **mode modification** permet de corriger un cours ou d'ajouter un changement ponctuel, puis de publier. Les autres appareils de la famille se mettent à jour d'eux-mêmes en moins d'une minute.\n\n## Adapter la démo à sa classe\n\nLa démo met en scène une 3e B imaginaire, avec M. Pythagore en mathématiques et Mme Bescherelle en français. Pour votre classe, deux possibilités : remplir le fichier de données, ou tout saisir depuis le mode modification.\n\nLa page se consulte aussi bien sur téléphone que sur ordinateur ; c'est sur **téléphone** que le compte à rebours prend tout son sens, le matin, devant la porte."
+    }
+  },
+  {
+    "id": "heberger-site-gratuit-github-pages",
+    "visible": true,
+    "date": "2026-10-30",
+    "cover": "journal/heberger-site-gratuit-github-pages.jpg",
+    "project": "",
+    "tags": [
+      "Guides"
+    ],
+    "title": {
+      "fr": "Héberger un site gratuitement sur GitHub Pages : le guide pas à pas"
+    },
+    "summary": {
+      "fr": "Tous mes projets sont hébergés gratuitement sur GitHub Pages. Voici comment mettre un site statique en ligne en dix minutes, et ce qu'il faut savoir avant."
+    },
+    "body": {
+      "fr": "Tous les projets de ce carnet, ce site compris, sont hébergés sur **GitHub Pages**. C'est gratuit, rapide et fiable pour tout site dit *statique* : des pages HTML, du CSS, du JavaScript, des images. Voici comment s'en servir, pas à pas.\n\n## Ce que GitHub Pages sait faire (et ne fait pas)\n\n**Oui** : sites vitrines, portfolios, documentation, applications web qui tournent dans le navigateur (y compris des PWA installables), pages générées par un outil comme Vite.\n\n**Non** : exécuter du code côté serveur (PHP, base de données). Pour ça, il faut un autre hébergeur, ou un service externe appelé depuis la page.\n\nBon à savoir :\n\n- gratuit pour les **dépôts publics** ; pour publier un dépôt **privé**, il faut l'abonnement GitHub Pro ;\n- l'adresse par défaut est `votre-compte.github.io/nom-du-depot/` ;\n- un **nom de domaine** personnel peut s'y brancher, avec HTTPS gratuit.\n\n## Mettre un site en ligne en cinq étapes\n\n### 1. Créer un compte et un dépôt\n\nSur github.com, créez un compte, puis **New repository**. Donnez un nom court (il apparaîtra dans l'adresse), cochez **Public**, validez.\n\n### 2. Déposer vos fichiers\n\nDans le dépôt : **Add file → Upload files**, glissez vos fichiers. Le fichier d'accueil doit s'appeler `index.html` et être à la racine. Cliquez sur **Commit changes**.\n\n### 3. Activer Pages\n\n**Settings → Pages**. Dans *Build and deployment*, choisissez **Deploy from a branch**, puis la branche `main` et le dossier `/ (root)`. Enregistrez.\n\n### 4. Attendre une minute\n\nL'onglet **Actions** montre la publication en cours. Quand elle est verte, votre site est en ligne à l'adresse indiquée dans Settings → Pages.\n\n### 5. (Option) Brancher un nom de domaine\n\nChez votre registraire, créez les enregistrements DNS indiqués par GitHub, puis renseignez le domaine dans Settings → Pages et cochez **Enforce HTTPS**.\n\n## Et pour un site construit avec un outil (Vite, React…)\n\nQuand le site doit être *compilé* avant publication, on passe par **GitHub Actions** : à chaque modification, un workflow construit le site et le publie. C'est ce que fait ce portfolio. Dans Settings → Pages, la source devient alors **GitHub Actions**.\n\n## Les pièges classiques\n\n- **Une page blanche** : souvent un chemin absolu (`/style.css`) qui oublie le nom du dépôt dans l'adresse. Utilisez des chemins relatifs.\n- **Les modifications n'apparaissent pas** : le navigateur garde l'ancienne version en cache. Rechargez sans le cache.\n- **Des données sensibles publiées** : tout ce qui est dans un dépôt public est lisible par tous. Jamais de mot de passe ni de clé d'API dans les fichiers.\n\nGitHub Pages est l'outil qui m'a permis de mettre en ligne tous ces projets sans payer d'hébergement. Pour un premier site, c'est difficile de faire plus simple."
+    }
+  },
+  {
+    "id": "outil-gestion-de-projet-une-page",
+    "visible": true,
+    "date": "2026-11-03",
+    "cover": "journal/outil-gestion-de-projet-une-page.jpg",
+    "project": "auraplan",
+    "tags": [
+      "Produit",
+      "Études de cas"
+    ],
+    "title": {
+      "fr": "Roadmap, kanban et planning dans une seule page : un outil de gestion de projet léger"
+    },
+    "summary": {
+      "fr": "Les grands outils de gestion de projet sont puissants mais lourds pour un petit projet. AuraPlan réunit l'essentiel dans une page, avec vos données chez vous."
+    },
+    "body": {
+      "fr": "Les grands outils de gestion de projet sont impressionnants. Pour une petite équipe, un projet personnel ou un lancement en solo, ils sont souvent **trop** : trop de menus, trop de réglages, un abonnement, et vos données hébergées chez eux.\n\n[AuraPlan Studio](~/projets/auraplan/) part de la question inverse : de quoi a-t-on vraiment besoin pour piloter un projet ?\n\n![AuraPlan : la roadmap et le kanban](projects/auraplan-1.webp)\n\n## Les quatre vues essentielles\n\n1. **La roadmap** : les grandes étapes dans le temps. C'est la vue que l'on montre.\n2. **Le kanban** : à faire, en cours, fait. C'est la vue que l'on utilise chaque jour.\n3. **Le planning** : qui fait quoi, quand. C'est la vue qui évite les surcharges.\n4. **Les notes** : décisions, comptes rendus, idées. C'est la mémoire du projet.\n\nTout tient dans **une seule page**. On passe d'une vue à l'autre sans rien recharger.\n\n## Vos données, dans votre dépôt\n\nAuraPlan ne s'appuie sur aucun serveur à lui. Il se synchronise avec **un dépôt GitHub personnel** :\n\n- chaque sauvegarde devient un *commit*, donc un historique complet et gratuit ;\n- les données sont **compressées et chiffrées dans le navigateur** avant de partir ;\n- un mode « travailler seul » permet de tout essayer sans rien connecter.\n\n## Ce que ce projet m'apprend sur le métier produit\n\nConstruire un outil de gestion de projet, c'est se regarder travailler. J'y ai retrouvé les rituels des équipes produit : prioriser le backlog, découper en tâches livrables, faire le point en fin de semaine. **L'outil ne remplace pas la méthode** ; il la rend visible.\n\n## Où en est le projet\n\nAuraPlan est **en cours de construction** : quelques parcours restent à finir. La démo s'ouvre en mode local pour tester les quatre vues sans compte."
+    }
+  },
+  {
+    "id": "local-first-donnees-chez-vous",
+    "visible": true,
+    "date": "2026-11-06",
+    "cover": "journal/local-first-donnees-chez-vous.jpg",
+    "project": "",
+    "tags": [
+      "Méthode",
+      "Produit"
+    ],
+    "title": {
+      "fr": "Local-first : pourquoi mes applications gardent vos données chez vous"
+    },
+    "summary": {
+      "fr": "Pas de compte, pas de serveur, pas de fuite possible : le principe « local-first », ses avantages, ses limites, et comment je l'applique à mes projets."
+    },
+    "body": {
+      "fr": "La plupart des applications fonctionnent ainsi : vos données partent sur leurs serveurs, et vous y accédez tant que le service existe. **Local-first** inverse la logique : vos données vivent d'abord **sur votre appareil**. Le réseau devient un bonus, pas une condition.\n\nC'est un principe que j'applique à presque tous les projets de ce carnet.\n\n## Ce que ça change pour l'utilisateur\n\n- **Pas de compte à créer.** On ouvre, on utilise.\n- **Ça marche hors ligne.** Dans le métro, en avion, à la campagne.\n- **C'est rapide.** Pas d'aller-retour vers un serveur à chaque action.\n- **Aucune fuite de données possible**, puisqu'elles ne quittent pas l'appareil.\n\n## Ce que ça change pour moi, qui construis\n\n- **Pas de serveur à payer, surveiller ni sécuriser.**\n- **Pas de base de données personnelles** à protéger au sens du RGPD.\n- Une application qui **survit** : même si j'arrêtais tout demain, elle continuerait de fonctionner chez vous.\n\n## Les exemples dans mes projets\n\n- [Multi X Arena](~/projets/multix-arena/) garde la progression de l'enfant sur l'appareil, exportable depuis les options.\n- [PokéVault](~/projets/pokevault/) stocke la collection localement et fonctionne sans réseau.\n- [ProofShot](~/projets/proofshot/) ne sort jamais vos captures du navigateur.\n- [AuraPlan](~/projets/auraplan/) chiffre les données avant de les synchroniser vers un dépôt qui vous appartient.\n\n## Les limites, honnêtement\n\n- **Changer d'appareil demande un geste** : exporter puis importer, ou synchroniser vers un espace à soi.\n- **Effacer les données du navigateur efface tout.** Il faut le dire clairement et proposer une sauvegarde.\n- **Le travail à plusieurs est plus complexe** qu'avec un serveur central.\n\nLa règle que je m'impose : **toujours un bouton d'export**, visible, et un message clair avant toute action qui pourrait faire perdre des données.\n\n## En résumé\n\nLocal-first, ce n'est pas un refus du cloud. C'est un choix de **respect** : l'utilisateur garde la main sur ce qui lui appartient. Pour beaucoup de petits produits, c'est aussi le choix le plus simple et le plus durable."
+    }
+  },
+  {
+    "id": "enigmes-chiffrees-navigateur",
+    "visible": true,
+    "date": "2026-11-10",
+    "cover": "journal/enigmes-chiffrees-navigateur.jpg",
+    "project": "oasis",
+    "tags": [
+      "Études de cas",
+      "Technique"
+    ],
+    "title": {
+      "fr": "Des énigmes impossibles à tricher : chiffrer une chasse au trésor dans le navigateur"
+    },
+    "summary": {
+      "fr": "Dans un jeu web, la réponse est souvent cachée dans le code de la page. Voici comment rendre une énigme vraiment inviolable, avec le chiffrement du navigateur."
+    },
+    "body": {
+      "fr": "Un jeu d'énigmes dans le navigateur a un défaut de naissance : tout ce que le jeu sait, le joueur peut le lire. Il suffit d'ouvrir les outils de développement pour trouver la réponse dans le code. Pour [OASIS — The Hunt](~/projets/oasis/), une chasse au trésor quotidienne, il fallait l'inverse : **des étapes impossibles à ouvrir sans la bonne réponse**.\n\n## Le principe : la réponse est la clé\n\nAu lieu de stocker la réponse pour la comparer, on s'en sert comme **clé de chiffrement** :\n\n1. À la création, le contenu de l'étape suivante est **chiffré** avec une clé dérivée de la bonne réponse.\n2. Dans le navigateur, le joueur tape sa proposition ; la page en dérive une clé de la même façon.\n3. Si la clé ouvre le contenu, c'est gagné. Sinon, il n'y a **rien à lire** : le contenu reste illisible, même pour qui fouille le code.\n\nLa bonne réponse n'apparaît nulle part dans la page.\n\n## Les briques utilisées\n\nTout repose sur l'API de chiffrement intégrée aux navigateurs (Web Crypto), sans bibliothèque externe :\n\n- **PBKDF2** transforme la réponse en clé. Il est volontairement lent (des centaines de milliers d'itérations), ce qui rend inutile l'essai massif de réponses au hasard.\n- **AES-GCM** chiffre le contenu et détecte toute altération.\n- La réponse est **normalisée** avant tout calcul : minuscules, accents retirés. « Matrix », « matrix » et « MATRIX » ouvrent la même porte.\n\n## Une énigme par jour, scellée à l'avance\n\nLes énigmes sont générées par un script à partir de listes thématiques (films, séries, jeux vidéo, personnages, compositeurs). Chaque énigme vient avec **cinq indices progressifs**, du plus vague au plus évident. Chaque journée est scellée séparément : impossible de lire l'énigme de demain aujourd'hui.\n\n![OASIS : l'énigme du jour](projects/oasis-1.webp)\n\n## Ce que j'en retiens\n\n- **La sécurité se pense dès la conception.** Ajouter un chiffrement après coup est toujours plus fragile.\n- **La normalisation des réponses est un vrai sujet d'expérience** : trop stricte, le joueur est frustré ; trop souple, l'énigme devient triviale.\n- **Le navigateur sait faire beaucoup de choses sans serveur**, y compris de la cryptographie sérieuse.\n\nOASIS est un **prototype** : l'habillage emprunte à un univers de fiction existant, et il faudra un univers original avant toute diffusion plus large. La mécanique, elle, est prête. Le jeu est pensé pour le téléphone."
+    }
+  },
+  {
+    "id": "prototyper-jeu-de-cartes-vraies-donnees",
+    "visible": true,
+    "date": "2026-11-13",
+    "cover": "journal/prototyper-jeu-de-cartes-vraies-donnees.jpg",
+    "project": "diamond-foil",
+    "tags": [
+      "Études de cas",
+      "Prototypage"
+    ],
+    "title": {
+      "fr": "Prototyper un jeu de cartes avec de vraies données : les leçons de Diamond Foil"
+    },
+    "summary": {
+      "fr": "Boosters, raretés, classeur : comment tester vite un concept de jeu de cartes à collectionner en s'appuyant sur une API publique, sans rien inventer."
+    },
+    "body": {
+      "fr": "Pour savoir si un concept de jeu tient la route, il faut y jouer. Et pour y jouer, il faut des cartes crédibles. Inventer des centaines de joueurs et de statistiques prend des semaines ; les données réelles, elles, existent déjà.\n\n[Diamond Foil](~/projets/diamond-foil/) est un prototype de jeu de cartes à collectionner sur le baseball, alimenté uniquement par l'**API publique de la MLB**.\n\n![Diamond Foil : ouvrir un booster](projects/diamond-foil-1.webp)\n\n## Règle numéro un : rien n'est inventé\n\n- Les **statistiques** sont celles de l'API, telles quelles.\n- Les **légendes** viennent du classement des meilleures saisons de l'histoire.\n- Un joueur **sans apparition** est écarté, plutôt que de recevoir des chiffres de remplissage.\n- **Sans connexion, pas de cartes** : jamais de fausses cartes.\n\nLa seule chose calculée est la **rareté**, et elle découle d'un classement de données réelles. Résultat : chaque carte a une histoire vraie, et les joueurs le sentent.\n\n![Une carte Ultra débloquée](projects/diamond-foil-2.webp)\n\n## Ménager une API gratuite\n\nUne API publique gratuite n'est pas un service garanti. Trois règles simples évitent de se faire limiter :\n\n1. **Des requêtes en série**, pas trente en même temps.\n2. **Des lots** : les fiches de joueurs sont demandées quarante par quarante.\n3. **Un cache de six heures** : les données ne changent pas à la minute.\n\nAu premier lancement, la collecte prend environ une minute ; ensuite, tout est instantané.\n\n## Un prototype sans serveur ni compilation\n\nDiamond Foil tient dans une page statique, sans dépendance. La collection est enregistrée localement. Un onglet « En direct » affiche même les scores du jour.\n\n![Les matchs du jour, en direct](projects/diamond-foil-3.webp)\n\n## Pourquoi il restera un prototype\n\nLes données, les photos et les logos de la ligue et des clubs appartiennent à leurs ayants droit, avec des conditions d'utilisation strictes. Diamond Foil sert à **valider une mécanique de jeu**, pas à être commercialisé tel quel. Pour aller plus loin, le même moteur pourrait fonctionner avec des données libres de droits ou sous licence.\n\nC'est la leçon principale : **prototyper avec de vraies données** fait gagner un temps énorme, à condition de savoir dès le départ ce que l'on pourra, ou non, en faire ensuite."
+    }
+  },
+  {
+    "id": "pwa-ou-application-native",
+    "visible": true,
+    "date": "2026-11-17",
+    "cover": "journal/pwa-ou-application-native.jpg",
+    "project": "",
+    "tags": [
+      "PWA",
+      "Produit"
+    ],
+    "title": {
+      "fr": "PWA ou application native : pourquoi je ne passe pas par les magasins d'applications"
+    },
+    "summary": {
+      "fr": "Une application web installable (PWA) peut remplacer une application native dans beaucoup de cas. Avantages, limites, et comment l'installer sur iPhone et Android."
+    },
+    "body": {
+      "fr": "La plupart des projets de ce carnet sont des **PWA**, des *Progressive Web Apps* : des applications web que l'on peut installer sur l'écran d'accueil d'un téléphone, qui fonctionnent hors ligne et ressemblent à des applications classiques. Aucune ne passe par l'App Store ou Google Play. C'est un choix, et voici pourquoi.\n\n## Une PWA, concrètement\n\nC'est un site web qui ajoute trois capacités :\n\n1. **L'installation** sur l'écran d'accueil, avec une icône et un plein écran sans barre d'adresse ;\n2. **le fonctionnement hors ligne**, grâce à un *service worker* qui garde les fichiers en mémoire ;\n3. **les mises à jour transparentes** : une nouvelle version est disponible dès qu'elle est publiée.\n\n## Installer une PWA\n\n- **iPhone et iPad** : ouvrir le lien dans **Safari**, toucher **Partager**, puis **Sur l'écran d'accueil**.\n- **Android** : ouvrir le lien dans Chrome, menu **⋮**, puis **Installer l'application** (ou « Ajouter à l'écran d'accueil »).\n- **Ordinateur** : Chrome et Edge proposent une icône d'installation dans la barre d'adresse.\n\n## Pourquoi c'est souvent le bon choix\n\n- **Un seul code** pour iPhone, Android et ordinateur.\n- **Pas de validation** par un magasin, pas de délai de publication, pas de commission.\n- **Un simple lien** à partager : un QR code, un message, un email.\n- **Des mises à jour immédiates**, sans attendre que l'utilisateur les accepte.\n\n## Les limites, à connaître\n\n- **Moins de visibilité** : pas de vitrine dans un magasin d'applications.\n- **Quelques fonctions natives restent limitées** selon les téléphones, surtout sur iPhone.\n- **L'installation est moins connue** du grand public : il faut l'expliquer, d'où les consignes plus haut.\n\n## Pensées pour le téléphone\n\nUne PWA conçue pour le mobile s'affiche mal sur un grand écran d'ordinateur : c'est normal, ce n'est pas là qu'elle vit. C'est pour cela que, sur ce portfolio, les projets pensés pour le téléphone s'ouvrent depuis un ordinateur **dans un cadre de téléphone**, avec un QR code pour les essayer en vrai.\n\nExemples : [Multi X Arena](~/projets/multix-arena/), [Tram Radar](~/projets/tbm-tram-radar/), [PokéVault](~/projets/pokevault/), [Planning de classe](~/projets/planning-classe/).\n\n## En résumé\n\nPour un produit qui doit être **utile vite**, partagé par un lien et mis à jour souvent, la PWA est difficile à battre. L'application native se justifie quand on a besoin de fonctions avancées du téléphone ou de la visibilité d'un magasin."
+    }
+  },
+  {
+    "id": "grande-collection-hors-ligne",
+    "visible": true,
+    "date": "2026-11-20",
+    "cover": "journal/grande-collection-hors-ligne.jpg",
+    "project": "pokevault",
+    "tags": [
+      "Études de cas",
+      "PWA",
+      "Technique"
+    ],
+    "title": {
+      "fr": "Gérer une collection de milliers d'éléments hors ligne : cache, catalogues de repli et tests"
+    },
+    "summary": {
+      "fr": "Plus de 22 000 cartes, des visuels, des cotes, et une application qui doit marcher sans réseau : les choix techniques d'un classeur numérique local."
+    },
+    "body": {
+      "fr": "Un classeur numérique de cartes à collectionner pose trois défis à la fois : **le volume** (plus de 22 000 cartes), **l'exactitude** (afficher la bonne carte avec le bon visuel) et **l'absence de réseau** (on consulte sa collection partout, y compris dans une boutique au sous-sol). [PokéVault](~/projets/pokevault/) est ma réponse à ces trois contraintes.\n\n![Le classeur : une extension, sa progression, ses cartes](projects/pokevault-1.webp)\n\n## 1. Tout garder sur l'appareil\n\nL'application est **local-first** : la collection vit sur le téléphone, sans compte. Les listes de cartes et les visuels déjà vus sont mis en cache ; une fois consultée, une extension reste disponible hors ligne. Un export permet de sauvegarder sa collection, un import de la retrouver ailleurs.\n\n## 2. Plusieurs catalogues qui se relaient\n\nAucune source de données n'est parfaite. PokéVault s'appuie sur **un catalogue principal** (TCGdex), et quand une carte y est incomplète, **une source secondaire** prend le relais pour le visuel. La règle : **ne jamais afficher une mauvaise carte**. Mieux vaut un emplacement vide qu'une image fausse.\n\n## 3. Afficher vite des milliers d'éléments\n\nAfficher 22 000 cartes d'un coup ferait ramer n'importe quel téléphone. Les cartes sont chargées **au fil du défilement**, les images à la demande, et trois vues (grille dense, liste, grande carte) s'adaptent à l'usage.\n\n![La grille, avec les cotes et les cartes possédées](projects/pokevault-2.webp)\n\n## 4. Des cotes, avec prudence\n\nChaque carte affiche une **cote indicative** issue d'un grand site d'échange. Indicative, c'est le mot : un prix de marché n'est pas un prix de vente, et l'interface le précise.\n\n## 5. Des tests automatisés\n\nAvec autant de cas particuliers (numéros spéciaux, éditions promotionnelles, noms traduits), chaque correction risque d'en casser une autre. Une suite de **tests automatisés** tourne à chaque modification : c'est ce qui permet de faire évoluer l'application sans régression.\n\n## Ce que j'en retiens\n\nLa difficulté d'une application de collection n'est pas l'interface, c'est **la qualité des données**. La moitié du travail consiste à décider quoi faire quand une source se trompe.\n\nPokéVault est un projet personnel, non affilié aux ayants droit de la licence, présenté ici comme une étude de cas technique. Il se teste sur téléphone."
+    }
+  },
+  {
+    "id": "consignes-agent-ia-code",
+    "visible": true,
+    "date": "2026-11-24",
+    "cover": "journal/consignes-agent-ia-code.jpg",
+    "project": "",
+    "tags": [
+      "IA",
+      "Méthode"
+    ],
+    "title": {
+      "fr": "Écrire des consignes claires pour une IA de code : sept règles qui changent tout"
+    },
+    "summary": {
+      "fr": "Un agent de code produit ce qu'on lui décrit, pas ce qu'on imagine. Sept règles pour cadrer une demande et obtenir un résultat fiable du premier coup."
+    },
+    "body": {
+      "fr": "Un agent d'IA qui code produit exactement ce qu'on lui décrit. Le problème, c'est que l'on décrit rarement ce que l'on imagine. La qualité du résultat dépend surtout de **la qualité de la consigne**. Voici les sept règles que j'applique, tirées de mois de travail quotidien avec ces outils.\n\n## 1. Donner le contexte avant la demande\n\nQui utilise le produit ? Sur quel appareil ? Qu'est-ce qui existe déjà ? Un agent qui connaît le contexte évite la moitié des mauvaises idées.\n\n> Mauvais : « Ajoute un bouton d'export. »\n> Mieux : « Les parents utilisent l'app sur téléphone. Ils perdent la progression de leur enfant en changeant d'appareil. Ajoute un export de la progression dans les Options. »\n\n## 2. Décrire le résultat attendu, pas la solution\n\nDites ce que l'utilisateur doit pouvoir faire. Laissez l'agent proposer comment, puis jugez.\n\n## 3. Poser les contraintes explicitement\n\nPas de nouvelle dépendance, pas de serveur, compatibilité mobile, ne pas toucher à tel fichier. Ce qui n'est pas écrit n'existe pas.\n\n## 4. Découper\n\nUne demande = une modification vérifiable. Dix petites demandes bien définies valent mieux qu'une grande demande floue.\n\n## 5. Définir « terminé »\n\nQuels critères permettent de dire que c'est fini ? Un test qui passe, un écran qui s'affiche sans erreur sur téléphone, un comportement précis. Sans critère, l'agent s'arrête quand il pense avoir fini.\n\n## 6. Exiger une vérification\n\nDemandez à l'agent de **lancer les tests**, de **relire son propre changement** et de signaler ce qu'il n'a pas pu vérifier. Puis vérifiez vous-même : ouvrez l'application, essayez le parcours.\n\n## 7. Garder la trace\n\nConservez les consignes importantes et leurs résultats. Elles documentent les choix du projet, et votre part du travail.\n\n## Le piège à éviter\n\nAccepter un changement que l'on ne comprend pas. Si l'explication ne tient pas en deux phrases, redemandez. Un code incompris est une dette qui se paie toujours plus tard, et toujours au mauvais moment.\n\nCes règles ne sont pas propres à l'IA : ce sont celles d'un bon cahier des charges. L'IA les rend simplement **indispensables**, parce qu'elle exécute vite et sans poser de questions."
+    }
+  },
+  {
+    "id": "mesure-audience-sans-cookies",
+    "visible": true,
+    "date": "2026-11-27",
+    "cover": "journal/mesure-audience-sans-cookies.jpg",
+    "project": "",
+    "tags": [
+      "Guides",
+      "Produit"
+    ],
+    "title": {
+      "fr": "Mesurer l'audience d'un site sans cookies : simple, gratuit et respectueux"
+    },
+    "summary": {
+      "fr": "Pas besoin d'un outil lourd ni d'un bandeau de consentement pour savoir ce qui intéresse vos visiteurs. Comment je mesure mon site sans cookie."
+    },
+    "body": {
+      "fr": "Pour améliorer un site ou un produit, il faut savoir ce qui intéresse vraiment les visiteurs. Mais les grands outils de statistiques déposent des cookies, suivent les personnes d'un site à l'autre et imposent un bandeau de consentement. Pour un site personnel ou un petit produit, c'est disproportionné.\n\n## Ce dont on a vraiment besoin\n\nPour prendre des décisions, quatre chiffres suffisent presque toujours :\n\n1. **les pages les plus vues** : ce qui intéresse ;\n2. **les sources** : d'où viennent les visiteurs (LinkedIn, Google, un lien partagé) ;\n3. **l'évolution dans le temps** : est-ce que ça monte après un billet ?\n4. **l'appareil** : téléphone ou ordinateur, pour savoir quoi soigner en priorité.\n\nAucun de ces chiffres ne nécessite de suivre une personne.\n\n## Une mesure sans cookie\n\nJ'utilise **GoatCounter**, un outil de statistiques simple et open source :\n\n- **aucun cookie**, aucun suivi individuel ;\n- un **script très léger**, qui ne ralentit pas le site ;\n- gratuit pour un usage personnel raisonnable ;\n- un tableau de bord lisible en trente secondes.\n\nSans cookie ni donnée personnelle, un bandeau de consentement n'est en principe pas nécessaire pour ce type de mesure. Il reste utile de le mentionner dans les mentions légales, en toute transparence.\n\n## Un rapport qui vient à moi\n\nConsulter un tableau de bord, on oublie. Chaque lundi, un **workflow automatique** interroge les statistiques de la semaine et ouvre un résumé dans GitHub, qui m'arrive par email : pages les plus vues, sources principales, évolution.\n\n## Transformer les chiffres en décisions\n\n- Un billet qui attire du monde ? **Un billet de suite** sur le même sujet.\n- Une source qui apporte des visiteurs ? **Y être plus présent.**\n- Une page très vue mais vite quittée ? **La retravailler.**\n\nMesurer, c'est bien. Décider quelque chose chaque semaine à partir des chiffres, c'est mieux. Quatre chiffres regardés régulièrement valent mieux que cinquante jamais consultés."
+    }
+  },
+  {
+    "id": "automatiser-github-actions-exemples",
+    "visible": true,
+    "date": "2026-12-01",
+    "cover": "journal/automatiser-github-actions-exemples.jpg",
+    "project": "",
+    "tags": [
+      "Automatisation",
+      "Guides"
+    ],
+    "title": {
+      "fr": "Automatiser avec GitHub Actions : cinq tâches que je ne fais plus à la main"
+    },
+    "summary": {
+      "fr": "Publier un site, collecter des données, régénérer un plan de réseau, envoyer un rapport : cinq exemples concrets d'automatisation gratuite avec GitHub Actions."
+    },
+    "body": {
+      "fr": "**GitHub Actions** est connu des développeurs pour lancer des tests. C'est en réalité un **planificateur de tâches gratuit** extrêmement pratique pour de petits produits. Un fichier de quelques lignes suffit pour qu'un travail s'exécute à chaque modification, ou à heure fixe. Voici cinq tâches que je ne fais plus jamais à la main.\n\n## 1. Publier le site à chaque modification\n\nÀ chaque changement, un workflow construit le site et le publie sur GitHub Pages. C'est le cas de ce portfolio : je modifie un texte depuis mon espace personnel, et une minute plus tard il est en ligne. Aucune manipulation, aucune erreur de copie.\n\n## 2. Collecter des données toutes les six heures\n\nPour [Télétravail en français](~/projets/teletravail/), un script Python interroge les sources d'offres d'emploi, trie les résultats et les enregistre dans le dépôt. Le workflow se déclenche **toutes les six heures**, jour et nuit.\n\n## 3. Régénérer des données chaque nuit\n\nPour [Tram Radar](~/projets/tbm-tram-radar/), le plan du réseau (tracés, couleurs) est reconstruit **chaque nuit** à partir des données ouvertes officielles. Si rien n'a changé, rien n'est republié : pas de mise à jour inutile pour les utilisateurs.\n\n## 4. Faire tourner une chaîne éditoriale\n\nPour [Feed Me Odd](~/projets/feed-me-odd/), cinq workflows s'enchaînent : repérer des sujets, les faire rédiger par un modèle de langage à partir de la seule source, contrôler, publier. Chaque étape est lancée quand il faut, avec un budget fixé à l'avance.\n\n## 5. M'envoyer un rapport chaque lundi\n\nUn workflow interroge les statistiques de visite de la semaine et crée un résumé que je reçois par email. Et ce carnet de bord lui-même se reconstruit **chaque matin** : c'est ce qui fait apparaître les billets programmés à leur date.\n\n## À quoi ressemble un workflow\n\nUn fichier placé dans `.github/workflows/`, qui dit **quand** lancer le travail (une modification, un horaire) et **quoi** faire (une suite de commandes). L'onglet **Actions** du dépôt montre chaque exécution, réussie ou non, avec son journal.\n\n## Trois précautions\n\n- **Les secrets** (clés d'API) se rangent dans *Settings → Secrets and variables → Actions*, jamais dans le code.\n- **Les tâches planifiées se mettent en pause** après 60 jours sans activité sur un dépôt public : un petit commit mensuel automatique les garde actives.\n- **Surveillez les échecs** : GitHub envoie un email quand un workflow échoue. Ne l'ignorez pas.\n\nPour un Product Builder, c'est un multiplicateur : chaque tâche automatisée libère du temps pour ce qui compte, comprendre les utilisateurs et améliorer le produit."
+    }
+  },
+  {
+    "id": "planifier-sa-semaine-en-sprint",
+    "visible": true,
+    "date": "2026-12-04",
+    "cover": "journal/planifier-sa-semaine-en-sprint.jpg",
+    "project": "week-flow",
+    "tags": [
+      "Méthode",
+      "Produit"
+    ],
+    "title": {
+      "fr": "Planifier sa semaine comme un sprint : la méthode agile appliquée à soi"
+    },
+    "summary": {
+      "fr": "Capacité, priorités, bilan : comment j'applique la logique des sprints à ma propre semaine, et pourquoi j'en fais une extension Chrome."
+    },
+    "body": {
+      "fr": "Dans les équipes produit, on travaille en **sprints** : une période courte, un objectif clair, une capacité connue, un bilan à la fin. J'applique la même logique à ma semaine. Elle a changé ma façon de travailler, au point d'en faire un outil : **Planner Week Flow**, une extension Chrome en cours de construction.\n\n## Le problème des listes de tâches\n\nUne liste de tâches classique a un défaut : elle ne connaît pas **le temps disponible**. On y ajoute tout, elle grossit, et le vendredi on constate qu'on a fait « un peu de tout ». La frustration vient moins du travail que de l'écart entre la liste et la réalité.\n\n## Les quatre gestes du sprint personnel\n\n### 1. Estimer sa capacité\n\nCombien d'heures réellement disponibles cette semaine, rendez-vous et imprévus déduits ? En général, beaucoup moins qu'on ne le croit.\n\n### 2. Prioriser\n\nTrois priorités maximum. Tout le reste est « si le temps le permet ». La question à se poser : *si je ne fais qu'une chose cette semaine, laquelle ?*\n\n### 3. Découper\n\nChaque tâche doit tenir dans une demi-journée. Au-delà, elle est trop floue pour être commencée sereinement.\n\n### 4. Faire le bilan\n\nLe vendredi, dix minutes : ce qui est fait, ce qui a glissé, pourquoi. Ce bilan sert à mieux estimer la semaine suivante. C'est là que la méthode apprend.\n\n## Pourquoi une extension de navigateur\n\nParce que c'est là que je travaille. Une extension permet d'**ajouter une tâche en un clic droit** depuis n'importe quelle page, de voir sa semaine d'un coup d'œil et de garder un **historique des sprints**. Tout reste dans le navigateur : pas de compte, pas de serveur.\n\n## Où en est le projet\n\nPlanner Week Flow est en construction. Il sera présenté sur ce site avec de vraies captures dès sa publication sur le Chrome Web Store.\n\nEn attendant, la méthode fonctionne très bien avec une simple feuille de papier. L'outil ne fait que la rendre plus rapide."
+    }
+  },
+  {
+    "id": "de-la-3d-au-produit",
+    "visible": true,
+    "date": "2026-12-08",
+    "cover": "journal/de-la-3d-au-produit.jpg",
+    "project": "",
+    "tags": [
+      "Parcours",
+      "Produit"
+    ],
+    "title": {
+      "fr": "De la 3D temps réel au produit : ce que quinze ans d'image m'ont appris"
+    },
+    "summary": {
+      "fr": "Avant de construire des produits, j'ai passé une quinzaine d'années à fabriquer des images. Ce que ce parcours m'apporte aujourd'hui, et pourquoi il compte."
+    },
+    "body": {
+      "fr": "Avant ce carnet de bord, j'ai passé une quinzaine d'années à **fabriquer des images** : 3D temps réel, réalité virtuelle, vidéo. Le plus souvent au sein d'équipes produit, au contact direct des clients. On me demande parfois si ce parcours est un détour. Je crois au contraire que c'est lui qui rend possible ce que je fais aujourd'hui.\n\n## Ce que l'image apprend\n\n### Le regard\n\nPasser des années à juger si une image « fonctionne » forme l'œil. Une interface mal alignée, un contraste insuffisant, une hiérarchie confuse se voient immédiatement. Ce qui est clair et beau se comprend, s'utilise et donne confiance.\n\n### Le temps réel\n\nLa 3D temps réel impose une discipline : chaque image doit être calculée en une fraction de seconde. On apprend à **arbitrer entre la qualité et la performance**, à mesurer, à optimiser ce qui compte vraiment. Exactement ce qu'on fait sur une application qui doit s'ouvrir vite sur un téléphone moyen.\n\n### L'itération\n\nUne image ne sort jamais juste du premier coup. On montre, on corrige, on remontre. Livrer tôt une version imparfaite pour obtenir un retour, c'est une habitude de métier bien avant d'être une méthode agile.\n\n## Ce que les équipes produit apprennent\n\nTravailler au sein d'équipes produit, face à des clients, c'est apprendre à :\n\n- **écouter un besoin** et le reformuler ;\n- **estimer** un travail et tenir un délai ;\n- **dire non**, avec des arguments, quand une demande dessert le projet ;\n- **livrer**, pas seulement produire.\n\n## Pourquoi ce mélange a de la valeur aujourd'hui\n\nL'IA rend le code accessible. Ce qui devient rare, c'est ce qu'elle ne fait pas seule : **choisir le bon problème, imaginer l'expérience, arbitrer, tenir la qualité**. Un parcours qui mêle exigence visuelle, contraintes techniques et relation client prépare précisément à ce rôle.\n\nJe n'ai pas quitté l'image : je la mets au service de produits entiers. Mon travail visuel reste visible, discrètement, en pied de page de ce site."
+    }
+  },
+  {
+    "id": "prototype-beta-produit-statut",
+    "visible": true,
+    "date": "2026-12-11",
+    "cover": "journal/prototype-beta-produit-statut.jpg",
+    "project": "",
+    "tags": [
+      "Produit",
+      "Méthode"
+    ],
+    "title": {
+      "fr": "Prototype, bêta, en ligne : comment je décide du statut d'un projet"
+    },
+    "summary": {
+      "fr": "Chaque projet de ce portfolio affiche un statut. Voici ce que signifient prototype, bêta et en ligne, et la grille que j'utilise pour faire passer un projet d'une étape à l'autre."
+    },
+    "body": {
+      "fr": "Sur ce portfolio, chaque projet affiche un **statut** : prototype, bêta, en construction, en ligne. Ce n'est pas décoratif. C'est une promesse faite à la personne qui clique : voilà ce que vous pouvez attendre de ce que vous allez ouvrir.\n\n## Ce que veut dire chaque statut\n\n- **Prototype** : une idée testée pour de vrai. Elle fonctionne, mais sert d'abord à répondre à une question (« est-ce que cette mécanique est amusante ? »). Exemple : [Diamond Foil](~/projets/diamond-foil/).\n- **En construction** : un produit dont la direction est claire, mais dont certains parcours restent à finir. Exemple : [AuraPlan](~/projets/auraplan/).\n- **Bêta** : complet et utilisable, en attente de retours de vrais utilisateurs avant d'être considéré comme stable. Exemple : [Site d'événement](~/projets/site-evenement/).\n- **En ligne** : utilisé, maintenu, prêt à être montré à n'importe qui.\n\n## La grille « prêt à montrer »\n\nPour passer un projet « en ligne », je vérifie neuf critères :\n\n1. il s'utilise **sans explication** ;\n2. il fonctionne **sur mobile et sur ordinateur** (ou il dit clairement pour quel écran il est fait) ;\n3. il gère **les erreurs et l'absence de réseau** proprement ;\n4. il a des **mentions légales** et une page de confidentialité si nécessaire ;\n5. il n'utilise **aucun contenu de tiers sans droit** ;\n6. son **nom** est vérifié ;\n7. il permet de **mesurer l'usage** et de faire un retour ;\n8. ses **captures** et ses textes sont à jour ;\n9. son **code est protégé** (dépôt privé ou licence claire).\n\nUn projet qui échoue à un critère reste un cran en dessous. C'est volontaire : mieux vaut un prototype assumé qu'un produit qui déçoit.\n\n## Pourquoi montrer aussi les prototypes\n\nParce que la façon de penser compte autant que le résultat. Un prototype raconte une question posée et la manière d'y répondre vite. Pour quelqu'un qui recrute un profil produit, c'est souvent plus parlant qu'un produit fini.\n\n## Et l'archive\n\nUn projet qui ne bouge plus depuis longtemps passe en **archivé** ou disparaît du portfolio. Un site qui ne montre que ce qui vit inspire plus confiance qu'une longue liste figée."
+    }
+  },
+  {
+    "id": "cadrer-projet-trente-minutes",
+    "visible": true,
+    "date": "2026-12-15",
+    "cover": "journal/cadrer-projet-trente-minutes.jpg",
+    "project": "",
+    "tags": [
+      "Méthode",
+      "Produit"
+    ],
+    "title": {
+      "fr": "Cadrer un projet en trente minutes : le cahier des charges d'une page"
+    },
+    "summary": {
+      "fr": "Avant d'écrire une ligne de code (ou de solliciter une IA), une page suffit pour cadrer un projet. Les cinq questions que je me pose systématiquement."
+    },
+    "body": {
+      "fr": "La tentation est forte, surtout avec l'IA : on a une idée, on demande du code, et une heure plus tard on a « quelque chose ». Souvent, ce quelque chose répond mal à la question, parce que la question n'a jamais été posée. Avant chaque projet, je prends trente minutes pour écrire **une page**. Pas plus.\n\n## Les cinq questions\n\n### 1. Pour qui ?\n\nUne personne précise, dans une situation précise. Pas « les parents », mais « un parent, le matin, qui veut savoir si son enfant a sport aujourd'hui ». Plus c'est concret, plus les décisions suivantes deviennent évidentes.\n\n### 2. Quel problème ?\n\nCe qui agace, fait perdre du temps ou de l'argent, **aujourd'hui**. Comment cette personne s'en sort-elle actuellement ? Si elle s'en sort très bien, le projet n'a peut-être pas lieu d'être.\n\n### 3. Quelle preuve de réussite ?\n\nComment saura-t-on que ça marche ? Un comportement observable : « elle ouvre l'app chaque matin », « le formulaire papier disparaît ». Sans preuve définie, un projet n'est jamais fini ni jamais raté : il flotte.\n\n### 4. Quel est le minimum ?\n\nLa plus petite version qui règle le problème pour cette personne. Pas la version idéale : la première qui soit **utile**. Tout le reste va dans une liste « plus tard ».\n\n### 5. Qu'est-ce qu'on ne fait pas ?\n\nLa question la plus importante. Écrire noir sur blanc ce qui est hors du projet évite qu'il grossisse sans fin. « Pas de compte utilisateur. Pas de version ordinateur au début. Pas de paiement. »\n\n## Un exemple réel\n\nPour [Tram Radar](~/projets/tbm-tram-radar/), la page tenait en cinq lignes : *une personne qui sort de chez elle à Bordeaux ; elle ne sait pas si elle aura son tram à pied ; réussite = elle décide en moins de trois secondes ; minimum = la station la plus proche, un sens, une réponse ; hors projet = itinéraires complets, vélos, bus.* Tout le reste a découlé de là.\n\n## Pourquoi c'est encore plus important avec l'IA\n\nUn agent de code exécute vite et sans discuter. Une page de cadrage devient alors **la consigne de référence** : on la colle en tête de chaque demande, et chaque proposition se juge à son aune. Trente minutes de réflexion économisent des jours de corrections."
     }
   }
 ]

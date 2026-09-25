@@ -24,7 +24,8 @@ function inline(text, asset, keyBase = 'i') {
       out.push(<img key={key} src={asset(safe(src))} alt={alt} loading="lazy" className="my-6 w-full rounded-2xl ring-1 ring-line" />)
     } else if (t.startsWith('[')) {
       const [, label, url] = t.match(/\[([^\]]+)\]\(([^)]+)\)/)
-      const u = safe(url)
+      /* « ~/projets/x/ » = page du site : suit l'adresse du site, même après un changement de domaine */
+      const u = url.startsWith('~/') ? `${import.meta.env.BASE_URL}${url.slice(2)}` : safe(url)
       const ext = /^https?:/.test(u)
       out.push(
         <a key={key} href={u} {...(ext && { target: '_blank', rel: 'noreferrer' })} className="text-fg underline decoration-fg/30 underline-offset-4 hover:decoration-fg">

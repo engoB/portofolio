@@ -111,7 +111,7 @@ function PostRow({ post, delay }) {
   const asset = useAsset()
   return (
     <Reveal as="li" delay={delay}>
-      <a href={href(paths.post(post.id))} className="group grid gap-3 border-t border-line py-8 sm:grid-cols-[9rem_1fr_10rem] sm:gap-8">
+      <a href={href(paths.post(post.id))} className="group grid gap-3 border-t border-line py-8 sm:grid-cols-[9rem_1fr_14rem] sm:gap-8">
         <p className="font-mono text-[11px] tracking-wider text-subtle uppercase sm:pt-2">{formatDate(post.date, lang)}</p>
         <div>
           <h3 className="font-serif text-3xl leading-tight text-balance text-fg transition group-hover:opacity-80">{tr(post.title)}</h3>
@@ -126,7 +126,7 @@ function PostRow({ post, delay }) {
             </p>
           )}
         </div>
-        {post.cover && <img src={asset(post.cover)} alt="" loading="lazy" className="hidden aspect-[4/3] w-full rounded-2xl object-cover object-top ring-1 ring-line sm:block" />}
+        {post.cover && <img src={asset(post.cover)} alt="" loading="lazy" className="hidden aspect-[1.91/1] w-full rounded-2xl object-cover ring-1 ring-line sm:block" />}
       </a>
     </Reveal>
   )
