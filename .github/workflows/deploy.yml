@@ -3,6 +3,9 @@ name: Déployer sur GitHub Pages
 on:
   push:
     branches: [main]
+  # Chaque matin (≈ 7 h à Paris) : fait apparaître les billets programmés du jour
+  schedule:
+    - cron: '7 5 * * *'
   workflow_dispatch:
 
 permissions:

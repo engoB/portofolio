@@ -8,6 +8,11 @@ export function publicUrl(site) {
   return `https://${site.repo.owner.toLowerCase()}.github.io/${site.repo.name}/`
 }
 
+/* Date du jour à Paris (AAAA-MM-JJ) : un billet daté dans le futur est « programmé »
+   et n'apparaît qu'à partir de ce jour-là (le site se reconstruit chaque matin). */
+export const todayParis = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Paris' })
+export const isScheduled = (post, today = todayParis()) => post.visible !== false && !!post.date && post.date > today
+
 /* Chemins des pages (relatifs à la racine du site) */
 export const paths = {
   home: '',

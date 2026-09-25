@@ -8,7 +8,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { paths, publicUrl } from '../src/lib/site-url.js'
+import { isScheduled, paths, publicUrl, todayParis } from '../src/lib/site-url.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
@@ -17,7 +17,9 @@ const site = read('site.json')
 const projects = read('projects.json').filter((p) => p.visible !== false)
 /* Journal désactivé dans l'espace perso : aucune page, aucun flux, rien dans le sitemap */
 const journalOn = site.sections?.journal !== false
-const allPosts = journalOn ? read('posts.json') : []
+const today = todayParis()
+/* Les billets programmés (date future) n'existent pas encore : ni page, ni flux, ni sitemap */
+const allPosts = journalOn ? read('posts.json').filter((p) => !isScheduled(p, today)) : []
 const posts = allPosts.filter((p) => p.visible !== false).sort((a, b) => (a.date < b.date ? 1 : -1))
 
 const url = publicUrl(site)
@@ -67,10 +69,13 @@ function head({ title, description, path, image, type = 'website', noindex, json
 /* Contenu HTML minimal pour les robots qui n'exécutent pas JavaScript (remplacé au chargement) */
 const links = (items) => `<ul>${items.map(([h, t]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('')}</ul>`
 
+/* Le contenu prérendu sert aux moteurs et aux aperçus sans JavaScript. Invisible pendant
+   le chargement (sinon on voit une fraction de seconde le texte brut, sans mise en page) ;
+   l'application React le remplace aussitôt. Sans JavaScript, une règle <noscript> le rend visible. */
 function write(path, meta, body) {
   const html = template
     .replace(/<!--seo:start-->[\s\S]*<!--seo:end-->/, head({ ...meta, path }))
-    .replace('<!--seo:content-->', `<main>${body}</main>`)
+    .replace('<!--seo:content-->', `<main class="seo-fallback" style="opacity:0">${body}</main>`)
   const file = path.endsWith('.html') ? join(dist, path) : join(dist, path, 'index.html')
   mkdirSync(dirname(file), { recursive: true })
   writeFileSync(file, html)
@@ -163,7 +168,6 @@ write(paths.legal, { title: `${fr(site.legal?.title) || 'Mentions légales'} —
 write('404.html', { title: `Page introuvable — ${name}`, description: homeDesc, noindex: true }, '<h1>404</h1>')
 
 /* sitemap.xml */
-const today = new Date().toISOString().slice(0, 10)
 const entries = [
   [url, today],
   ...projects.map((p) => [url + paths.project(p.id), today]),

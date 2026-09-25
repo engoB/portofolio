@@ -263,6 +263,12 @@ export function ProjectsEditor({ projects, onChange, addUpload, listRepos, site 
             </div>
             <BiField label="Texte du bouton de démo" hint="ex. « Jouer », « Essayer »" value={p.demoLabel} onChange={(v) => update(index, { demoLabel: v })} />
             <Toggle label="Code privé" hint="Remplace le lien du dépôt par « Code privé »" checked={p.repoPrivate} onChange={(v) => update(index, { repoPrivate: v })} />
+            <Toggle
+              label="Pensé pour le téléphone"
+              hint="Sur ordinateur, la démo s'ouvre dans un cadre de téléphone avec un QR code, et la fiche conseille de l'essayer sur mobile"
+              checked={p.mobileFirst}
+              onChange={(v) => update(index, { mobileFirst: v })}
+            />
           </Group>
 
           <Group title="Partage" hint="Image affichée quand on partage la page du projet" defaultOpen={false}>

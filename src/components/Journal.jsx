@@ -3,11 +3,21 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Rss } from 'lucide-react'
 import { useAsset, usePrefs } from '../lib/prefs.jsx'
 import { Markdown } from '../lib/markdown.jsx'
 import { href } from '../lib/route.js'
-import { paths, publicUrl } from '../lib/site-url.js'
+import { isScheduled, paths, publicUrl, todayParis } from '../lib/site-url.js'
 import { Comments, ShareBar } from './Social.jsx'
 import { Reveal } from './ui.jsx'
 
-export const publishedPosts = (posts) => posts.filter((p) => p.visible !== false).sort((a, b) => (a.date < b.date ? 1 : -1))
+export const publishedPosts = (posts) => {
+  const today = todayParis()
+  return posts.filter((p) => p.visible !== false && !isScheduled(p, today)).sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+/* Les billets n'existent qu'en français : on le signale aux lecteurs en anglais */
+function FrenchOnly({ className = '' }) {
+  const { lang } = usePrefs()
+  if (lang === 'fr') return null
+  return <p className={`inline-block rounded-full bg-fg/[0.05] px-3 py-1 text-xs text-muted ring-1 ring-line ring-inset ${className}`}>Posts are written in French only.</p>
+}
 
 function formatDate(date, lang) {
   if (!date) return ''
@@ -145,7 +155,10 @@ export function JournalPage({ site, posts }) {
           <span className="text-grad">.</span>
         </h1>
         <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-2xl text-lg leading-relaxed text-pretty text-muted">{tr(data.intro)}</p>
+          <div>
+            <p className="max-w-2xl text-lg leading-relaxed text-pretty text-muted">{tr(data.intro)}</p>
+            <FrenchOnly className="mt-3" />
+          </div>
           <p className="flex shrink-0 items-center gap-4 text-sm text-muted">
             <span className="font-mono text-xs">
               {all.length} {t.posts}
@@ -221,7 +234,7 @@ export function PostPage({ id, site, posts, projects }) {
   const asset = useAsset()
   const list = publishedPosts(posts)
   const post = posts.find((p) => p.id === id)
-  if (!post) return <NotFound />
+  if (!post || isScheduled(post)) return <NotFound />
   const i = list.findIndex((p) => p.id === id)
   const newer = i > 0 ? list[i - 1] : null
   const older = i >= 0 && i < list.length - 1 ? list[i + 1] : null
@@ -233,6 +246,7 @@ export function PostPage({ id, site, posts, projects }) {
       <a href={href(paths.journal)} className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
         <ArrowLeft className="size-4" aria-hidden="true" /> {tr(site.journal.name) || 'Journal'}
       </a>
+      <FrenchOnly className="ml-3" />
       {post.visible === false && (
         <p className="mt-4 inline-block rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-700 dark:text-amber-300">{lang === 'fr' ? 'Brouillon' : 'Draft'}</p>
       )}

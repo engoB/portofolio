@@ -6,13 +6,13 @@
   },
   "domain": "",
   "identity": {
-    "name": "Sébastien Khai",
+    "name": "Senshi Kabai",
     "initials": "SK",
     "role": {
       "fr": "Product Builder",
       "en": "Product Builder"
     },
-    "photo": "img/sebastien-khai.webp",
+    "photo": "img/senshi-kabai.webp",
     "showPhoto": true,
     "location": {
       "fr": "Bordeaux, France",
@@ -25,7 +25,7 @@
     "showStatus": true
   },
   "links": {
-    "email": "sebastienkhai@gmail.com",
+    "email": "senshikabai@gmail.com",
     "github": "https://github.com/engoB",
     "artstation": "https://engobaocodai.artstation.com",
     "showArtstation": true,
@@ -51,8 +51,8 @@
   },
   "seo": {
     "description": {
-      "fr": "Sébastien Khai, Product Builder : le carnet de bord d'une expérimentation — concevoir, coder et mettre en ligne des produits avec l'IA.",
-      "en": "Sébastien Khai, Product Builder: the logbook of an experiment — designing, coding and shipping products with AI."
+      "fr": "Senshi Kabai, Product Builder : le carnet de bord d'une expérimentation — concevoir, coder et mettre en ligne des produits avec l'IA.",
+      "en": "Senshi Kabai, Product Builder: the logbook of an experiment — designing, coding and shipping products with AI."
     },
     "googleVerification": ""
   },
@@ -519,8 +519,8 @@
       "en": "Legal notice & privacy"
     },
     "body": {
-      "fr": "## Éditeur\n\nSite personnel édité par **Sébastien Khai**. Contact : [sebastienkhai@gmail.com](mailto:sebastienkhai@gmail.com).\n\n## Hébergement\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.\n\n## Propriété intellectuelle\n\nL'ensemble des textes, visuels, captures et du code de ce site est protégé. Toute reproduction ou réutilisation sans autorisation écrite est interdite. Les marques et contenus de tiers cités restent la propriété de leurs titulaires respectifs.\n\n## Données personnelles\n\nCe site ne dépose aucun cookie publicitaire et ne revend aucune donnée.\n\n- **Mesure d'audience** : si elle est activée, elle utilise GoatCounter, sans cookie et sans suivi individuel.\n- **Commentaires** : ils passent par Giscus et un compte GitHub ; ils sont soumis à la [politique de confidentialité de GitHub](https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement).\n- **Préférences** : la langue et le thème choisis sont mémorisés dans votre navigateur uniquement.\n\nPour toute question ou demande de suppression, écrivez à l'adresse ci-dessus.",
-      "en": "## Publisher\n\nPersonal website published by **Sébastien Khai**. Contact: [sebastienkhai@gmail.com](mailto:sebastienkhai@gmail.com).\n\n## Hosting\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.\n\n## Intellectual property\n\nAll texts, visuals, screenshots and code on this site are protected. Any reproduction or reuse without written permission is prohibited. Third-party trademarks and content mentioned remain the property of their respective owners.\n\n## Personal data\n\nThis site sets no advertising cookies and sells no data.\n\n- **Audience measurement**: when enabled, it uses GoatCounter, with no cookies and no individual tracking.\n- **Comments**: they go through Giscus and a GitHub account, and are subject to [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).\n- **Preferences**: your chosen language and theme are stored in your browser only.\n\nFor any question or deletion request, write to the address above."
+      "fr": "## Éditeur\n\nSite personnel et non professionnel, édité sous le pseudonyme **Senshi Kabai**. Contact : [senshikabai@gmail.com](mailto:senshikabai@gmail.com).\n\nConformément à l'article 6-III-2 de la loi pour la confiance dans l'économie numérique (LCEN), l'éditeur, personne physique agissant à titre non professionnel, a choisi de rester anonyme ; les éléments permettant de l'identifier ont été communiqués à l'hébergeur.\n\n## Hébergement\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.\n\n## Propriété intellectuelle\n\nL'ensemble des textes, visuels, captures et du code de ce site est protégé. Toute reproduction ou réutilisation sans autorisation écrite est interdite. Les marques et contenus de tiers cités restent la propriété de leurs titulaires respectifs.\n\n## Données personnelles\n\nCe site ne dépose aucun cookie publicitaire et ne revend aucune donnée.\n\n- **Mesure d'audience** : si elle est activée, elle utilise GoatCounter, sans cookie et sans suivi individuel.\n- **Commentaires** : ils passent par Giscus et un compte GitHub ; ils sont soumis à la [politique de confidentialité de GitHub](https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement).\n- **Préférences** : la langue et le thème choisis sont mémorisés dans votre navigateur uniquement.\n\nPour toute question ou demande de suppression, écrivez à l'adresse ci-dessus.",
+      "en": "## Publisher\n\nPersonal, non-commercial website published under the pen name **Senshi Kabai**. Contact: [senshikabai@gmail.com](mailto:senshikabai@gmail.com).\n\nIn accordance with French law (LCEN, art. 6-III-2), the publisher, a private individual acting in a non-professional capacity, has chosen to remain anonymous; identifying details have been provided to the host.\n\n## Hosting\n\nGitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.\n\n## Intellectual property\n\nAll texts, visuals, screenshots and code on this site are protected. Any reproduction or reuse without written permission is prohibited. Third-party trademarks and content mentioned remain the property of their respective owners.\n\n## Personal data\n\nThis site sets no advertising cookies and sells no data.\n\n- **Audience measurement**: when enabled, it uses GoatCounter, with no cookies and no individual tracking.\n- **Comments**: they go through Giscus and a GitHub account, and are subject to [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).\n- **Preferences**: your chosen language and theme are stored in your browser only.\n\nFor any question or deletion request, write to the address above."
     }
   }
 }

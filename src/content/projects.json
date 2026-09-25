@@ -119,7 +119,8 @@
     },
     "repo": "https://github.com/engoB/MultixArena",
     "repoPrivate": false,
-    "accent": "#f59e0b"
+    "accent": "#f59e0b",
+    "mobileFirst": true
   },
   {
     "id": "tbm-tram-radar",
@@ -173,7 +174,8 @@
     },
     "repo": "https://github.com/engoB/TBMTramRadar",
     "repoPrivate": false,
-    "accent": "#a855f7"
+    "accent": "#a855f7",
+    "mobileFirst": true
   },
   {
     "id": "teletravail",
@@ -394,7 +396,8 @@
     },
     "repo": "https://github.com/engoB/PokeTest",
     "repoPrivate": false,
-    "accent": "#14b8a6"
+    "accent": "#14b8a6",
+    "mobileFirst": true
   },
   {
     "id": "oasis",
@@ -453,7 +456,8 @@
     },
     "repo": "https://github.com/engoB/chasse-oasis",
     "repoPrivate": false,
-    "accent": "#f43f5e"
+    "accent": "#f43f5e",
+    "mobileFirst": true
   },
   {
     "id": "diamond-foil",
@@ -567,7 +571,8 @@
     },
     "repo": "https://github.com/engoB/site-evenement",
     "repoPrivate": false,
-    "accent": "#c39a55"
+    "accent": "#c39a55",
+    "mobileFirst": true
   },
   {
     "id": "planning-classe",
@@ -627,7 +632,8 @@
     },
     "repo": "https://github.com/engoB/planning-classe",
     "repoPrivate": false,
-    "accent": "#0e7490"
+    "accent": "#0e7490",
+    "mobileFirst": true
   },
   {
     "id": "week-flow",

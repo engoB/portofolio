@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Lock, Plus, X } from 
 import { useAsset, usePrefs } from '../lib/prefs.jsx'
 import { BrowserFrame, Chip, GithubIcon, PhoneFrame, Reveal, SectionHeading, StatusBadge } from './ui.jsx'
 import { Comments, ShareBar, trackView } from './Social.jsx'
+import { DemoLink, MobileHint } from './PhoneDemo.jsx'
 import { href } from '../lib/route.js'
 import { paths, publicUrl } from '../lib/site-url.js'
 
@@ -60,14 +61,12 @@ function ProjectCard({ p, onOpen }) {
             <Plus className="size-4" aria-hidden="true" /> {ui.discover}
           </button>
           {p.demo && (
-            <a
-              href={p.demo}
-              target="_blank"
-              rel="noreferrer"
+            <DemoLink
+              p={p}
               className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm text-fg2 ring-1 ring-line transition ring-inset hover:text-fg hover:ring-fg/30"
             >
               {tr(p.demoLabel) || ui.open} <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
+            </DemoLink>
           )}
         </div>
       </div>
@@ -187,15 +186,14 @@ function ProjectDialog({ project: p, site, onClose, onPrev, onNext }) {
               )}
               <div className="flex flex-col gap-2">
                 {p.demo && (
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noreferrer"
+                  <DemoLink
+                    p={p}
                     className="inline-flex items-center justify-center gap-1.5 rounded-full bg-fg px-5 py-3 text-sm font-medium text-bg transition hover:opacity-85"
                   >
                     {tr(p.demoLabel) || ui.open} <ArrowUpRight className="size-4" aria-hidden="true" />
-                  </a>
+                  </DemoLink>
                 )}
+                <MobileHint p={p} className="justify-center pb-1" />
                 {p.repo &&
                   (p.repoPrivate ? (
                     <span className="inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm text-subtle ring-1 ring-line ring-inset">

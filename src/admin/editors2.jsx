@@ -3,7 +3,7 @@ import { Check, Copy, Download, Eye, ImagePlus, Loader2, Plus, Share2, Sparkles,
 import { InstagramIcon } from '../components/Social.jsx'
 import { useAsset } from '../lib/prefs.jsx'
 import { Markdown } from '../lib/markdown.jsx'
-import { publicUrl } from '../lib/site-url.js'
+import { isScheduled, publicUrl } from '../lib/site-url.js'
 import { toWebp } from './github.js'
 import { makeShareCard, makeSocialCard } from './sharecard.js'
 import { BiField, Group, Label, ListEditor, Select, TagInput, TextField, Toggle, inputCls } from './fields.jsx'
@@ -289,7 +289,7 @@ export function JournalEditor({ posts, onChange, projects, site, updateSite, add
           <button type="button" onClick={add} className="inline-flex w-full items-center justify-center gap-1.5 rounded-2xl bg-fg px-3 py-2.5 text-sm font-medium text-bg">
             <Plus className="size-4" /> Nouveau billet
           </button>
-          <p className="px-1 pt-2 text-xs text-subtle">Un billet en brouillon n'apparaît ni sur le site ni dans le flux RSS.</p>
+          <p className="px-1 pt-2 text-xs text-subtle">Un billet en brouillon n'apparaît ni sur le site ni dans le flux RSS. Un billet publié avec une date future est <b>programmé</b> : il apparaît tout seul ce jour-là, vers 7 h.</p>
           <ul className="space-y-1.5">
             {sorted.map((x) => (
               <li key={x.id}>
@@ -300,7 +300,9 @@ export function JournalEditor({ posts, onChange, projects, site, updateSite, add
                 >
                   <span className="flex items-center justify-between gap-2 text-[11px] text-subtle">
                     {x.date}
-                    <span className={x.visible === false ? 'text-amber-600 dark:text-amber-300' : 'text-emerald-600 dark:text-emerald-300'}>{x.visible === false ? 'Brouillon' : 'Publié'}</span>
+                    <span className={x.visible === false ? 'text-amber-600 dark:text-amber-300' : isScheduled(x) ? 'text-sky-600 dark:text-sky-300' : 'text-emerald-600 dark:text-emerald-300'}>
+                    {x.visible === false ? 'Brouillon' : isScheduled(x) ? 'Programmé' : 'Publié'}
+                  </span>
                   </span>
                   <span className="mt-1 block truncate text-sm font-medium text-fg">{x.title?.fr || 'Sans titre'}</span>
                 </button>
@@ -320,7 +322,7 @@ export function JournalEditor({ posts, onChange, projects, site, updateSite, add
               <div className="grid gap-4 sm:grid-cols-3">
                 <TextField label="Date" type="date" value={p.date} onChange={(v) => update({ date: v })} />
                 <TextField label="Adresse" hint="après /journal/" value={p.id} onChange={(v) => update({ id: slugify(v) })} />
-                <Toggle label={p.visible === false ? 'Brouillon' : 'Publié'} checked={p.visible !== false} onChange={(v) => update({ visible: v })} />
+                <Toggle label={p.visible === false ? 'Brouillon' : isScheduled(p) ? `Programmé (visible le ${p.date.split('-').reverse().join('/')})` : 'Publié'} checked={p.visible !== false} onChange={(v) => update({ visible: v })} />
               </div>
               <BiField label="Résumé" hint="1 à 2 phrases, visible dans les listes et les partages" value={p.summary} onChange={(v) => update({ summary: v })} multiline rows={2} />
               <BodyEditor value={p.body} onChange={(v) => update({ body: v })} addUpload={addUpload} postId={p.id} />
@@ -401,7 +403,7 @@ export function SettingsEditor({ site, update }) {
   return (
     <div className="space-y-4">
       <Group title="Adresse du site" hint="Domaine personnalisé, quand vous en aurez un">
-        <TextField label="Domaine" placeholder="ex. sebastienkhai.fr (laisser vide pour engob.github.io/portofolio)" value={site.domain} onChange={(v) => update(['domain'], v.trim())} />
+        <TextField label="Domaine" placeholder="ex. senshikabai.fr (laisser vide pour engob.github.io/portofolio)" value={site.domain} onChange={(v) => update(['domain'], v.trim())} />
         <p className="text-xs text-subtle">
           Adresse actuelle : <span className="font-mono text-fg2">{publicUrl(site)}</span>. Renseigner un domaine ne suffit pas : il faut aussi le configurer chez votre
           registraire et dans GitHub → Settings → Pages (voir le guide).
@@ -422,7 +424,7 @@ export function SettingsEditor({ site, update }) {
       <Group title="Statistiques de visite" hint="GoatCounter : gratuit, sans cookie, sans bandeau de consentement">
         <TextField
           label="Code GoatCounter"
-          placeholder="ex. sebastienkhai (pour sebastienkhai.goatcounter.com)"
+          placeholder="ex. senshikabai (pour senshikabai.goatcounter.com)"
           value={site.analytics?.goatcounter}
           onChange={(v) => update(['analytics', 'goatcounter'], v.trim().replace(/\.goatcounter\.com.*$/, '').replace(/^https?:\/\//, ''))}
         />
