@@ -273,6 +273,10 @@
       {
         "src": "projects/proofshot-2.webp",
         "kind": "desktop"
+      },
+      {
+        "src": "projects/proofshot-3.webp",
+        "kind": "desktop"
       }
     ],
     "demo": "https://engob.github.io/proofshot/",
@@ -496,6 +500,14 @@
     "images": [
       {
         "src": "projects/diamond-foil-1.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/diamond-foil-2.webp",
+        "kind": "desktop"
+      },
+      {
+        "src": "projects/diamond-foil-3.webp",
         "kind": "desktop"
       }
     ],

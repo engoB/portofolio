@@ -1,4 +1,4 @@
-<p align="center"><a href="https://engob.github.io/portofolio/"><img src=".github/readme/banner.jpg" alt="Sébastien Khai — Product Builder" width="100%"></a></p>
+<p align="center"><a href="https://engob.github.io/portofolio/"><img src=".github/readme/banner.jpg" alt="Senshi Kabai — Product Builder" width="100%"></a></p>
 
 <p align="center">
   <a href="https://engob.github.io/portofolio/"><img alt="Visiter" src="https://img.shields.io/badge/Visiter-le_site-0b0b0f?style=for-the-badge&labelColor=0b0b0f"></a>
@@ -6,7 +6,7 @@
   <a href="https://engob.github.io/portofolio/journal/"><img alt="Journal" src="https://img.shields.io/badge/Carnet_de_bord-lire-4f46e5?style=for-the-badge&labelColor=0b0b0f"></a>
 </p>
 
-<h1 align="center">Sébastien Khai — Product Builder</h1>
+<h1 align="center">Senshi Kabai — Product Builder</h1>
 <p align="center"><b>Le carnet de bord d'une expérimentation : construire des produits de bout en bout, avec l'IA comme équipe.</b><br>Portfolio bilingue, journal, retours des visiteurs et espace d'édition sans code, le tout sur un hébergement gratuit.</p>
 
 ---
@@ -27,16 +27,16 @@ Application React construite avec Vite, puis **prérendue** : chaque projet et c
 
 ### English
 
-**Sébastien Khai — Product Builder.** The logbook of an experiment: building products end to end, with AI as the team. A bilingual portfolio with a separate journal, visitor feedback, share images, weekly analytics and a no-code editing space that publishes straight to GitHub.
+**Senshi Kabai — Product Builder.** The logbook of an experiment: building products end to end, with AI as the team. A bilingual portfolio with a separate journal, visitor feedback, share images, weekly analytics and a no-code editing space that publishes straight to GitHub.
 
 ---
 
-<p align="center"><sub>Conçu, développé et mis en ligne par <b>Sébastien Khai</b> · <a href="https://engob.github.io/portofolio/">engob.github.io/portofolio</a><br>© 2026 Sébastien Khai — tous droits réservés (voir <a href="LICENSE">LICENSE</a>).</sub></p>
+<p align="center"><sub>Conçu, développé et mis en ligne par <b>Senshi Kabai</b> · <a href="https://engob.github.io/portofolio/">engob.github.io/portofolio</a><br>© 2026 Senshi Kabai — tous droits réservés (voir <a href="LICENSE">LICENSE</a>).</sub></p>
 
 <details>
 <summary><b>Documentation technique</b> · modifier le site, publier, configurer</summary>
 
-## Sébastien Khai — carnet de bord
+## Senshi Kabai — carnet de bord
 
 Site vitrine one-page, bilingue (FR / EN), thème clair et sombre, déployé sur GitHub Pages :
 https://engob.github.io/portofolio/
